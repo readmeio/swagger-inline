@@ -19,7 +19,6 @@ const swaggerInline = require('swagger-inline');
 
 const generatedSwagger = swaggerInline('src/**/*.js', {
     base: 'swaggerBase.json',
-    output: 'swagger.json', // <path>/filename.(yaml|json)
 });
 
 ```

@@ -4,7 +4,8 @@
   "description": "Generate your swagger files from inline swagger comments.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --colors --watch --harmony --require babel-register tests/**/*.js",
+    "test-watch": "mocha --watch --colors --require babel-register tests/**/*-test.js",
+    "test": "mocha --colors --require babel-register tests/**/*-test.js",
     "start": "babel --watch src/ -d build/",
     "build": "babel src/ -d build",
     "postinstall": "npm run-script build"
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/readmeio/swagger-inline#readme",
   "dependencies": {
+    "bluebird": "^3.4.1",
     "multilang-extract-comments": "^0.2.2"
   },
   "devDependencies": {

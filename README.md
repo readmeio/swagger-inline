@@ -16,8 +16,9 @@ npm start # build + watch
 
 ## Test
 
-```js
-npm test
+```bash
+npm test # single run
+npm run test-watch # test + watch
 ```
 
 ## Usage

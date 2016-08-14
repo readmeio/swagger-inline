@@ -6,7 +6,8 @@
     "scripts": {
         "test": "npm test",
         "start": "babel --watch src/ -d build/",
-        "build": "babel src/ -d build"
+        "build": "babel src/ -d build",
+        "postinstall": "npm run-script build",
     },
     "repository": {
         "type": "git",

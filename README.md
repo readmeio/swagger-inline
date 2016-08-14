@@ -8,6 +8,18 @@ Node module for extracting swagger endpoints from inline comments.
 npm install --save-dev swagger-inline
 ```
 
+## Build
+```bash
+npm run build # single build
+npm start # build + watch
+```
+
+## Test
+
+```js
+npm test
+```
+
 ## Usage
 
 #### **Javascript**
@@ -25,8 +37,10 @@ const generatedSwagger = swaggerInline('src/**/*.js', {
 
 #### **Cli**
 
+### `swagger-inline <inputGlob> [--base] [--out]`
+
 ```bash
-swagger-inline <inputFiles> [--base] [--out] # outputs built swagger.json
+swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.json
 ```
 
 **Options:**

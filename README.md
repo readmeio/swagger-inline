@@ -25,13 +25,15 @@ npm run test-watch # test + watch
 
 #### **Javascript**
 
-### `swaggerInline(inputFiles, options) => json | yaml`
+### `swaggerInline(inputGlob, options) => Promise => json | yaml`
 
 ```js
 const swaggerInline = require('swagger-inline');
 
-const generatedSwagger = swaggerInline('src/**/*.js', {
+swaggerInline('src/**/*.js', {
     base: 'swaggerBase.json',
+}).then((generatedSwagger) => {
+    // Use generated swagger
 });
 
 ```

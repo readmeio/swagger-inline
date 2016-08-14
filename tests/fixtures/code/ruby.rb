@@ -4,7 +4,7 @@ class something
     end
 
     =begin
-    Block comment
+    block comment
     =end
 
     def doSomething

@@ -1,7 +1,7 @@
 const something = require('something-js');
 
 /*
-Block comment
+block comment
 */
 
 function doSomething() {

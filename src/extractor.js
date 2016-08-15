@@ -9,6 +9,19 @@ function pushLine(array, line) {
     return false;
 }
 
+function buildEndpoint(route, yamlLines) {
+    const endpoint = {};
+
+    if (route) {
+        const yamlObject = jsYaml.load(yamlLines.join('\n'));
+
+        endpoint.method = route[1];
+        endpoint.route = route[2];
+        Object.assign(endpoint, yamlObject);
+    }
+    return endpoint;
+}
+
 class Extractor {
     static extractComments(code, options) {
         return extractComments(code, options);
@@ -17,25 +30,17 @@ class Extractor {
     static extractEndpoint(comment) {
         const lines = comment.split('\n');
         const yamlLines = [];
-        let endpoint = {};
-        let method = null;
+        let route = null;
 
         lines.some((line) => {
-            if (method) {
+            if (route) {
                 return !pushLine(yamlLines, line); // end when lines stop being pushed
             }
-            method = method || line.match(this.ROUTE_REGEX);
+            route = route || line.match(this.ROUTE_REGEX);
+            return false;
         });
 
-        if (method) {
-            const yamlObject = jsYaml.load(yamlLines.join('\n'));
-
-            endpoint.method = method[1];
-            endpoint.route = method[2];
-            endpoint = Object.assign({}, endpoint, yamlObject);
-        }
-
-        return endpoint;
+        return buildEndpoint(route, yamlLines);
     }
 }
 

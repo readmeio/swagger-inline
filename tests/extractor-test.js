@@ -62,5 +62,18 @@ describe('Extractor', () => {
             assert.isObject(endpoint.responses);
             assert.isObject(endpoint.responses['200']);
         });
+
+        it('extracts endpoints from code strings', () => {
+            const code = fs.readFileSync(`${__dirname}/fixtures/code/swagger-api.js`, 'utf-8');
+            const endpoints = Extractor.extractEndpointsFromCode(code);
+
+            assert.lengthOf(endpoints, 4);
+
+            endpoints.forEach((endpoint) => {
+                assert.include(endpoint.route, 'pet');
+                assert.isString(endpoint.method);
+                assert.lengthOf(Object.keys(endpoint.responses), 2);
+            });
+        });
     });
 });

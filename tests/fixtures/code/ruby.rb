@@ -1,6 +1,7 @@
 class something
     def initialize()
-        @something = '// something' # inline comment
+        # inline comment
+        @something = '// something'
     end
 
     =begin

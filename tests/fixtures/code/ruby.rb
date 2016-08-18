@@ -1,12 +1,12 @@
 class something
+    =begin
+    block comment
+    =end
+
     def initialize()
         # inline comment
         @something = '// something'
     end
-
-    =begin
-    block comment
-    =end
 
     def doSomething
 

@@ -1,5 +1,12 @@
+const fs = require('fs');
 const assert = require('chai').assert;
+const jsYaml = require('js-yaml');
+
 const swaggerInline = require('../src/swagger-inline');
+
+const projectDir = `${__dirname}/fixtures/project`;
+const baseYAMLPath = `${projectDir}/swaggerBase.yaml`;
+const baseJSONPath = `${projectDir}/swaggerBase.json`;
 
 describe('Swagger Inline', () => {
     it('requires inputs', () => {
@@ -16,6 +23,39 @@ describe('Swagger Inline', () => {
     it('resolves to a string', (done) => {
         swaggerInline('./tests/*.js').then((generatedSwagger) => {
             assert.isString(generatedSwagger);
+            done();
+        }).catch(done);
+    });
+
+    it('adds the base json', (done) => {
+        const baseJSON = JSON.parse(fs.readFileSync(baseJSONPath, 'utf-8'));
+        swaggerInline(`${projectDir}/*.js`, { base: baseJSONPath }).then((json) => {
+            const outputJSON = JSON.parse(json);
+            Object.keys(baseJSON).forEach((baseKey) => {
+                assert.isDefined(outputJSON[baseKey], `'${baseKey}' was not in swagger output`);
+            });
+            done();
+        }).catch(done);
+    });
+
+    it('adds the base yaml', (done) => {
+        const baseYAML = jsYaml.load(fs.readFileSync(baseYAMLPath, 'utf-8'));
+        swaggerInline(`${projectDir}/*.js`, { base: baseYAMLPath }).then((yaml) => {
+            const outputYAML = jsYaml.load(yaml);
+            Object.keys(baseYAML).forEach((baseKey) => {
+                assert.isDefined(outputYAML[baseKey], `'${baseKey}' was not in swagger output`);
+            });
+            assert.throws(JSON.parse.bind(null, yaml));
+            done();
+        }).catch(done);
+    });
+
+    it('merges extracted swagger into the base swagger', (done) => {
+        swaggerInline(`${projectDir}/*.js`, { base: baseJSONPath }).then((json) => {
+            const outputJSON = JSON.parse(json);
+
+            assert.isObject(outputJSON.paths);
+
             done();
         }).catch(done);
     });

@@ -10,32 +10,18 @@ describe('Extractor', () => {
             { type: 'singleline', content: 'inline' },
         ];
 
-        it('can extract js comments', () => {
-            const js = fs.readFileSync(`${__dirname}/fixtures/code/javascript.js`, 'utf-8');
-            const comments = Extractor.extractComments(js);
+        ['javascript.js', 'ruby.rb', 'python.py'].forEach((language) => {
+            it(`can extract ${language} comments`, () => {
+                const code = fs.readFileSync(`${__dirname}/fixtures/code/${language}`, 'utf-8');
+                const comments = Extractor.extractComments(code, { filename: language });
 
-            assert.lengthOf(Object.keys(comments), 2);
+                assert.lengthOf(Object.keys(comments), 2);
 
-            Object.keys(comments).forEach((key, index) => {
-                const comment = comments[key];
-                assert.equal(comment.info.type, expectations[index].type);
-                assert.include(comment.content, expectations[index].content);
-            });
-        });
-
-        // Won't work until multilang-extract-comments supports multiline ruby comments
-        // Source: https://github.com/nknapp/comment-patterns/blob/master/languages/patterns/ruby.js
-        // Issue: https://github.com/nknapp/comment-patterns/issues/2
-        xit('can extract ruby', () => {
-            const ruby = fs.readFileSync(`${__dirname}/fixtures/code/ruby.rb`, 'utf-8');
-            const comments = Extractor.extractComments(ruby, { filename: 'functi.rb' });
-
-            assert.lengthOf(Object.keys(comments), 2);
-
-            Object.keys(comments).forEach((key, index) => {
-                const comment = comments[key];
-                assert.equal(comment.info.type, expectations[index].type);
-                assert.include(comment.content, expectations[index].content);
+                Object.keys(comments).forEach((key, index) => {
+                    const comment = comments[key];
+                    assert.equal(comment.info.type, expectations[index].type);
+                    assert.include(comment.content, expectations[index].content);
+                });
             });
         });
     });

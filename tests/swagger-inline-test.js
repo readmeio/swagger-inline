@@ -56,6 +56,10 @@ describe('Swagger Inline', () => {
 
             assert.isObject(outputJSON.paths);
 
+            Object.keys(outputJSON.paths).forEach((paths) => {
+                assert.equal(paths.charAt(0), '/'); // everything is a path
+            });
+
             done();
         }).catch(done);
     });

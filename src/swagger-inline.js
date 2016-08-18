@@ -19,6 +19,10 @@ function mergeEndpointsWithBase(swaggerBase, endpoints) {
         const method = current.method;
         const route = current.route;
 
+        if (!method || !route) {
+            return prev;
+        }
+
         delete current.method;
         delete current.route;
         merged.paths[route] = merged.paths[route] || {};
@@ -54,8 +58,6 @@ function swaggerInline(globPattern, providedOptions) {
                     }, []);
 
                     const swagger = mergeEndpointsWithBase(baseObj, endpoints);
-
-                    console.log(JSON.stringify(swagger, null, 4));
 
                     resolve(outputResult(swagger, options));
                 });

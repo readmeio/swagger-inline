@@ -49,7 +49,7 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 **Options:**
 - `inputFiles`: Files to search for swagger comments.
 - `base`: Base `swagger.json` or `swagger.yml` to build onto
-- `out`: Output filename (default: `swagger.(json|yml)`)
+- `format`: Output filename - `.json` or `.yaml` (default: `.json`)
 
 ## Example:
 

@@ -6,6 +6,9 @@
         "import/no-extraneous-dependencies": [2, {
           "devDependencies": true
         }],
+        "arrow-body-style": [
+            "error", "always"
+        ]
     },
     "env": {
         "mocha": true

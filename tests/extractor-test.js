@@ -1,7 +1,7 @@
 const fs = require('fs');
 const assert = require('chai').assert;
 
-const Extractor = require('../src/extractor.js');
+const Extractor = require('../src/extractor');
 
 describe('Extractor', () => {
     describe('comment extraction', () => {
@@ -10,7 +10,8 @@ describe('Extractor', () => {
             { type: 'singleline', content: 'inline' },
         ];
 
-        ['javascript.js', 'ruby.rb', 'python.py'].forEach((language) => {
+        // ['javascript.js', 'ruby.rb', 'python.py']
+        ['javascript.js'].forEach((language) => {
             it(`can extract ${language} comments`, () => {
                 const code = fs.readFileSync(`${__dirname}/fixtures/code/${language}`, 'utf-8');
                 const comments = Extractor.extractComments(code, { filename: language });
@@ -60,6 +61,18 @@ describe('Extractor', () => {
                 assert.isString(endpoint.method);
                 assert.lengthOf(Object.keys(endpoint.responses), 2);
             });
+        });
+
+        it('returns only endpoints', () => {
+            const emptyCode = [
+                '/*', ' * Empty comment', ' */',
+                ' ',
+                '/*', ' * Second comment', ' */',
+            ].join('\n');
+
+            const endpoints = Extractor.extractEndpointsFromCode(emptyCode);
+
+            assert.lengthOf(endpoints, 0);
         });
     });
 });

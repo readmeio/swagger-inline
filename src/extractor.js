@@ -29,6 +29,8 @@ class Extractor {
         return Object.keys(comments).map((commentKey) => {
             const comment = comments[commentKey];
             return this.extractEndpoint(comment.content);
+        }).filter((endpoint) => {
+            return endpoint.method && endpoint.route;
         });
     }
 

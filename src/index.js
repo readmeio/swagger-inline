@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const cli = require('./cli');
 const swaggerInline = require('./swagger-inline');
 

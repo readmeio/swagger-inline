@@ -7,7 +7,7 @@ const swaggerInline = require('./swagger-inline');
 function Cli(args) {
     program
         .version(packageJson.version)
-        .usage('[options] <inputGlob>')
+        .usage('[options] <inputGlobs ...>')
         .option('-b, --base [path]', 'A base swagger file.')
         .option('-f, --format', 'Output swagger format (.json or .yaml).');
 
@@ -28,12 +28,16 @@ function Cli(args) {
     const providedOptions = {
         base: program.base,
         format: program.format,
+        logger: console.log,
     };
 
-    swaggerInline(program.args[0], providedOptions).then((output) => {
+    swaggerInline(program.args, providedOptions).then((output) => {
         const options = new Options(providedOptions);
 
         fs.writeFileSync(`./swagger${options.getFormat()}`, output, 'utf-8');
+    }).catch((err) => {
+        console.log('An error occured:');
+        console.log(err);
     });
 }
 

@@ -25,18 +25,10 @@ npm run test-watch # test + watch
 
 #### **Javascript**
 
-### `swaggerInline(inputGlob, options) => Promise => json | yaml`
+### `swaggerInline([inputGlobs...], options) => Promise => json | yaml`
 
 ```js
 const swaggerInline = require('swagger-inline');
-
-swaggerInline('src/**/*.js', {
-    base: 'swaggerBase.json',
-}).then((generatedSwagger) => {
-    // Use generated swagger
-});
-
-// Multiple globs
 
 swaggerInline(['src/**/*.js', 'test/**/*.js'], {
     base: 'swaggerBase.json',
@@ -48,14 +40,14 @@ swaggerInline(['src/**/*.js', 'test/**/*.js'], {
 
 #### **Cli**
 
-### `swagger-inline <inputGlob> [--base] [--out]`
+### `swagger-inline <inputGlobs ...> [--base] [--format]`
 
 ```bash
 swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.json
 ```
 
 **Options:**
-- `inputFiles`: Files to search for swagger comments.
+- `inputGlobs`: Files/globs to search for swagger comments.
 - `base`: Base `swagger.json` or `swagger.yml` to build onto
 - `format`: Output filename - `.json` or `.yaml` (default: `.json`)
 - 'logger': Function called for logging.
@@ -95,7 +87,7 @@ api.route('/pets', function() {
 #### 2) Run Command
 
 ```bash
-swagger-inline '*.js' --base 'swaggerBase.yml'
+swagger-inline './*.js' --base './swaggerBase.yml'
 ```
 
 **Output:**

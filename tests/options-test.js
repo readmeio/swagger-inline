@@ -16,4 +16,11 @@ describe('Options', () => {
         assert.equal(options.getFormat(), '.yaml');
         assert.equal(options.getBase(), 'someFile.yaml');
     });
+
+    it('has a logger', () => {
+        process.env.NODE_ENV = 'production';
+        const options = new Options();
+        assert.isFunction(options.getLogger());
+        process.env.NODE_ENV = 'test';
+    });
 });

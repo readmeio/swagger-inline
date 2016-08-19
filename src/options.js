@@ -2,7 +2,7 @@ const path = require('path');
 
 class Options {
     constructor(providedOptions = {}) {
-        this.options = Object.assign({}, providedOptions, Options.DEFAULTS);
+        this.options = Object.assign({}, Options.DEFAULTS, providedOptions);
 
         if (this.options.base && !providedOptions.format) {
             this.options.format = path.extname(this.options.base);
@@ -20,10 +20,15 @@ class Options {
     getBase() {
         return this.options.base;
     }
+
+    getLogger() {
+        return this.options.logger;
+    }
 }
 
 Options.DEFAULTS = {
     format: '.json',
+    logger: () => {},
 };
 
 module.exports = Options;

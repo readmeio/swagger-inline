@@ -21,7 +21,7 @@ describe('Swagger Inline', () => {
     });
 
     it('resolves to a string', (done) => {
-        swaggerInline('./tests/*.js').then((generatedSwagger) => {
+        swaggerInline(`${__dirname}/fixtures/project/*.js`).then((generatedSwagger) => {
             assert.isString(generatedSwagger);
             done();
         }).catch(done);

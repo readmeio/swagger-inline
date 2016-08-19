@@ -1,6 +1,6 @@
 
 /*
- * @api [get] /pets
+ * @api [put] /pets
  *    description: "Returns all pets from the system that the user has access to"
  *    operationId: "findPets"
  *    produces:

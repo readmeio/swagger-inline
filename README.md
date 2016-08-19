@@ -36,6 +36,14 @@ swaggerInline('src/**/*.js', {
     // Use generated swagger
 });
 
+// Multiple globs
+
+swaggerInline(['src/**/*.js', 'test/**/*.js'], {
+    base: 'swaggerBase.json',
+}).then((generatedSwagger) => {
+    /* ... */
+});
+
 ```
 
 #### **Cli**
@@ -50,6 +58,7 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 - `inputFiles`: Files to search for swagger comments.
 - `base`: Base `swagger.json` or `swagger.yml` to build onto
 - `format`: Output filename - `.json` or `.yaml` (default: `.json`)
+- 'logger': Function called for logging.
 
 ## Example:
 

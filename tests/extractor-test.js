@@ -10,8 +10,7 @@ describe('Extractor', () => {
             { type: 'singleline', content: 'inline' },
         ];
 
-        // ['javascript.js', 'ruby.rb', 'python.py']
-        ['javascript.js'].forEach((language) => {
+        ['javascript.js', 'ruby.rb', 'python.py'].forEach((language) => {
             it(`can extract ${language} comments`, () => {
                 const code = fs.readFileSync(`${__dirname}/fixtures/code/${language}`, 'utf-8');
                 const comments = Extractor.extractComments(code, { filename: language });

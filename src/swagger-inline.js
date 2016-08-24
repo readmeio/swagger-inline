@@ -35,7 +35,11 @@ function swaggerInline(globPatterns, providedOptions) {
 
     return Loader.resolvePaths(globPatterns).then((files) => {
         const base = options.getBase();
-        const BasePromise = base ? Loader.loadData(base) : Promise.resolve({});
+        const BasePromise = base ? Loader.loadData(base).catch((e) => {
+            log(chalk.red(`Base file could not be parsed: ${base}`));
+            log(chalk.red(e.toString()));
+            return {};
+        }) : Promise.resolve({});
 
         log(`${files.length} files matched...`);
 

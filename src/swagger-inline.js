@@ -1,6 +1,7 @@
 const Promise = require('bluebird');
 const jsYaml = require('js-yaml');
 const _ = require('lodash');
+const chalk = require('chalk');
 
 const Loader = require('./loader');
 const Extractor = require('./extractor');
@@ -40,11 +41,22 @@ function swaggerInline(globPatterns, providedOptions) {
 
         return BasePromise.then((baseObj) => {
             return Loader.loadFiles(files).then((filesData) => {
-                const successfulFilesData = filesData.filter((fileData) => {
-                    return typeof fileData === 'string';
+                const successfulFiles = filesData.map((fileData, index) => {
+                    return { fileData, fileName: files[index] };
+                }).filter((fileInfo) => {
+                    return typeof fileInfo.fileData === 'string';
                 });
-                const endpoints = _.flatten(successfulFilesData.map((code) => {
-                    return Extractor.extractEndpointsFromCode(code);
+                const endpoints = _.flatten(successfulFiles.map((fileInfo) => {
+                    try {
+                        return Extractor.extractEndpointsFromCode(
+                            fileInfo.fileData,
+                            { filename: fileInfo.fileName }
+                        );
+                    } catch (e) {
+                        log(chalk.red(`Error parsing ${fileInfo.fileName}`));
+                        log(chalk.red(e.toString()));
+                        return {};
+                    }
                 }));
 
                 log(`${endpoints.length} swagger definitions found...`);

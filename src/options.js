@@ -2,7 +2,11 @@ const path = require('path');
 
 class Options {
     constructor(providedOptions = {}) {
-        this.options = Object.assign({}, Options.DEFAULTS, providedOptions);
+        this.options = Object.assign({}, providedOptions);
+
+        Object.keys(Options.DEFAULTS).forEach((option) => {
+            this.options[option] = this.options[option] || Options.DEFAULTS[option];
+        });
 
         if (this.options.base && !providedOptions.format) {
             this.options.format = path.extname(this.options.base);

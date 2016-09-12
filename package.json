@@ -8,7 +8,7 @@
     "test": "mocha --colors --require babel-register tests/**/*-test.js",
     "start": "babel --watch src/ -d build/",
     "build": "babel src/ -d build",
-    "postinstall": "npm run-script build"
+    "preinstall": "npm run-script build"
   },
   "repository": {
     "type": "git",

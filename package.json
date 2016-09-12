@@ -2,7 +2,7 @@
   "name": "swagger-inline",
   "version": "0.0.1",
   "description": "Generate your swagger files from inline swagger comments.",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "test-watch": "mocha --watch --colors --require babel-register tests/**/*-test.js",
     "test": "mocha --colors --require babel-register tests/**/*-test.js",

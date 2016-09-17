@@ -50,7 +50,7 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 - `inputGlobs`: Files/globs to search for swagger comments.
 - `base`: Base `swagger.json` or `swagger.yml` to build onto
 - `format`: Output filename - `.json` or `.yaml` (default: `.json`)
-- 'logger': Function called for logging.
+- `logger`: Function called for logging.
 
 ## Example:
 

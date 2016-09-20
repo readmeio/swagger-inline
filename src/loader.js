@@ -42,6 +42,30 @@ class Loader {
         });
     }
 
+    static findSwagger(directory = process.cwd()) {
+        return new Promise((resolve, reject) => {
+            fs.readdir(directory, (err, files) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    const swaggerCandidates = files.filter((file) => {
+                        return Loader.SWAGGER_TYPES_REGEX.test(file);
+                    }).map((file) => { return path.join(directory, file); });
+
+                    const swaggerPromises = swaggerCandidates.map((filepath) => {
+                        return Loader.loadData(filepath).then((data) => {
+                            return data.swagger ? Promise.resolve(data) : Promise.reject();
+                        });
+                    });
+
+                    Promise.any(swaggerPromises).then((loadedSwagger) => {
+                        resolve(loadedSwagger);
+                    }).catch(() => { resolve({}); });
+                }
+            });
+        });
+    }
+
     static loadFiles(filepaths) {
         return new Promise((resolve) => {
             const loadPromises = Promise.map(filepaths, (filepath) => {
@@ -77,6 +101,26 @@ class Loader {
         return Loader.LOADER_METHODS[extname](filepath);
     }
 
+    static loadBase(base = '') {
+        return new Promise((resolve) => {
+            fs.stat(base, (err, stat) => {
+                if (!err && stat.isFile()) {
+                    this.loadData(base).then((baseData) => {
+                        resolve(baseData);
+                    });
+                } else if (!err && stat.isDirectory()) {
+                    this.findSwagger(base).then((baseData) => {
+                        resolve(baseData);
+                    });
+                } else {
+                    this.findSwagger().then((baseData) => {
+                        resolve(baseData);
+                    });
+                }
+            });
+        });
+    }
+
     static loadYAML(filepath) {
         return Loader.loadFile(filepath).then((data) => jsYaml.load(data));
     }
@@ -91,7 +135,7 @@ Loader.LOADER_METHODS = {
     '.yml': Loader.loadYAML,
     '.json': Loader.loadJSON,
 };
-
+Loader.SWAGGER_TYPES_REGEX = /\.json|\.yaml|\.yml/i
 Loader.MAX_CONCURRENCY = 500;
 
 module.exports = Loader;

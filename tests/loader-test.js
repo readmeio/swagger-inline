@@ -5,7 +5,7 @@ const jsYaml = require('js-yaml');
 const Loader = require('../src/loader');
 
 describe('Loader', () => {
-    describe('path resolving', () => {
+    describe('.resolvePaths', () => {
         it('resolves multiple string paths', (done) => {
             const inputPaths = [`${__dirname}/../package.json`, `${__dirname}/../README.md`];
             Loader.resolvePaths(inputPaths).then((filepaths) => {
@@ -30,7 +30,9 @@ describe('Loader', () => {
                 done();
             }).catch(done);
         });
+    });
 
+    describe('.resolvePath', () => {
         it('resolves a string glob', (done) => {
             Loader.resolvePath(`${__dirname}/../*.json`).then((filepaths) => {
                 assert.isTrue(filepaths.length >= 1);
@@ -56,7 +58,42 @@ describe('Loader', () => {
         });
     });
 
-    describe('file loading', () => {
+    describe('.loadBase', () => {
+        it('loads an empty object if no swagger is found', () => {
+            return Loader.loadBase().then((base) => {
+                assert.deepEqual(base, {});
+            });
+        });
+
+        it('loads json file data', () => {
+            const jsonPath = `${__dirname}/fixtures/project/swaggerBase.json`;
+            return Loader.loadBase(jsonPath).then((base) => {
+                assert.isDefined(base.swagger);
+            });
+        });
+
+        it('loads yaml file data', () => {
+            const yamlPath = `${__dirname}/fixtures/project/swaggerBase.yaml`;
+            return Loader.loadBase(yamlPath).then((base) => {
+                assert.isDefined(base.swagger);
+            });
+        });
+
+        it('searches for swagger in the provided directory', () => {
+            const dir = `${__dirname}/fixtures/project/`;
+            return Loader.loadBase(dir).then((base) => {
+                assert.isDefined(base.swagger);
+            });
+        });
+
+        it('returns an empty object if swagger is not found in a directory', () => {
+            return Loader.loadBase(__dirname).then((base) => {
+                assert.deepEqual(base, {});
+            });
+        });
+    });
+
+    describe('.loadFiles', () => {
         it('loads arrays of files', (done) => {
             Loader.loadFiles(
                 [`${__dirname}/../package.json`, `${__dirname}/../package.json`]
@@ -73,7 +110,9 @@ describe('Loader', () => {
                 done();
             }).catch(done);
         });
+    });
 
+    describe('.loadData', () => {
         it('loads yaml data', () => {
             const yamlPath = `${__dirname}/fixtures/project/swaggerBase.yaml`;
             const yamlObject = jsYaml.load(fs.readFileSync(yamlPath, 'utf-8'));

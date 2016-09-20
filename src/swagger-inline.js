@@ -49,15 +49,12 @@ function swaggerInline(globPatterns, providedOptions) {
 
     return Loader.resolvePaths(globPatterns).then((files) => {
         const base = options.getBase();
-        const BasePromise = base ? Loader.loadData(base).catch((e) => {
-            log(chalk.red(`Base file could not be parsed: ${base}`));
-            log(chalk.red(e.toString()));
-            return {};
-        }) : Promise.resolve({});
+        return Loader.loadBase(base).then((baseObj) => {
+            if (Object.keys(baseObj).length === 0) {
+                log(chalk.yellow('No base swagger provided/found!'));
+            }
 
-        log(`${files.length} files matched...`);
-
-        return BasePromise.then((baseObj) => {
+            log(`${files.length} files matched...`);
             return Loader.loadFiles(files).then((filesData) => {
                 const successfulFiles = filesData.map((fileData, index) => {
                     return { fileData, fileName: files[index] };

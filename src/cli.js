@@ -9,12 +9,13 @@ function Cli(args) {
         .version(packageJson.version)
         .usage('[options] <inputGlobs ...>')
         .option('-b, --base [path]', 'A base swagger file.')
-        .option('-f, --format', 'Output swagger format (.json or .yaml).');
+        .option('-o, --out [path]', 'Output file path.')
+        .option('-f, --format [format]', 'Output swagger format (.json or .yaml).');
 
     program.on('--help', () => {
         [
             'Example:',
-            '\tswagger-inline "./*.js" --base ./swaggerBase.json',
+            '\tswagger-inline "./*.js" --base ./swaggerBase.json --out ./swagger.json',
         ].forEach((line) => console.log(line));
     });
 
@@ -28,13 +29,16 @@ function Cli(args) {
     const providedOptions = {
         base: program.base,
         format: program.format,
+        out: program.out,
         logger: console.log,
     };
 
     swaggerInline(program.args, providedOptions).then((output) => {
         const options = new Options(providedOptions);
 
-        fs.writeFileSync(`./swagger${options.getFormat()}`, output, 'utf-8');
+        if (!options.getOut()) {
+            console.log(output);
+        }
     }).catch((err) => {
         console.log('An error occured:');
         console.log(err);

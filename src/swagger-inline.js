@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const fs = require('fs-extra');
 const jsYaml = require('js-yaml');
 const _ = require('lodash');
 const chalk = require('chalk');
@@ -8,7 +9,20 @@ const Extractor = require('./extractor');
 const Options = require('./options');
 
 function outputResult(object, options) {
-    return options.getFormat() === '.json' ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
+    return new Promise((resolve) => {
+        const result = options.getFormat() === '.json' ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
+        const outPath = options.getOut();
+        if (outPath) {
+            fs.outputFile(outPath, result, (err) => {
+                if (err) {
+                    options.getLogger()(`Failed to write swagger to ${outPath}`);
+                }
+                resolve(result);
+            });
+        } else {
+            resolve(result);
+        }
+    });
 }
 
 function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
@@ -31,7 +45,7 @@ function swaggerInline(globPatterns, providedOptions) {
     }
 
     const options = new Options(providedOptions);
-    const log = options.getLogger();
+    const log = options.getOut() ? options.getLogger() : () => {};
 
     return Loader.resolvePaths(globPatterns).then((files) => {
         const base = options.getBase();

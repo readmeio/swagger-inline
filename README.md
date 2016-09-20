@@ -48,15 +48,16 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 
 **Options:**
 - `inputGlobs`: Files/globs to search for swagger comments.
-- `base`: Base `swagger.json` or `swagger.yml` to build onto
-- `format`: Output filename - `.json` or `.yaml` (default: `.json`)
+- `base`: Base swagger to extend. (default: auto-detect)
+- `out`: Name of file to output the generated swagger file (default: results returned, no file saved).
+- `format`: Output filetype - `.json` or `.yaml` (default: `.json`)
 - `logger`: Function called for logging.
 
 ## Example:
 
 #### 1) Create a project
 
-`swaggerBase.yml`
+`swaggerBase.yaml`
 
 ```yaml
 swagger: "2.0"
@@ -87,12 +88,12 @@ api.route('/pets', function() {
 #### 2) Run Command
 
 ```bash
-swagger-inline './*.js' --base './swaggerBase.yml'
+swagger-inline './*.js' --base './swaggerBase.yaml'
 ```
 
 **Output:**
 
-`swagger.yml`
+`swagger.yaml`
 
 ```yaml
 swagger: "2.0"

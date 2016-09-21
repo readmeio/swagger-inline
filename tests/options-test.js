@@ -44,6 +44,13 @@ describe('Options', () => {
         });
     });
 
+    describe('isJSON', () => {
+        it('is true when no format is provided', () => {
+            const options = new Options({ format: '' });
+            assert.isTrue(options.isJSON());
+        });
+    });
+
     describe('#getOut()', () => {
         it('returns the out option', () => {
             const out = 'someFile.yaml';

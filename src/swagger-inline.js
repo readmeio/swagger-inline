@@ -10,7 +10,7 @@ const Options = require('./options');
 
 function outputResult(object, options) {
     return new Promise((resolve) => {
-        const result = options.getFormat() === '.json' ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
+        const result = options.isJSON() ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
         const outPath = options.getOut();
         if (outPath) {
             fs.outputFile(outPath, result, (err) => {

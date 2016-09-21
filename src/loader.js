@@ -135,7 +135,7 @@ Loader.LOADER_METHODS = {
     '.yml': Loader.loadYAML,
     '.json': Loader.loadJSON,
 };
-Loader.SWAGGER_TYPES_REGEX = /\.json|\.yaml|\.yml/i
+Loader.SWAGGER_TYPES_REGEX = /\.json|\.yaml|\.yml/i;
 Loader.MAX_CONCURRENCY = 500;
 
 module.exports = Loader;

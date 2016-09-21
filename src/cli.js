@@ -1,4 +1,3 @@
-const fs = require('fs');
 const program = require('commander');
 const packageJson = require('../package.json');
 const Options = require('./options');

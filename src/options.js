@@ -18,7 +18,7 @@ class Options {
     }
 
     isJSON() {
-        return this.getFormat() === '.json';
+        return this.getFormat() === '.json' || !this.getFormat();
     }
 
     getFormat() {

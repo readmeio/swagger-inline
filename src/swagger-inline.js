@@ -49,7 +49,7 @@ function swaggerInline(globPatterns, providedOptions) {
 
     return Loader.resolvePaths(globPatterns).then((files) => {
         const base = options.getBase();
-        return Loader.loadBase(base).then((baseObj) => {
+        return Loader.loadBase(base, options).then((baseObj) => {
             if (Object.keys(baseObj).length === 0) {
                 log(chalk.yellow('No base swagger provided/found!'));
             }

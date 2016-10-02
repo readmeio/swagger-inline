@@ -52,6 +52,7 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 - `out`: Name of file to output the generated swagger file (default: results returned, no file saved).
 - `format`: Output filetype - `.json` or `.yaml` (default: `.json`)
 - `logger`: Function called for logging.
+- `metadata`: Add additional annotations to the Swagger file, prefixed with "x-si"
 
 ## Example:
 

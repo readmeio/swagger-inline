@@ -42,7 +42,7 @@ class Loader {
         });
     }
 
-    static findSwagger(directory = process.cwd()) {
+    static findSwagger(directory = process.cwd(), options = {}) {
         return new Promise((resolve, reject) => {
             fs.readdir(directory, (err, files) => {
                 if (err) {
@@ -53,7 +53,7 @@ class Loader {
                     }).map((file) => { return path.join(directory, file); });
 
                     const swaggerPromises = swaggerCandidates.map((filepath) => {
-                        return Loader.loadData(filepath).then((data) => {
+                        return Loader.loadData(filepath, options).then((data) => {
                             return data.swagger ? Promise.resolve(data) : Promise.reject();
                         });
                     });
@@ -91,29 +91,30 @@ class Loader {
         });
     }
 
-    static loadData(filepath) {
+    static loadData(filepath, options) {
         const extname = path.extname(filepath);
         const loadFunction = Loader.LOADER_METHODS[extname];
 
         if (!loadFunction) {
             throw new Error(`Did not recognize ${filepath}.`);
         }
-        return Loader.LOADER_METHODS[extname](filepath);
+        var loaded = Loader.LOADER_METHODS[extname](filepath, options);
+        return loaded;
     }
 
-    static loadBase(base = '') {
+    static loadBase(base = '', options = {}) {
         return new Promise((resolve) => {
             fs.stat(base, (err, stat) => {
                 if (!err && stat.isFile()) {
-                    this.loadData(base).then((baseData) => {
+                    this.loadData(base, options).then((baseData) => {
                         resolve(baseData);
                     });
                 } else if (!err && stat.isDirectory()) {
-                    this.findSwagger(base).then((baseData) => {
+                    this.findSwagger(base, options).then((baseData) => {
                         resolve(baseData);
                     });
                 } else {
-                    this.findSwagger().then((baseData) => {
+                    this.findSwagger(process.cwd(), options).then((baseData) => {
                         resolve(baseData);
                     });
                 }
@@ -121,12 +122,23 @@ class Loader {
         });
     }
 
-    static loadYAML(filepath) {
-        return Loader.loadFile(filepath).then((data) => jsYaml.load(data));
+    static loadYAML(filepath, options) {
+        return Loader.loadFile(filepath).then((data) => 
+            Loader.addMetadata(jsYaml.load(data), filepath, options)
+        );
     }
 
-    static loadJSON(filepath) {
-        return Loader.loadFile(filepath).then((data) => JSON.parse(data));
+    static loadJSON(filepath, options) {
+        return Loader.loadFile(filepath).then((data) => 
+            Loader.addMetadata(JSON.parse(data), filepath, options)
+        );
+    }
+
+    static addMetadata(data, filepath, options) {
+        if(options.options.metadata) {
+            data['x-si-base'] = filepath;
+        }
+        return data;
     }
 }
 

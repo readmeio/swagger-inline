@@ -2,43 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const Promise = require('bluebird');
 const jsYaml = require('js-yaml');
-const glob = require('glob');
+const glob = require('multi-glob').glob;
 
 class Loader {
-    static resolvePaths(filepaths) {
-        let paths = filepaths;
-        if (typeof paths === 'string') {
-            paths = [filepaths];
-        }
-
-        return new Promise((resolve, reject) => {
-            const resolvePromises = paths.map((filepath) => {
-                return Loader.resolvePath(filepath);
-            });
-            Promise.all(resolvePromises).then((resolvePathResults) => {
-                const resolvedPaths = resolvePathResults.reduce((prev, current) => {
-                    return prev.concat(current);
-                }, []);
-                resolve(resolvedPaths);
-            }).catch(reject);
-        });
-    }
-
-    static resolvePath(filepath) {
-        return new Promise((resolve, reject) => {
-            fs.stat(filepath, (err) => {
-                if (err) {
-                    glob(filepath, (globErr, filepaths) => {
-                        if (globErr) {
-                            reject(globErr);
-                        } else {
-                            resolve(filepaths);
-                        }
-                    });
-                } else {
-                    resolve([filepath]);
-                }
-            });
+    static resolvePaths(filepaths, callback) {
+        return new Promise(function (resolve, reject) {
+            glob(filepaths, {ignore: ['node_modules/*']}, (err, files) => {
+                return err === null ? resolve(files) : reject(err)
+            })
         });
     }
 

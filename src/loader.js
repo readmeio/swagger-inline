@@ -5,9 +5,10 @@ const jsYaml = require('js-yaml');
 const glob = require('multi-glob').glob;
 
 class Loader {
-    static resolvePaths(filepaths, callback) {
+    static resolvePaths(filepaths, options) {
+        const ignore = options ? options.getIgnore() : undefined;
         return new Promise(function (resolve, reject) {
-            glob(filepaths, {ignore: ['node_modules/*']}, (err, files) => {
+            glob(filepaths, { ignore: ignore }, (err, files) => {
                 return err === null ? resolve(files) : reject(err)
             })
         });

@@ -53,6 +53,7 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 - `format`: Output filetype - `.json` or `.yaml` (default: `.json`)
 - `logger`: Function called for logging.
 - `metadata`: Add additional annotations to the Swagger file, prefixed with "x-si"
+- `ignore`: globs of files to ignore (by default, `['node_modules/*', ...etc]`,
 
 ## Example:
 

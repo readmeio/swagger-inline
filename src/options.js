@@ -36,11 +36,16 @@ class Options {
     getLogger() {
         return this.options.logger;
     }
+
+    getIgnore() {
+        return this.options.ignore;
+    }
 }
 
 Options.DEFAULTS = {
     format: '.json',
     logger: () => {},
+    ignore: ['node_modules/*', 'bower_modules/*'],
 };
 
 module.exports = Options;

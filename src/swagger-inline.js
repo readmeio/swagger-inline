@@ -47,7 +47,7 @@ function swaggerInline(globPatterns, providedOptions) {
     const options = new Options(providedOptions);
     const log = options.getOut() ? options.getLogger() : () => {};
 
-    return Loader.resolvePaths(globPatterns).then((files) => {
+    return Loader.resolvePaths(globPatterns, options).then((files) => {
         const base = options.getBase();
         return Loader.loadBase(base, options).then((baseObj) => {
             if (Object.keys(baseObj).length === 0) {

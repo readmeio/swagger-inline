@@ -45,7 +45,7 @@ class Options {
 Options.DEFAULTS = {
     format: '.json',
     logger: () => {},
-    ignore: ['node_modules/*', 'bower_modules/*'],
+    ignore: ['node_modules/**/*', 'bower_modules/**/*'],
 };
 
 module.exports = Options;

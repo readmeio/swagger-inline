@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate your swagger files from inline swagger comments.",
   "main": "build/index.js",
   "scripts": {

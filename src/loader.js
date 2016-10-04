@@ -14,7 +14,7 @@ class Loader {
         });
     }
 
-    static findSwagger(directory = process.cwd(), options = {}) {
+    static findSwagger(directory = process.cwd(), options) {
         return new Promise((resolve, reject) => {
             fs.readdir(directory, (err, files) => {
                 if (err) {
@@ -74,7 +74,7 @@ class Loader {
         return loaded;
     }
 
-    static loadBase(base = '', options = {}) {
+    static loadBase(base = '', options) {
         return new Promise((resolve) => {
             fs.stat(base, (err, stat) => {
                 if (!err && stat.isFile()) {
@@ -107,7 +107,7 @@ class Loader {
     }
 
     static addMetadata(data, filepath, options) {
-        if(options.options.metadata) {
+        if(options && options.getMetadata()) {
             data['x-si-base'] = filepath;
         }
         return data;

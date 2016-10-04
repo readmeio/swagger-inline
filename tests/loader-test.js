@@ -7,7 +7,7 @@ const Loader = require('../src/loader');
 describe('Loader', () => {
     describe('.resolvePaths', () => {
         it('resolves multiple string paths', (done) => {
-            const inputPaths = [`${__dirname}/../package.json`, `${__dirname}/../README.md`];
+            const inputPaths = [`${process.cwd()}/package.json`, `${process.cwd()}/README.md`];
             Loader.resolvePaths(inputPaths).then((filepaths) => {
                 assert.deepEqual(filepaths, inputPaths);
                 done();
@@ -15,7 +15,7 @@ describe('Loader', () => {
         });
 
         it('resolves mixtures of glob and string paths', (done) => {
-            const inputPaths = [`${__dirname}/*.js`, `${__dirname}/../README.md`];
+            const inputPaths = [`${process.cwd()}/tests/*.js`, `${process.cwd()}/README.md`];
             Loader.resolvePaths(inputPaths).then((filepaths) => {
                 assert.isTrue(filepaths.length > 1);
                 filepaths.forEach((filepath) => { assert.isString(filepath); });
@@ -29,32 +29,6 @@ describe('Loader', () => {
                 filepaths.forEach((filepath) => { assert.isString(filepath); });
                 done();
             }).catch(done);
-        });
-    });
-
-    describe('.resolvePath', () => {
-        it('resolves a string glob', (done) => {
-            Loader.resolvePath(`${__dirname}/../*.json`).then((filepaths) => {
-                assert.isTrue(filepaths.length >= 1);
-                assert.include(filepaths[0], 'package.json');
-                done();
-            }).catch(done);
-        });
-
-        it('resolves a string path', (done) => {
-            Loader.resolvePath(__filename).then((filepaths) => {
-                assert.lengthOf(filepaths, 1);
-                done();
-            }).catch(done);
-        });
-
-        it('rejects if the path is invalid', (done) => {
-            Loader.resolvePath(['./nonsense']).then(() => {
-                done(new Error('Loader.resolvePath was expected to reject'));
-            }).catch((err) => {
-                assert.include(err.toString(), 'TypeError');
-                done();
-            });
         });
     });
 

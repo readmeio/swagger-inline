@@ -40,6 +40,10 @@ class Options {
     getIgnore() {
         return this.options.ignore;
     }
+
+    getMetadata() {
+        return this.options.metadata;
+    }
 }
 
 Options.DEFAULTS = {

@@ -63,10 +63,11 @@ function swaggerInline(globPatterns, providedOptions) {
                 });
                 const endpoints = _.flatten(successfulFiles.map((fileInfo) => {
                     try {
-                        return Extractor.extractEndpointsFromCode(
+                        let endpoints = Extractor.extractEndpointsFromCode(
                             fileInfo.fileData,
                             { filename: fileInfo.fileName }
                         );
+                        return Loader.expandParams(endpoints);
                     } catch (e) {
                         log(chalk.red(`Error parsing ${fileInfo.fileName}`));
                         log(chalk.red(e.toString()));

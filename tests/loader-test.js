@@ -86,6 +86,50 @@ describe('Loader', () => {
         });
     });
 
+    describe('.expandParam', () => {
+        it('parses params properly', () => {
+
+            var test = {
+                "(path) hi=2* {Integer} This is a description": {
+                    "in": "path",
+                    "name": "hi",
+                    "default": "2",
+                    "required": true,
+                    "type": "integer",
+                    "description": "This is a description",
+                },
+                "(path) hi=2 {Integer} This is a description": {
+                    "in": "path",
+                    "name": "hi",
+                    "default": "2",
+                    "type": "integer",
+                    "description": "This is a description",
+                },
+                "(body) test {Boolean} this is a description": {
+                    "in": "body",
+                    "name": "test",
+                    "type": "boolean",
+                    "description": "this is a description",
+                },
+                "(body) test {Boolean:hi} this is a description": {
+                    "in": "body",
+                    "name": "test",
+                    "type": "boolean",
+                    "format": "hi",
+                    "description": "this is a description",
+                },
+                "test {Boolean:hi} this is a description": false,
+                "(body) {Boolean:hi} this is a description": false,
+                "(body) test this is a description": false,
+            };
+
+            Object.keys(test).forEach((k) => {
+                assert.deepEqual(Loader.expandParam(k), test[k]);
+            });
+
+        });
+    });
+
     describe('.loadData', () => {
         it('loads yaml data', () => {
             const yamlPath = `${__dirname}/fixtures/project/swaggerBase.yaml`;

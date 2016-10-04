@@ -112,6 +112,42 @@ class Loader {
         }
         return data;
     }
+
+    static expandParams(endpoints = {}) {
+        endpoints.forEach(endpoint => {
+            if(endpoint && endpoint.parameters) {
+                endpoint.parameters.forEach((param, i) => {
+                    if(typeof param === 'string') {
+                        endpoint.parameters[i] = Loader.expandParam(param);
+                    }
+                })
+
+                // Remove any params that couldn't be parsed
+                endpoint.parameters = endpoint.parameters.filter(n => n != false)
+            };
+        });
+        return endpoints;
+    }
+
+    static expandParam(param = "") {
+        var parsed = param.match(/(?:\((.*)\))?\s*([\w._-]+)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);;
+
+        if(!parsed || !parsed[1] || !parsed[2] || !parsed[5]) return false;
+
+        var out = {
+            'in': parsed[1],
+            'name': parsed[2],
+            'type': parsed[5].toLowerCase(),
+        };
+
+        if(parsed[3]) out.default = parsed[3].trim();
+        if(parsed[4]) out.required = true;
+        if(parsed[6]) out.format = parsed[6];
+        if(parsed[7]) out.description = parsed[7];
+
+        return out;
+    }
+
 }
 
 Loader.LOADER_METHODS = {

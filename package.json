@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Generate your swagger files from inline swagger comments.",
   "main": "build/index.js",
   "scripts": {
@@ -37,7 +37,8 @@
     "js-yaml": "^3.6.1",
     "lodash": "^4.15.0",
     "multi-glob": "^1.0.1",
-    "multilang-extract-comments": "^0.2.3"
+    "multilang-extract-comments": "^0.2.3",
+    "fs-extra": "^0.30.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -48,7 +49,6 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
-    "fs-extra": "^0.30.0",
     "mocha": "^3.0.2"
   },
   "bin": {

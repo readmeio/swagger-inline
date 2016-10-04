@@ -113,6 +113,20 @@ class Loader {
         return data;
     }
 
+    static addResponse(endpoints = {}) {
+        // If there's no response, add a default one
+        endpoints.forEach(endpoint => {
+            if(!endpoint.responses || !Object.keys(endpoint.responses).length) {
+                endpoint.responses = {
+                    "200": {
+                        "description": "Successful response",
+                    }
+                };
+            }
+        });
+        return endpoints;
+    }
+
     static expandParams(endpoints = {}) {
         endpoints.forEach(endpoint => {
             if(endpoint && endpoint.parameters) {

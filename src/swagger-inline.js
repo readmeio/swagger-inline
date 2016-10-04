@@ -58,6 +58,7 @@ function swaggerInline(globPatterns, providedOptions) {
             return Loader.loadFiles(files).then((filesData) => {
                 const successfulFiles = filesData.map((fileData, index) => {
                     return { fileData, fileName: files[index] };
+
                 }).filter((fileInfo) => {
                     return typeof fileInfo.fileData === 'string';
                 });
@@ -67,7 +68,10 @@ function swaggerInline(globPatterns, providedOptions) {
                             fileInfo.fileData,
                             { filename: fileInfo.fileName }
                         );
-                        return Loader.expandParams(endpoints);
+
+                        endpoints = Loader.addResponse(endpoints);
+                        endpoints = Loader.expandParams(endpoints);
+                        return endpoints;
                     } catch (e) {
                         log(chalk.red(`Error parsing ${fileInfo.fileName}`));
                         log(chalk.red(e.toString()));

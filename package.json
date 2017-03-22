@@ -30,15 +30,16 @@
   },
   "homepage": "https://github.com/readmeio/swagger-inline#readme",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.0",
     "bluebird": "^3.4.1",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
+    "fs-extra": "^0.30.0",
     "glob": "^7.0.5",
     "js-yaml": "^3.6.1",
     "lodash": "^4.15.0",
     "multi-glob": "^1.0.1",
-    "multilang-extract-comments": "^0.2.3",
-    "fs-extra": "^0.30.0"
+    "multilang-extract-comments": "^0.2.3"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

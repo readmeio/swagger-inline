@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/readmeio/swagger-inline#readme",
   "dependencies": {
-    "babel-preset-es2015": "^6.24.0",
     "bluebird": "^3.4.1",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
@@ -42,8 +41,9 @@
     "multilang-extract-comments": "^0.2.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-preset-es2015": "^6.14.0",
+    "@babel/cli": "^7.0.0-beta.32",
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/preset-env": "^7.0.0-beta.32",
     "chai": "^3.5.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^11.1.0",
@@ -57,7 +57,7 @@
   },
   "babel": {
     "presets": [
-      "es2015"
+      "@babel/preset-env"
     ]
   }
 }

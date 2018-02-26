@@ -33,6 +33,10 @@ class Options {
         return this.options.out;
     }
 
+    getScope() {
+        return this.options.scope;
+    }
+    
     getLogger() {
         return this.options.logger;
     }

@@ -1,4 +1,4 @@
-# swagger-inline
+# swagger-inline [![Build Status](https://travis-ci.org/gaofei88/swagger-inline.svg?branch=master)](https://travis-ci.org/gaofei88/swagger-inline)
 
 Node module for extracting swagger endpoints from inline comments.
 

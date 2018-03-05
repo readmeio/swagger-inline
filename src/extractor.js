@@ -54,6 +54,9 @@ class Extractor {
                 }else{
                     scopeMatched = true;
                 }
+                if(line.indexOf('scope') >= 0) {
+                    return false;
+                }
                 return !pushLine(yamlLines, line); // end when lines stop being pushed
             }
             route = route || line.match(this.ROUTE_REGEX);

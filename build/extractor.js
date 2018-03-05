@@ -72,6 +72,9 @@ var Extractor = function () {
                     } else {
                         scopeMatched = true;
                     }
+                    if (line.indexOf('scope') >= 0) {
+                        return false;
+                    }
                     return !pushLine(yamlLines, line); // end when lines stop being pushed
                 }
                 route = route || line.match(_this2.ROUTE_REGEX);

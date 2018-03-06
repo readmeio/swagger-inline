@@ -65,14 +65,14 @@ var Extractor = function () {
             lines.some(function (line) {
                 if (route) {
                     if (options && options.scope) {
-                        if (line.indexOf('scope') >= 0 && line.indexOf(options.scope) >= 0) {
+                        if (line.trim().indexOf('scope:') == 0 && line.indexOf(options.scope) >= 0) {
                             scopeMatched = true;
                             return false;
                         }
                     } else {
                         scopeMatched = true;
                     }
-                    if (line.indexOf('scope') >= 0) {
+                    if (line.trim().indexOf('scope:') == 0) {
                         return false;
                     }
                     return !pushLine(yamlLines, line); // end when lines stop being pushed

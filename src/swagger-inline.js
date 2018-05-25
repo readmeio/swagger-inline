@@ -66,7 +66,7 @@ function swaggerInline(globPatterns, providedOptions) {
                     try {
                         let endpoints = Extractor.extractEndpointsFromCode(
                             fileInfo.fileData,
-                            { filename: fileInfo.fileName }
+                            { filename: fileInfo.fileName, scope: options.getScope() }
                         );
 
                         endpoints = Loader.addResponse(endpoints);

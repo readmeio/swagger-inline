@@ -28,7 +28,7 @@ class Extractor {
 
         return Object.keys(comments).map((commentKey) => {
             const comment = comments[commentKey];
-            return this.extractEndpoint(comment.content);
+            return this.extractEndpoint(comment.content, options);
         }).filter((endpoint) => {
             return endpoint.method && endpoint.route;
         });
@@ -38,18 +38,34 @@ class Extractor {
         return extractComments(code, options);
     }
 
-    static extractEndpoint(comment) {
+    static extractEndpoint(comment, options) {
         const lines = comment.split('\n');
         const yamlLines = [];
         let route = null;
+        let scopeMatched = false;
 
         lines.some((line) => {
             if (route) {
+                if(options && options.scope){
+                    if(line.trim().indexOf('scope:') == 0 && line.indexOf(options.scope) >= 0){
+                        scopeMatched = true;
+                        return false;
+                    }
+                }else{
+                    scopeMatched = true;
+                }
+                if(line.trim().indexOf('scope:') == 0) {
+                    return false;
+                }
                 return !pushLine(yamlLines, line); // end when lines stop being pushed
             }
             route = route || line.match(this.ROUTE_REGEX);
             return false;
         });
+
+        if (!scopeMatched){
+            route = null;
+        }
 
         return buildEndpoint(route, yamlLines);
     }

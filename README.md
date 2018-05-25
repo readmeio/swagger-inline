@@ -1,4 +1,4 @@
-# swagger-inline
+# swagger-inline [![Build Status](https://travis-ci.org/gaofei88/swagger-inline.svg?branch=master)](https://travis-ci.org/gaofei88/swagger-inline)
 
 Node module for extracting swagger endpoints from inline comments.
 
@@ -54,6 +54,7 @@ swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.j
 - `logger`: Function called for logging.
 - `metadata`: Add additional annotations to the Swagger file, prefixed with "x-si"
 - `ignore`: globs of files to ignore (by default, `['node_modules/**/*', ...etc]`,
+- `scope`: matches the scope field defined in each api ( if not provided, all APIs' doc will be generated )
 
 ## Example:
 
@@ -74,6 +75,7 @@ schemes: ['http']
 
 /*
  * @api [get] /pets
+ * scope: public
  * description: "Returns all pets from the system that the user has access to"
  * responses:
  *   "200":
@@ -90,7 +92,7 @@ api.route('/pets', function() {
 #### 2) Run Command
 
 ```bash
-swagger-inline './*.js' --base './swaggerBase.yaml'
+swagger-inline './*.js' --base './swaggerBase.yaml' --scope public
 ```
 
 **Output:**

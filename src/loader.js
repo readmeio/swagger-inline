@@ -26,7 +26,7 @@ class Loader {
 
                     const swaggerPromises = swaggerCandidates.map((filepath) => {
                         return Loader.loadData(filepath, options).then((data) => {
-                            return data.swagger ? Promise.resolve(data) : Promise.reject();
+                            return (data.swagger || data.openapi) ? Promise.resolve(data) : Promise.reject();
                         });
                     });
 
@@ -95,13 +95,13 @@ class Loader {
     }
 
     static loadYAML(filepath, options) {
-        return Loader.loadFile(filepath).then((data) => 
+        return Loader.loadFile(filepath).then((data) =>
             Loader.addMetadata(jsYaml.load(data), filepath, options)
         );
     }
 
     static loadJSON(filepath, options) {
-        return Loader.loadFile(filepath).then((data) => 
+        return Loader.loadFile(filepath).then((data) =>
             Loader.addMetadata(JSON.parse(data), filepath, options)
         );
     }

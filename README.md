@@ -2,6 +2,8 @@
 
 Node module for extracting swagger endpoints from inline comments.
 
+**Too complicated?** Try the `oas` command line tool, which automates all of this! https://github.com/readmeio/oas
+
 ## Install
 
 ```

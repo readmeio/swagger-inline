@@ -92,6 +92,6 @@ var Extractor = function () {
     return Extractor;
 }();
 
-Extractor.ROUTE_REGEX = /@api\s+\[(\w+)\]\s+(.*)$/m;
+Extractor.ROUTE_REGEX = /@(?:oas|api)\s+\[(\w+)\]\s+(.*)$/m;
 
 module.exports = Extractor;

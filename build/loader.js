@@ -44,7 +44,7 @@ var Loader = function () {
 
                         var swaggerPromises = swaggerCandidates.map(function (filepath) {
                             return Loader.loadData(filepath, options).then(function (data) {
-                                return data.swagger ? Promise.resolve(data) : Promise.reject();
+                                return data.swagger || data.openapi ? Promise.resolve(data) : Promise.reject();
                             });
                         });
 

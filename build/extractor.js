@@ -23,6 +23,9 @@ function buildEndpoint(route, yamlLines) {
 
         endpoint.method = route[1];
         endpoint.route = route[2];
+        if (route[3]) {
+            endpoint.summary = route[3];
+        }
         Object.assign(endpoint, yamlObject);
     }
     return endpoint;
@@ -92,6 +95,6 @@ var Extractor = function () {
     return Extractor;
 }();
 
-Extractor.ROUTE_REGEX = /@(?:oas|api)\s+\[(\w+)\]\s+(.*)$/m;
+Extractor.ROUTE_REGEX = /@(?:oas|api)\s+\[(\w+)\]\s+(.*?)(?:\s+(.*))?$/m;
 
 module.exports = Extractor;

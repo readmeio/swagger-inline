@@ -155,6 +155,9 @@ class Loader {
                       base = prop;
                     } else {
                       properties[prop.name] = prop.schema;
+                      if (prop.description) {
+                        properties[prop.name].description = prop.description;
+                      }
                       if (prop.required) {
                         required.push(prop.name);
                       }

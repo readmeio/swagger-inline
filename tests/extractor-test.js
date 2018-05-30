@@ -49,6 +49,29 @@ describe('Extractor', () => {
             assert.isObject(endpoint.responses['200']);
         });
 
+        const swaggerCommentSummary = [
+            '',
+            ' @api [get] /pets Get pets',
+            ' description: "Returns all pets from the system that the user has access to"',
+            ' responses:',
+            '   "200":',
+            '     description: "A list of pets."',
+            '     schema:',
+            '       type: "String"',
+            '',
+        ].join('\n');
+
+        it('extracts endpoints from comment strings + summary', () => {
+            const endpoint = Extractor.extractEndpoint(swaggerCommentSummary);
+
+            assert.equal(endpoint.method, 'get');
+            assert.equal(endpoint.route, '/pets');
+            assert.equal(endpoint.summary, 'Get pets');
+            assert.include(endpoint.description, 'Returns all');
+            assert.isObject(endpoint.responses);
+            assert.isObject(endpoint.responses['200']);
+        });
+
         it('extracts endpoints from code strings', () => {
             const code = fs.readFileSync(`${__dirname}/fixtures/code/swagger-api.js`, 'utf-8');
             const endpoints = Extractor.extractEndpointsFromCode(code);

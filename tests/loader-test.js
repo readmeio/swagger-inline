@@ -90,6 +90,21 @@ describe('Loader', () => {
         it('parses params properly', () => {
 
             var test = {
+                "(query) hi=2* {Integer} This is a description": {
+                    "in": "query",
+                    "name": "hi",
+                    "default": "2",
+                    "required": true,
+                    "type": "integer",
+                    "description": "This is a description",
+                },
+                "(query) hi=2 {Integer} This is a description": {
+                    "in": "query",
+                    "name": "hi",
+                    "default": "2",
+                    "type": "integer",
+                    "description": "This is a description",
+                },
                 "(path) hi=2* {Integer} This is a description": {
                     "in": "path",
                     "name": "hi",
@@ -102,6 +117,7 @@ describe('Loader', () => {
                     "in": "path",
                     "name": "hi",
                     "default": "2",
+                    "required": true,
                     "type": "integer",
                     "description": "This is a description",
                 },
@@ -125,6 +141,86 @@ describe('Loader', () => {
 
             Object.keys(test).forEach((k) => {
                 assert.deepEqual(Loader.expandParam(k), test[k]);
+            });
+
+        });
+    });
+
+    describe('.expandParam OAS 3', () => {
+        it('parses params properly', () => {
+
+            var test = {
+                "(query) hi=2 {Integer} This is a description": {
+                    "in": "query",
+                    "name": "hi",
+                    "schema": {
+                      "type": "integer",
+                      "default": "2",
+                    },
+                    "description": "This is a description",
+                },
+                "(query) hi=2* {Integer} This is a description": {
+                    "in": "query",
+                    "name": "hi",
+                    "required": true,
+                    "schema": {
+                      "type": "integer",
+                      "default": "2",
+                    },
+                    "description": "This is a description",
+                },
+                "(path) hi=2* {Integer} This is a description": {
+                    "in": "path",
+                    "name": "hi",
+                    "required": true,
+                    "schema": {
+                      "type": "integer",
+                      "default": "2",
+                    },
+                    "description": "This is a description",
+                },
+                "(path) hi=2 {Integer} This is a description": {
+                    "in": "path",
+                    "name": "hi",
+                    "required": true, // in paths, always require
+                    "schema": {
+                      "default": "2",
+                      "type": "integer",
+                    },
+                    "description": "This is a description",
+                },
+                "(body) test {Boolean} this is a description": {
+                    "in": "body",
+                    "name": "test",
+                    "schema": {
+                      "type": "boolean",
+                    },
+                    "description": "this is a description",
+                },
+                "(body) test {Boolean:hi} this is a description": {
+                    "in": "body",
+                    "name": "test",
+                    "schema": {
+                      "type": "boolean",
+                      "format": "hi",
+                    },
+                    "description": "this is a description",
+                },
+                "(body) {Boolean:hi} this is a description": {
+                    "in": "body",
+                    "name": "__base__",
+                    "schema": {
+                      "type": "boolean",
+                      "format": "hi",
+                    },
+                    "description": "this is a description",
+                },
+                "test {Boolean:hi} this is a description": false,
+                "(body) test this is a description": false,
+            };
+
+            Object.keys(test).forEach((k) => {
+                assert.deepEqual(Loader.expandParam(k, 3), test[k]);
             });
 
         });

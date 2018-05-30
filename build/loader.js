@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -165,14 +167,64 @@ var Loader = function () {
         key: 'expandParams',
         value: function expandParams() {
             var endpoints = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            var swaggerVersion = arguments[1];
 
             endpoints.forEach(function (endpoint) {
                 if (endpoint && endpoint.parameters) {
+                    var requestBody = [];
                     endpoint.parameters.forEach(function (param, i) {
                         if (typeof param === 'string') {
-                            endpoint.parameters[i] = Loader.expandParam(param);
+                            var param = Loader.expandParam(param, swaggerVersion);
+                            if (param.in === 'body' && swaggerVersion >= 3) {
+                                requestBody.push(param);
+                            } else {
+                                endpoint.parameters[i] = param;
+                            }
                         }
                     });
+
+                    // Remove the ones that weren't converted
+                    endpoint.parameters = endpoint.parameters.filter(function (n) {
+                        return (typeof n === 'undefined' ? 'undefined' : _typeof(n)) === 'object';
+                    });
+
+                    if (swaggerVersion >= 3 && Object.keys(requestBody).length) {
+                        var properties = {};
+                        var required = [];
+                        var base = false;
+
+                        requestBody.forEach(function (prop) {
+                            if (prop.name === '__base__') {
+                                base = prop.schema;
+                            } else {
+                                properties[prop.name] = prop.schema;
+                                if (prop.required) {
+                                    required.push(prop.name);
+                                }
+                            }
+                        });
+
+                        if (!required.length) required = undefined;
+
+                        var schema;
+                        if (!base) {
+                            schema = {
+                                type: 'object',
+                                required: required,
+                                properties: properties
+                            };
+                        } else {
+                            schema = base;
+                        }
+
+                        endpoint.requestBody = {
+                            content: {
+                                'application/json': {
+                                    schema: schema
+                                }
+                            }
+                        };
+                    }
 
                     // Remove any params that couldn't be parsed
                     endpoint.parameters = endpoint.parameters.filter(function (n) {
@@ -186,21 +238,41 @@ var Loader = function () {
         key: 'expandParam',
         value: function expandParam() {
             var param = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+            var swaggerVersion = arguments[1];
 
-            var parsed = param.match(/(?:\((.*)\))?\s*([\w._-]+)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);;
+            var parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);;
 
-            if (!parsed || !parsed[1] || !parsed[2] || !parsed[5]) return false;
+            if (!parsed || !parsed[1] || !parsed[5]) return false;
+
+            if (parsed && !parsed[2]) {
+                if (swaggerVersion >= 3 && parsed[1] === 'body') {
+                    parsed[2] = '__base__';
+                } else {
+                    return false;
+                }
+            }
 
             var out = {
                 'in': parsed[1],
-                'name': parsed[2],
+                'name': parsed[2]
+            };
+
+            var schema = {
                 'type': parsed[5].toLowerCase()
             };
 
-            if (parsed[3]) out.default = parsed[3].trim();
-            if (parsed[4]) out.required = true;
-            if (parsed[6]) out.format = parsed[6];
+            if (parsed[3]) schema.default = parsed[3].trim();
+            if (parsed[6]) schema.format = parsed[6];
+
+            if (parsed[4] || out.in === 'path') out.required = true;
             if (parsed[7]) out.description = parsed[7];
+
+            // OAS 3.0 moves some schema stuff into its own thing
+            if (swaggerVersion >= 3) {
+                out.schema = schema;
+            } else {
+                out = Object.assign(out, schema);
+            }
 
             return out;
         }

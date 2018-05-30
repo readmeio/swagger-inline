@@ -54,7 +54,10 @@ function swaggerInline(globPatterns, providedOptions) {
 
     return Loader.resolvePaths(globPatterns, options).then(function (files) {
         var base = options.getBase();
+
         return Loader.loadBase(base, options).then(function (baseObj) {
+            var swaggerVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
+
             if (Object.keys(baseObj).length === 0) {
                 log(chalk.yellow('No base swagger provided/found!'));
             }
@@ -71,7 +74,7 @@ function swaggerInline(globPatterns, providedOptions) {
                         var _endpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, { filename: fileInfo.fileName, scope: options.getScope() });
 
                         _endpoints = Loader.addResponse(_endpoints);
-                        _endpoints = Loader.expandParams(_endpoints);
+                        _endpoints = Loader.expandParams(_endpoints, swaggerVersion);
                         return _endpoints;
                     } catch (e) {
                         log(chalk.red('Error parsing ' + fileInfo.fileName));

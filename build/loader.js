@@ -195,7 +195,7 @@ var Loader = function () {
 
                         requestBody.forEach(function (prop) {
                             if (prop.name === '__base__') {
-                                base = prop.schema;
+                                base = prop;
                             } else {
                                 properties[prop.name] = prop.schema;
                                 if (prop.required) {
@@ -214,7 +214,7 @@ var Loader = function () {
                                 properties: properties
                             };
                         } else {
-                            schema = base;
+                            schema = base.schema;
                         }
 
                         endpoint.requestBody = {
@@ -224,6 +224,11 @@ var Loader = function () {
                                 }
                             }
                         };
+
+                        if (base) {
+                            endpoint.requestBody.required = base.required;
+                            endpoint.requestBody.description = base.description;
+                        }
                     }
 
                     // Remove any params that couldn't be parsed

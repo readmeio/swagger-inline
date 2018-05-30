@@ -152,7 +152,7 @@ class Loader {
 
                   requestBody.forEach((prop) => {
                     if (prop.name === '__base__') {
-                      base = prop.schema;
+                      base = prop;
                     } else {
                       properties[prop.name] = prop.schema;
                       if (prop.required) {
@@ -165,22 +165,27 @@ class Loader {
 
                   var schema;
                   if (!base) {
-                    schema = {
-                      type: 'object',
-                      required,
-                      properties,
-                    };
+                      schema = {
+                          type: 'object',
+                          required,
+                          properties,
+                      }
                   } else {
-                    schema = base;
+                    schema = base.schema;
                   }
 
                   endpoint.requestBody = {
                     content: {
                       'application/json': {
-                        schema: schema,
-                      },
+                        schema,
+                      }
                     },
                   };
+
+                  if (base) {
+                    endpoint.requestBody.required = base.required;
+                    endpoint.requestBody.description = base.description;
+                  }
                 }
 
                 // Remove any params that couldn't be parsed

@@ -94,7 +94,7 @@ api.route('/pets', function() {
 #### 2) Run Command
 
 ```bash
-swagger-inline './*.js' --base './swaggerBase.yaml'
+swagger-inline './*.js' --base './swaggerBase.yaml' --scope public
 ```
 
 **Output:**

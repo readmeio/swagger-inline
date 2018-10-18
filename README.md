@@ -77,7 +77,6 @@ schemes: ['http']
 
 /*
  * @api [get] /pets
- * scope: public
  * description: "Returns all pets from the system that the user has access to"
  * responses:
  *   "200":

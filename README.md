@@ -44,7 +44,7 @@ swaggerInline(['src/**/*.js', 'test/**/*.js'], {
 
 ```
 
-#### **Cli**
+#### **CLI**
 
 ### `swagger-inline <inputGlobs ...> [--base] [--format] [--out]`
 
@@ -81,7 +81,6 @@ schemes: ['http']
 
 /*
  * @api [get] /pets
- * scope: public
  * description: "Returns all pets from the system that the user has access to"
  * responses:
  *   "200":
@@ -106,16 +105,18 @@ swagger-inline './*.js' --base './swaggerBase.yaml'
 `swagger.yaml`
 
 ```yaml
-swagger: "2.0"
-host: "petstore.swagger.io"
-basePath: "/api"
-schemes: ['http']
-/pets:
-  get:
-    description: Returns all pets from the system that the user has access to
-    responses:
-      '200':
-        description: A list of pets.
-        schema:
-          type: "String"
+swagger: '2.0'
+host: petstore.swagger.io
+basePath: /api
+schemes:
+  - http
+paths:
+  /pets:
+    get:
+      description: Returns all pets from the system that the user has access to
+      responses:
+        '200':
+          description: A list of pets.
+          schema:
+            type: String
 ```

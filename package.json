@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "test-watch": "mocha --watch --colors --require babel-register tests/**/*-test.js",
-    "test": "mocha --colors --require babel-register tests/**/*-test.js",
+    "test": "nyc --reporter=none mocha --colors --require babel-register tests/**/*-test.js",
+    "posttest": "nyc report --reporter=lcov && nyc report --reporter=text-summary && nyc check-coverage --statements 75 --branches 70 --functions 85 --lines 75",
     "start": "babel --watch src/ -d build/",
     "build": "babel src/ -d build",
     "prepublish": "npm run-script build"
@@ -50,7 +51,8 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "nyc": "^13.1.0"
   },
   "bin": {
     "swagger-inline": "build/index.js"

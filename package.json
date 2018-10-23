@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Generate your swagger files from inline swagger comments.",
   "main": "build/index.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "js-yaml": "^3.6.1",
     "lodash": "^4.15.0",
     "multi-glob": "^1.0.1",
-    "multilang-extract-comments": "^0.2.3"
+    "multilang-extract-comments": "^0.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

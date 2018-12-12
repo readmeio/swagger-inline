@@ -272,6 +272,16 @@ var Loader = function () {
             if (parsed[3]) schema.default = parsed[3].trim();
             if (parsed[6]) schema.format = parsed[6];
 
+            if (schema.type === 'integer' && schema.default) {
+                try {
+                    schema.default = parseInt(schema.default, 10);
+                } catch (e) {}
+            }
+
+            if (schema.type === 'boolean' && schema.default) {
+                schema.default = schema.default === 'true';
+            }
+
             if (parsed[4] || out.in === 'path') out.required = true;
             if (parsed[7]) out.description = parsed[7];
 

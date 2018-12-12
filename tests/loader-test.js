@@ -93,7 +93,7 @@ describe('Loader', () => {
                 "(query) hi=2* {Integer} This is a description": {
                     "in": "query",
                     "name": "hi",
-                    "default": "2",
+                    "default": 2,
                     "required": true,
                     "type": "integer",
                     "description": "This is a description",
@@ -101,14 +101,14 @@ describe('Loader', () => {
                 "(query) hi=2 {Integer} This is a description": {
                     "in": "query",
                     "name": "hi",
-                    "default": "2",
+                    "default": 2,
                     "type": "integer",
                     "description": "This is a description",
                 },
                 "(path) hi=2* {Integer} This is a description": {
                     "in": "path",
                     "name": "hi",
-                    "default": "2",
+                    "default": 2,
                     "required": true,
                     "type": "integer",
                     "description": "This is a description",
@@ -116,7 +116,7 @@ describe('Loader', () => {
                 "(path) hi=2 {Integer} This is a description": {
                     "in": "path",
                     "name": "hi",
-                    "default": "2",
+                    "default": 2,
                     "required": true,
                     "type": "integer",
                     "description": "This is a description",
@@ -124,6 +124,13 @@ describe('Loader', () => {
                 "(body) test {Boolean} this is a description": {
                     "in": "body",
                     "name": "test",
+                    "type": "boolean",
+                    "description": "this is a description",
+                },
+                "(body) test=true {Boolean} this is a description": {
+                    "in": "body",
+                    "name": "test",
+                    "default": true,
                     "type": "boolean",
                     "description": "this is a description",
                 },
@@ -155,7 +162,7 @@ describe('Loader', () => {
                     "name": "hi",
                     "schema": {
                       "type": "integer",
-                      "default": "2",
+                      "default": 2,
                     },
                     "description": "This is a description",
                 },
@@ -165,7 +172,7 @@ describe('Loader', () => {
                     "required": true,
                     "schema": {
                       "type": "integer",
-                      "default": "2",
+                      "default": 2,
                     },
                     "description": "This is a description",
                 },
@@ -175,7 +182,7 @@ describe('Loader', () => {
                     "required": true,
                     "schema": {
                       "type": "integer",
-                      "default": "2",
+                      "default": 2,
                     },
                     "description": "This is a description",
                 },
@@ -184,7 +191,7 @@ describe('Loader', () => {
                     "name": "hi",
                     "required": true, // in paths, always require
                     "schema": {
-                      "default": "2",
+                      "default": 2,
                       "type": "integer",
                     },
                     "description": "This is a description",
@@ -203,6 +210,15 @@ describe('Loader', () => {
                     "schema": {
                       "type": "boolean",
                       "format": "hi",
+                    },
+                    "description": "this is a description",
+                },
+                "(body) test=true {Boolean} this is a description": {
+                    "in": "body",
+                    "name": "test",
+                    "schema": {
+                      "type": "boolean",
+                      "default": true,
                     },
                     "description": "this is a description",
                 },

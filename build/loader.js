@@ -272,6 +272,10 @@ var Loader = function () {
             if (parsed[3]) schema.default = parsed[3].trim();
             if (parsed[6]) schema.format = parsed[6];
 
+            // Format defaults
+            // (Currently only supports ints and bools; we probably should find a library
+            // to do this safer)
+
             if (schema.type === 'integer' && schema.default) {
                 try {
                     schema.default = parseInt(schema.default, 10);

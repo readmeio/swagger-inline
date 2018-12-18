@@ -60,7 +60,8 @@ class Extractor {
                 if(line.trim().indexOf('scope:') == 0) {
                     return false;
                 }
-                return !pushLine(yamlLines, line); // end when lines stop being pushed
+                pushLine(yamlLines, line);
+                return;
             }
             route = route || line.match(this.ROUTE_REGEX);
             return false;

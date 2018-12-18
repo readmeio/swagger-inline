@@ -78,7 +78,8 @@ var Extractor = function () {
                     if (line.trim().indexOf('scope:') == 0) {
                         return false;
                     }
-                    return !pushLine(yamlLines, line); // end when lines stop being pushed
+                    pushLine(yamlLines, line);
+                    return;
                 }
                 route = route || line.match(_this2.ROUTE_REGEX);
                 return false;

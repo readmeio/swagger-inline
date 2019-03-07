@@ -39,7 +39,7 @@
     "js-yaml": "^3.6.1",
     "lodash": "^4.17.11",
     "multi-glob": "^1.0.2",
-    "multilang-extract-comments": "^0.3.1"
+    "multilang-extract-comments": "^0.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

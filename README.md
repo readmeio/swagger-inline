@@ -46,10 +46,10 @@ swaggerInline(['src/**/*.js', 'test/**/*.js'], {
 
 #### **CLI**
 
-### `swagger-inline <inputGlobs ...> [--base] [--format] [--out]`
+### `swagger-inline [--base] [--format] [--out] <inputGlobs ...>`
 
 ```bash
-swagger-inline 'src/**/*.js' --base 'swaggerBase.json' # outputs built swagger.json
+swagger-inline --base 'swaggerBase.json' # outputs built swagger.json 'src/**/*.js'
 ```
 
 **Options:**

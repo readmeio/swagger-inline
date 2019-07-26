@@ -85,6 +85,33 @@ describe('Extractor', () => {
             });
         });
 
+        const swaggerSchemeComment = [
+            '',
+            ' @schema Pet',
+            '   required:',
+            '     - id',
+            '     - name',
+            '   properties:',
+            '     id:',
+            '       type: integer',
+            '       format: int64',
+            '     name:',
+            '       type: string',
+            '     tag:',
+            '       type: string',
+            '',
+        ].join('\n');
+
+        it('extracts schemes from comment strings', () => {
+            const scheme = Extractor.extractSchemas(swaggerSchemeComment);
+
+            assert.equal(scheme.name, 'Pet');
+            assert.isArray(scheme.required);
+            assert.isObject(scheme.properties);
+            assert.isObject(scheme.properties.id);
+        });
+
+
         it('returns only endpoints', () => {
             const emptyCode = [
                 '/*', ' * Empty comment', ' */',

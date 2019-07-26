@@ -39,6 +39,19 @@ function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
     }, swaggerBase);
 }
 
+function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
+    return schemas.reduce((prev, current) => {
+        const name = current.name;
+        const descriptor = _.omit(current, ['name']);
+
+        if (!name) {
+            return prev;
+        }
+
+        return _.set(prev, ['components', 'schemas', name], descriptor);
+    }, swaggerBase);
+}
+
 function swaggerInline(globPatterns, providedOptions) {
     if (typeof globPatterns === 'undefined') {
         throw Error('No files specificied');
@@ -65,26 +78,41 @@ function swaggerInline(globPatterns, providedOptions) {
                 }).filter((fileInfo) => {
                     return typeof fileInfo.fileData === 'string';
                 });
-                const endpoints = _.flatten(successfulFiles.map((fileInfo) => {
+
+                let endpoints = [];
+                let schemas = [];
+
+                successfulFiles.forEach((fileInfo) => {
                     try {
-                        let endpoints = Extractor.extractEndpointsFromCode(
+                        let _endpoints = Extractor.extractEndpointsFromCode(
                             fileInfo.fileData,
                             { filename: fileInfo.fileName, scope: options.getScope() }
                         );
-
-                        endpoints = Loader.addResponse(endpoints);
-                        endpoints = Loader.expandParams(endpoints, swaggerVersion);
-                        return endpoints;
+                        
+                        _endpoints = Loader.addResponse(_endpoints);
+                        
+                        _endpoints = Loader.expandParams(_endpoints, swaggerVersion);
+                        endpoints = _.concat(endpoints, _endpoints);
+                        
+                        const scheme = Extractor.extractSchemasFromCode(
+                            fileInfo.fileData,
+                            { filename: fileInfo.fileName, scope: options.getScope() }
+                        );
+                        _.remove(scheme, (s) => {
+                            return _.isEmpty(s);
+                        });
+                        schemas = _.concat(schemas, scheme);
                     } catch (e) {
                         log(chalk.red(`Error parsing ${fileInfo.fileName}`));
                         log(chalk.red(e.toString()));
-                        return {};
                     }
-                }));
+                });
 
                 log(`${endpoints.length} swagger definitions found...`);
+                log(`${schemas.length} swagger schemas found...`);
 
-                const swagger = mergeEndpointsWithBase(baseObj, endpoints);
+                baseObj = mergeEndpointsWithBase(baseObj, endpoints);
+                const swagger = mergeSchemasWithBase(baseObj, schemas);
                 log(`swagger${options.getFormat()} created!`);
                 return outputResult(swagger, options);
             });

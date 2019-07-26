@@ -92,6 +92,24 @@ schemes: ['http']
 api.route('/pets', function() {
     /* Pet code 😺 */
 });
+
+/*
+* @schema Pet',
+* required:',
+*   - id',
+*   - name',
+* properties:',
+*   id:',
+*     type: integer'
+*     format: int64'
+*   name:',
+*     type: string',
+*   tag:',
+*     type: string',
+*/
+
+//some scheme related function
+
 ```
 
 #### 2) Run Command
@@ -119,4 +137,18 @@ paths:
           description: A list of pets.
           schema:
             type: String
+components:
+  schemes:
+    Pet:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: intege
+          format: int6
+        name:
+          type: string
+        tag:
+          type: string
 ```

@@ -145,7 +145,7 @@ components:
         - name
       properties:
         id:
-          type: intege
+          type: integer
           format: int6
         name:
           type: string

@@ -94,18 +94,18 @@ api.route('/pets', function() {
 });
 
 /*
-* @schema Pet',
-* required:',
-*   - id',
-*   - name',
-* properties:',
-*   id:',
-*     type: integer'
-*     format: int64'
-*   name:',
-*     type: string',
-*   tag:',
-*     type: string',
+* @schema Pet
+* required:
+*   - id
+*   - name
+* properties:
+*   id:
+*     type: integer
+*     format: int64
+*   name:
+*     type: string
+*   tag:
+*     type: string
 */
 
 //some scheme related function
@@ -146,7 +146,7 @@ components:
       properties:
         id:
           type: integer
-          format: int6
+          format: int64
         name:
           type: string
         tag:

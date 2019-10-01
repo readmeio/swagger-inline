@@ -44,13 +44,29 @@ function mergeEndpointsWithBase() {
     }, swaggerBase);
 }
 
+function mergeSchemasWithBase() {
+    var swaggerBase = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var schemas = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+    return schemas.reduce(function (prev, current) {
+        var name = current.name;
+        var descriptor = _.omit(current, ['name']);
+
+        if (!name) {
+            return prev;
+        }
+
+        return _.set(prev, ['components', 'schemas', name], descriptor);
+    }, swaggerBase);
+}
+
 function swaggerInline(globPatterns, providedOptions) {
     if (typeof globPatterns === "undefined") {
         throw new TypeError("No files specificied");
     }
 
     var options = new Options(providedOptions);
-    var log = options.getOut() ? options.getLogger() : function () {};
+    var log = options.getOut() ? options.getLogger() : function () { };
 
     return Loader.resolvePaths(globPatterns, options).then(function (files) {
         var base = options.getBase();
@@ -69,7 +85,11 @@ function swaggerInline(globPatterns, providedOptions) {
                 }).filter(function (fileInfo) {
                     return typeof fileInfo.fileData === "string";
                 });
-                var endpoints = _.flatten(successfulFiles.map(function (fileInfo) {
+
+                var endpoints = [];
+                var schemas = [];
+
+                successfulFiles.forEach(function (fileInfo) {
                     try {
                         // eslint-disable-next-line no-shadow
                         var _endpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
@@ -78,19 +98,27 @@ function swaggerInline(globPatterns, providedOptions) {
                         });
 
                         _endpoints = Loader.addResponse(_endpoints);
+
                         _endpoints = Loader.expandParams(_endpoints, swaggerVersion);
-                        return _endpoints;
+                        endpoints = _.concat(endpoints, _endpoints);
+
+                        var scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, { filename: fileInfo.fileName, scope: options.getScope() });
+                        _.remove(scheme, function (s) {
+                            return _.isEmpty(s);
+                        });
+                        schemas = _.concat(schemas, scheme);
                     } catch (e) {
                         log(chalk.red("Error parsing " + fileInfo.fileName));
                         log(chalk.red(e.toString()));
-                        return {};
                     }
-                }));
+                });
 
-                log(endpoints.length + " swagger definitions found...");
+                log(endpoints.length + ' swagger definitions found...');
+                log(schemas.length + ' swagger schemas found...');
 
-                var swagger = mergeEndpointsWithBase(baseObj, endpoints);
-                log("swagger" + options.getFormat() + " created!");
+                baseObj = mergeEndpointsWithBase(baseObj, endpoints);
+                var swagger = mergeSchemasWithBase(baseObj, schemas);
+                log('swagger' + options.getFormat() + ' created!');
                 return outputResult(swagger, options);
             });
         });

@@ -152,6 +152,42 @@ var Extractor = function () {
 
             return buildSchema(route, yamlLines);
         }
+    }, {
+        key: 'extractSchemas',
+        value: function extractSchemas(comment, options) {
+            var _this4 = this;
+
+            var lines = comment.split('\n');
+            var yamlLines = [];
+            var route = null;
+            var scopeMatched = false;
+
+            lines.some(function (line) {
+                if (route) {
+                    if (options && options.scope) {
+                        if (line.trim().indexOf('scope:') == 0 && line.indexOf(options.scope) >= 0) {
+                            scopeMatched = true;
+                            return false;
+                        }
+                    } else {
+                        scopeMatched = true;
+                    }
+                    if (line.trim().indexOf('scope:') == 0) {
+                        return false;
+                    }
+                    pushLine(yamlLines, line);
+                    return;
+                }
+                route = route || line.match(_this4.SCHEMA_REGEX);
+                return false;
+            });
+
+            if (!scopeMatched) {
+                route = null;
+            }
+
+            return buildSchema(route, yamlLines);
+        }
     }]);
 
     return Extractor;

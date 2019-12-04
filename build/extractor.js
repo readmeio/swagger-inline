@@ -35,7 +35,7 @@ function buildSchema(schema, yamlLines) {
     var scheme = {};
 
     if (schema) {
-        var yamlObject = jsYaml.load(yamlLines.join('\n'));
+        var yamlObject = jsYaml.load(yamlLines.join("\n"));
 
         scheme.name = schema[1];
         Object.assign(scheme, yamlObject);
@@ -121,7 +121,7 @@ var Extractor = function () {
         value: function extractSchemas(comment, options) {
             var _this4 = this;
 
-            var lines = comment.split('\n');
+            var lines = comment.split("\n");
             var yamlLines = [];
             var route = null;
             var scopeMatched = false;
@@ -129,54 +129,18 @@ var Extractor = function () {
             lines.some(function (line) {
                 if (route) {
                     if (options && options.scope) {
-                        if (line.trim().indexOf('scope:') == 0 && line.indexOf(options.scope) >= 0) {
+                        if (line.trim().indexOf("scope:") === 0 && line.indexOf(options.scope) >= 0) {
                             scopeMatched = true;
                             return false;
                         }
                     } else {
                         scopeMatched = true;
                     }
-                    if (line.trim().indexOf('scope:') == 0) {
+                    if (line.trim().indexOf("scope:") === 0) {
                         return false;
                     }
                     pushLine(yamlLines, line);
-                    return;
-                }
-                route = route || line.match(_this4.SCHEMA_REGEX);
-                return false;
-            });
-
-            if (!scopeMatched) {
-                route = null;
-            }
-
-            return buildSchema(route, yamlLines);
-        }
-    }, {
-        key: 'extractSchemas',
-        value: function extractSchemas(comment, options) {
-            var _this4 = this;
-
-            var lines = comment.split('\n');
-            var yamlLines = [];
-            var route = null;
-            var scopeMatched = false;
-
-            lines.some(function (line) {
-                if (route) {
-                    if (options && options.scope) {
-                        if (line.trim().indexOf('scope:') == 0 && line.indexOf(options.scope) >= 0) {
-                            scopeMatched = true;
-                            return false;
-                        }
-                    } else {
-                        scopeMatched = true;
-                    }
-                    if (line.trim().indexOf('scope:') == 0) {
-                        return false;
-                    }
-                    pushLine(yamlLines, line);
-                    return;
+                    return undefined;
                 }
                 route = route || line.match(_this4.SCHEMA_REGEX);
                 return false;

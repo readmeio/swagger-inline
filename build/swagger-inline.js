@@ -50,13 +50,13 @@ function mergeSchemasWithBase() {
 
     return schemas.reduce(function (prev, current) {
         var name = current.name;
-        var descriptor = _.omit(current, ['name']);
+        var descriptor = _.omit(current, ["name"]);
 
         if (!name) {
             return prev;
         }
 
-        return _.set(prev, ['components', 'schemas', name], descriptor);
+        return _.set(prev, ["components", "schemas", name], descriptor);
     }, swaggerBase);
 }
 
@@ -66,7 +66,7 @@ function swaggerInline(globPatterns, providedOptions) {
     }
 
     var options = new Options(providedOptions);
-    var log = options.getOut() ? options.getLogger() : function () { };
+    var log = options.getOut() ? options.getLogger() : function () {};
 
     return Loader.resolvePaths(globPatterns, options).then(function (files) {
         var base = options.getBase();
@@ -91,18 +91,20 @@ function swaggerInline(globPatterns, providedOptions) {
 
                 successfulFiles.forEach(function (fileInfo) {
                     try {
-                        // eslint-disable-next-line no-shadow
-                        var _endpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
+                        var newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
                             filename: fileInfo.fileName,
                             scope: options.getScope()
                         });
 
-                        _endpoints = Loader.addResponse(_endpoints);
+                        newEndpoints = Loader.addResponse(newEndpoints);
 
-                        _endpoints = Loader.expandParams(_endpoints, swaggerVersion);
-                        endpoints = _.concat(endpoints, _endpoints);
+                        newEndpoints = Loader.expandParams(newEndpoints, swaggerVersion);
+                        endpoints = _.concat(endpoints, newEndpoints);
 
-                        var scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, { filename: fileInfo.fileName, scope: options.getScope() });
+                        var scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
+                            filename: fileInfo.fileName,
+                            scope: options.getScope()
+                        });
                         _.remove(scheme, function (s) {
                             return _.isEmpty(s);
                         });
@@ -113,12 +115,12 @@ function swaggerInline(globPatterns, providedOptions) {
                     }
                 });
 
-                log(endpoints.length + ' swagger definitions found...');
-                log(schemas.length + ' swagger schemas found...');
+                log(endpoints.length + " swagger definitions found...");
+                log(schemas.length + " swagger schemas found...");
 
-                baseObj = mergeEndpointsWithBase(baseObj, endpoints);
-                var swagger = mergeSchemasWithBase(baseObj, schemas);
-                log('swagger' + options.getFormat() + ' created!');
+                var baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
+                var swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
+                log("swagger" + options.getFormat() + " created!");
                 return outputResult(swagger, options);
             });
         });

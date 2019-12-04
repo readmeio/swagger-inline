@@ -1,11 +1,12 @@
-const path = require('path');
+const path = require("path");
 
 class Options {
     constructor(providedOptions = {}) {
         this.options = Object.assign({}, providedOptions);
 
-        Object.keys(Options.DEFAULTS).forEach((option) => {
-            this.options[option] = this.options[option] || Options.DEFAULTS[option];
+        Object.keys(Options.DEFAULTS).forEach(option => {
+            this.options[option] =
+                this.options[option] || Options.DEFAULTS[option];
         });
 
         if (this.options.base && !providedOptions.format) {
@@ -18,7 +19,7 @@ class Options {
     }
 
     isJSON() {
-        return this.getFormat() === '.json' || !this.getFormat();
+        return this.getFormat() === ".json" || !this.getFormat();
     }
 
     getFormat() {
@@ -36,7 +37,7 @@ class Options {
     getScope() {
         return this.options.scope;
     }
-    
+
     getLogger() {
         return this.options.logger;
     }
@@ -51,9 +52,9 @@ class Options {
 }
 
 Options.DEFAULTS = {
-    format: '.json',
+    format: ".json",
     logger: () => {},
-    ignore: ['node_modules/**/*', 'bower_modules/**/*'],
+    ignore: ["node_modules/**/*", "bower_modules/**/*"]
 };
 
 module.exports = Options;

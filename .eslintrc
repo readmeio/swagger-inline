@@ -1,13 +1,4 @@
 {
-    "extends": "airbnb",
-    "rules": {
-        "indent": [2, 4],
-        "strict": 0,
-        "import/no-extraneous-dependencies": [2, {
-          "devDependencies": true
-        }],
-    },
-    "env": {
-        "mocha": true
-    }
+  "extends": "@readme/eslint-config",
+  "root": true
 }

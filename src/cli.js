@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const program = require("commander");
 const packageJson = require("../package.json");
 const Options = require("./options");

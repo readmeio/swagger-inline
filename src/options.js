@@ -2,6 +2,7 @@ const path = require("path");
 
 class Options {
     constructor(providedOptions = {}) {
+        // eslint-disable-next-line prefer-object-spread
         this.options = Object.assign({}, providedOptions);
 
         Object.keys(Options.DEFAULTS).forEach(option => {

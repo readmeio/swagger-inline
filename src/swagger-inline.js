@@ -45,7 +45,7 @@ function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
 
 function swaggerInline(globPatterns, providedOptions) {
     if (typeof globPatterns === "undefined") {
-        throw Error("No files specificied");
+        throw new TypeError("No files specificied");
     }
 
     const options = new Options(providedOptions);
@@ -76,6 +76,7 @@ function swaggerInline(globPatterns, providedOptions) {
                 const endpoints = _.flatten(
                     successfulFiles.map(fileInfo => {
                         try {
+                            // eslint-disable-next-line no-shadow
                             let endpoints = Extractor.extractEndpointsFromCode(
                                 fileInfo.fileData,
                                 {

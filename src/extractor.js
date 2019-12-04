@@ -53,7 +53,7 @@ class Extractor {
             if (route) {
                 if (options && options.scope) {
                     if (
-                        line.trim().indexOf("scope:") == 0 &&
+                        line.trim().indexOf("scope:") === 0 &&
                         line.indexOf(options.scope) >= 0
                     ) {
                         scopeMatched = true;
@@ -62,10 +62,11 @@ class Extractor {
                 } else {
                     scopeMatched = true;
                 }
-                if (line.trim().indexOf("scope:") == 0) {
+                if (line.trim().indexOf("scope:") === 0) {
                     return false;
                 }
                 pushLine(yamlLines, line);
+                // eslint-disable-next-line consistent-return
                 return;
             }
             route = route || line.match(this.ROUTE_REGEX);

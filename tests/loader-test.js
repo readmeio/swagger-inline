@@ -109,7 +109,7 @@ describe("Loader", () => {
 
     describe(".expandParam", () => {
         it("parses params properly", () => {
-            var test = {
+            const test = {
                 "(query) hi=2* {Integer} This is a description": {
                     in: "query",
                     name: "hi",
@@ -174,7 +174,7 @@ describe("Loader", () => {
 
     describe(".expandParam OAS 3", () => {
         it("parses params properly", () => {
-            var test = {
+            const test = {
                 "(query) hi=2 {Integer} This is a description": {
                     in: "query",
                     name: "hi",

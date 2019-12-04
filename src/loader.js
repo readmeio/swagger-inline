@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const fs = require("fs");
 const path = require("path");
 const Promise = require("bluebird");
@@ -8,7 +9,7 @@ class Loader {
     static resolvePaths(filepaths, options) {
         const ignore = options ? options.getIgnore() : undefined;
         return new Promise(function(resolve, reject) {
-            glob(filepaths, { ignore: ignore }, (err, files) => {
+            glob(filepaths, { ignore }, (err, files) => {
                 return err === null ? resolve(files) : reject(err);
             });
         });
@@ -86,8 +87,7 @@ class Loader {
         if (!loadFunction) {
             throw new Error(`Did not recognize ${filepath}.`);
         }
-        var loaded = Loader.LOADER_METHODS[extname](filepath, options);
-        return loaded;
+        return Loader.LOADER_METHODS[extname](filepath, options);
     }
 
     static loadBase(base = "", options) {
@@ -149,10 +149,10 @@ class Loader {
     static expandParams(endpoints = {}, swaggerVersion) {
         endpoints.forEach(endpoint => {
             if (endpoint && endpoint.parameters) {
-                var requestBody = [];
+                const requestBody = [];
                 endpoint.parameters.forEach((param, i) => {
                     if (typeof param === "string") {
-                        var param = Loader.expandParam(param, swaggerVersion);
+                        param = Loader.expandParam(param, swaggerVersion);
                         if (param.in === "body" && swaggerVersion >= 3) {
                             requestBody.push(param);
                         } else {
@@ -167,9 +167,9 @@ class Loader {
                 );
 
                 if (swaggerVersion >= 3 && Object.keys(requestBody).length) {
-                    var properties = {};
-                    var required = [];
-                    var base = false;
+                    const properties = {};
+                    let required = [];
+                    let base = false;
 
                     requestBody.forEach(prop => {
                         if (prop.name === "__base__") {
@@ -188,7 +188,7 @@ class Loader {
 
                     if (!required.length) required = undefined;
 
-                    var schema;
+                    let schema;
                     if (!base) {
                         schema = {
                             type: "object",
@@ -215,7 +215,7 @@ class Loader {
 
                 // Remove any params that couldn't be parsed
                 endpoint.parameters = endpoint.parameters.filter(
-                    n => n != false
+                    n => n !== false
                 );
             }
         });
@@ -223,7 +223,7 @@ class Loader {
     }
 
     static expandParam(param = "", swaggerVersion) {
-        var parsed = param.match(
+        const parsed = param.match(
             /(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/
         );
 
@@ -237,12 +237,12 @@ class Loader {
             }
         }
 
-        var out = {
+        let out = {
             in: parsed[1],
             name: parsed[2]
         };
 
-        var schema = {
+        const schema = {
             type: parsed[5].toLowerCase()
         };
 
@@ -256,7 +256,9 @@ class Loader {
         if (schema.type === "integer" && schema.default) {
             try {
                 schema.default = parseInt(schema.default, 10);
-            } catch (e) {}
+            } catch (e) {
+                // noop
+            }
         }
 
         if (schema.type === "boolean" && schema.default) {

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -6,11 +6,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var fs = require('fs');
-var path = require('path');
-var Promise = require('bluebird');
-var jsYaml = require('js-yaml');
-var glob = require('multi-glob').glob;
+/* eslint-disable no-param-reassign */
+var fs = require("fs");
+var path = require("path");
+var Promise = require("bluebird");
+var jsYaml = require("js-yaml");
+var glob = require("multi-glob").glob;
 
 var Loader = function () {
     function Loader() {
@@ -18,7 +19,7 @@ var Loader = function () {
     }
 
     _createClass(Loader, null, [{
-        key: 'resolvePaths',
+        key: "resolvePaths",
         value: function resolvePaths(filepaths, options) {
             var ignore = options ? options.getIgnore() : undefined;
             return new Promise(function (resolve, reject) {
@@ -28,7 +29,7 @@ var Loader = function () {
             });
         }
     }, {
-        key: 'findSwagger',
+        key: "findSwagger",
         value: function findSwagger() {
             var directory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : process.cwd();
             var options = arguments[1];
@@ -60,7 +61,7 @@ var Loader = function () {
             });
         }
     }, {
-        key: 'loadFiles',
+        key: "loadFiles",
         value: function loadFiles(filepaths) {
             return new Promise(function (resolve) {
                 var loadPromises = Promise.map(filepaths, function (filepath) {
@@ -74,10 +75,10 @@ var Loader = function () {
             });
         }
     }, {
-        key: 'loadFile',
+        key: "loadFile",
         value: function loadFile(filepath) {
             return new Promise(function (resolve, reject) {
-                fs.readFile(filepath, 'utf-8', function (err, data) {
+                fs.readFile(filepath, "utf-8", function (err, data) {
                     if (err) {
                         reject(err);
                     } else {
@@ -87,23 +88,22 @@ var Loader = function () {
             });
         }
     }, {
-        key: 'loadData',
+        key: "loadData",
         value: function loadData(filepath, options) {
             var extname = path.extname(filepath);
             var loadFunction = Loader.LOADER_METHODS[extname];
 
             if (!loadFunction) {
-                throw new Error('Did not recognize ' + filepath + '.');
+                throw new Error("Did not recognize " + filepath + ".");
             }
-            var loaded = Loader.LOADER_METHODS[extname](filepath, options);
-            return loaded;
+            return Loader.LOADER_METHODS[extname](filepath, options);
         }
     }, {
-        key: 'loadBase',
+        key: "loadBase",
         value: function loadBase() {
             var _this = this;
 
-            var base = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            var base = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
             var options = arguments[1];
 
             return new Promise(function (resolve) {
@@ -125,29 +125,29 @@ var Loader = function () {
             });
         }
     }, {
-        key: 'loadYAML',
+        key: "loadYAML",
         value: function loadYAML(filepath, options) {
             return Loader.loadFile(filepath).then(function (data) {
                 return Loader.addMetadata(jsYaml.load(data), filepath, options);
             });
         }
     }, {
-        key: 'loadJSON',
+        key: "loadJSON",
         value: function loadJSON(filepath, options) {
             return Loader.loadFile(filepath).then(function (data) {
                 return Loader.addMetadata(JSON.parse(data), filepath, options);
             });
         }
     }, {
-        key: 'addMetadata',
+        key: "addMetadata",
         value: function addMetadata(data, filepath, options) {
             if (options && options.getMetadata()) {
-                data['x-si-base'] = filepath;
+                data["x-si-base"] = filepath;
             }
             return data;
         }
     }, {
-        key: 'addResponse',
+        key: "addResponse",
         value: function addResponse() {
             var endpoints = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
@@ -156,7 +156,7 @@ var Loader = function () {
                 if (!endpoint.responses || !Object.keys(endpoint.responses).length) {
                     endpoint.responses = {
                         "200": {
-                            "description": "Successful response"
+                            description: "Successful response"
                         }
                     };
                 }
@@ -164,7 +164,7 @@ var Loader = function () {
             return endpoints;
         }
     }, {
-        key: 'expandParams',
+        key: "expandParams",
         value: function expandParams() {
             var endpoints = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
             var swaggerVersion = arguments[1];
@@ -173,9 +173,9 @@ var Loader = function () {
                 if (endpoint && endpoint.parameters) {
                     var requestBody = [];
                     endpoint.parameters.forEach(function (param, i) {
-                        if (typeof param === 'string') {
-                            var param = Loader.expandParam(param, swaggerVersion);
-                            if (param.in === 'body' && swaggerVersion >= 3) {
+                        if (typeof param === "string") {
+                            param = Loader.expandParam(param, swaggerVersion);
+                            if (param.in === "body" && swaggerVersion >= 3) {
                                 requestBody.push(param);
                             } else {
                                 endpoint.parameters[i] = param;
@@ -185,7 +185,7 @@ var Loader = function () {
 
                     // Remove the ones that weren't converted
                     endpoint.parameters = endpoint.parameters.filter(function (n) {
-                        return (typeof n === 'undefined' ? 'undefined' : _typeof(n)) === 'object';
+                        return (typeof n === "undefined" ? "undefined" : _typeof(n)) === "object";
                     });
 
                     if (swaggerVersion >= 3 && Object.keys(requestBody).length) {
@@ -194,7 +194,7 @@ var Loader = function () {
                         var base = false;
 
                         requestBody.forEach(function (prop) {
-                            if (prop.name === '__base__') {
+                            if (prop.name === "__base__") {
                                 base = prop;
                             } else {
                                 properties[prop.name] = prop.schema;
@@ -209,10 +209,10 @@ var Loader = function () {
 
                         if (!required.length) required = undefined;
 
-                        var schema;
+                        var schema = void 0;
                         if (!base) {
                             schema = {
-                                type: 'object',
+                                type: "object",
                                 required: required,
                                 properties: properties
                             };
@@ -222,7 +222,7 @@ var Loader = function () {
 
                         endpoint.requestBody = {
                             content: {
-                                'application/json': {
+                                "application/json": {
                                     schema: schema
                                 }
                             }
@@ -236,37 +236,37 @@ var Loader = function () {
 
                     // Remove any params that couldn't be parsed
                     endpoint.parameters = endpoint.parameters.filter(function (n) {
-                        return n != false;
+                        return n !== false;
                     });
-                };
+                }
             });
             return endpoints;
         }
     }, {
-        key: 'expandParam',
+        key: "expandParam",
         value: function expandParam() {
             var param = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
             var swaggerVersion = arguments[1];
 
-            var parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);;
+            var parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);
 
             if (!parsed || !parsed[1] || !parsed[5]) return false;
 
             if (parsed && !parsed[2]) {
-                if (swaggerVersion >= 3 && parsed[1] === 'body') {
-                    parsed[2] = '__base__';
+                if (swaggerVersion >= 3 && parsed[1] === "body") {
+                    parsed[2] = "__base__";
                 } else {
                     return false;
                 }
             }
 
             var out = {
-                'in': parsed[1],
-                'name': parsed[2]
+                in: parsed[1],
+                name: parsed[2]
             };
 
             var schema = {
-                'type': parsed[5].toLowerCase()
+                type: parsed[5].toLowerCase()
             };
 
             if (parsed[3]) schema.default = parsed[3].trim();
@@ -276,17 +276,19 @@ var Loader = function () {
             // (Currently only supports ints and bools; we probably should find a library
             // to do this safer)
 
-            if (schema.type === 'integer' && schema.default) {
+            if (schema.type === "integer" && schema.default) {
                 try {
                     schema.default = parseInt(schema.default, 10);
-                } catch (e) {}
+                } catch (e) {
+                    // noop
+                }
             }
 
-            if (schema.type === 'boolean' && schema.default) {
-                schema.default = schema.default === 'true';
+            if (schema.type === "boolean" && schema.default) {
+                schema.default = schema.default === "true";
             }
 
-            if (parsed[4] || out.in === 'path') out.required = true;
+            if (parsed[4] || out.in === "path") out.required = true;
             if (parsed[7]) out.description = parsed[7];
 
             // OAS 3.0 moves some schema stuff into its own thing
@@ -304,9 +306,9 @@ var Loader = function () {
 }();
 
 Loader.LOADER_METHODS = {
-    '.yaml': Loader.loadYAML,
-    '.yml': Loader.loadYAML,
-    '.json': Loader.loadJSON
+    ".yaml": Loader.loadYAML,
+    ".yml": Loader.loadYAML,
+    ".json": Loader.loadJSON
 };
 Loader.SWAGGER_TYPES_REGEX = /\.json|\.yaml|\.yml/i;
 Loader.MAX_CONCURRENCY = 500;

@@ -1,15 +1,16 @@
-'use strict';
+"use strict";
 
-var program = require('commander');
-var packageJson = require('../package.json');
-var Options = require('./options');
-var swaggerInline = require('./swagger-inline');
+/* eslint-disable no-console */
+var program = require("commander");
+var packageJson = require("../package.json");
+var Options = require("./options");
+var swaggerInline = require("./swagger-inline");
 
 function Cli(args) {
-    program.version(packageJson.version).usage('[options] <inputGlobs ...>').option('-b, --base [path]', 'A base swagger file.').option('-o, --out [path]', 'Output file path.').option('-f, --format [format]', 'Output swagger format (.json or .yaml).').option('-s, --scope [scope]', 'api scope to generate');
+    program.version(packageJson.version).usage("[options] <inputGlobs ...>").option("-b, --base [path]", "A base swagger file.").option("-o, --out [path]", "Output file path.").option("-f, --format [format]", "Output swagger format (.json or .yaml).").option("-s, --scope [scope]", "api scope to generate");
 
-    program.on('--help', function () {
-        ['Example:', '\tswagger-inline "./*.js" --base ./swaggerBase.json --out ./swagger.json --scope public'].forEach(function (line) {
+    program.on("--help", function () {
+        ["Example:", '\tswagger-inline "./*.js" --base ./swaggerBase.json --out ./swagger.json --scope public'].forEach(function (line) {
             return console.log(line);
         });
     });
@@ -36,7 +37,7 @@ function Cli(args) {
             console.log(output);
         }
     }).catch(function (err) {
-        console.log('An error occured:');
+        console.log("An error occured:");
         console.log(err);
     });
 }

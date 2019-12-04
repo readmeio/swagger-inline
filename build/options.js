@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var path = require('path');
+var path = require("path");
 
 var Options = function () {
     function Options() {
@@ -14,6 +14,7 @@ var Options = function () {
 
         _classCallCheck(this, Options);
 
+        // eslint-disable-next-line prefer-object-spread
         this.options = Object.assign({}, providedOptions);
 
         Object.keys(Options.DEFAULTS).forEach(function (option) {
@@ -30,42 +31,42 @@ var Options = function () {
     }
 
     _createClass(Options, [{
-        key: 'isJSON',
+        key: "isJSON",
         value: function isJSON() {
-            return this.getFormat() === '.json' || !this.getFormat();
+            return this.getFormat() === ".json" || !this.getFormat();
         }
     }, {
-        key: 'getFormat',
+        key: "getFormat",
         value: function getFormat() {
             return this.options.format;
         }
     }, {
-        key: 'getBase',
+        key: "getBase",
         value: function getBase() {
             return this.options.base;
         }
     }, {
-        key: 'getOut',
+        key: "getOut",
         value: function getOut() {
             return this.options.out;
         }
     }, {
-        key: 'getScope',
+        key: "getScope",
         value: function getScope() {
             return this.options.scope;
         }
     }, {
-        key: 'getLogger',
+        key: "getLogger",
         value: function getLogger() {
             return this.options.logger;
         }
     }, {
-        key: 'getIgnore',
+        key: "getIgnore",
         value: function getIgnore() {
             return this.options.ignore;
         }
     }, {
-        key: 'getMetadata',
+        key: "getMetadata",
         value: function getMetadata() {
             return this.options.metadata;
         }
@@ -75,9 +76,9 @@ var Options = function () {
 }();
 
 Options.DEFAULTS = {
-    format: '.json',
+    format: ".json",
     logger: function logger() {},
-    ignore: ['node_modules/**/*', 'bower_modules/**/*']
+    ignore: ["node_modules/**/*", "bower_modules/**/*"]
 };
 
 module.exports = Options;

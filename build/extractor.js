@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _extractComments = require('multilang-extract-comments');
-var jsYaml = require('js-yaml');
+var _extractComments = require("multilang-extract-comments");
+var jsYaml = require("js-yaml");
 
 function pushLine(array, line) {
     if (line.trim()) {
@@ -19,7 +19,7 @@ function buildEndpoint(route, yamlLines) {
     var endpoint = {};
 
     if (route) {
-        var yamlObject = jsYaml.load(yamlLines.join('\n'));
+        var yamlObject = jsYaml.load(yamlLines.join("\n"));
 
         endpoint.method = route[1];
         endpoint.route = route[2];
@@ -37,7 +37,7 @@ var Extractor = function () {
     }
 
     _createClass(Extractor, null, [{
-        key: 'extractEndpointsFromCode',
+        key: "extractEndpointsFromCode",
         value: function extractEndpointsFromCode(code, options) {
             var _this = this;
 
@@ -51,16 +51,16 @@ var Extractor = function () {
             });
         }
     }, {
-        key: 'extractComments',
+        key: "extractComments",
         value: function extractComments(code, options) {
             return _extractComments(code, options);
         }
     }, {
-        key: 'extractEndpoint',
+        key: "extractEndpoint",
         value: function extractEndpoint(comment, options) {
             var _this2 = this;
 
-            var lines = comment.split('\n');
+            var lines = comment.split("\n");
             var yamlLines = [];
             var route = null;
             var scopeMatched = false;
@@ -68,17 +68,18 @@ var Extractor = function () {
             lines.some(function (line) {
                 if (route) {
                     if (options && options.scope) {
-                        if (line.trim().indexOf('scope:') == 0 && line.indexOf(options.scope) >= 0) {
+                        if (line.trim().indexOf("scope:") === 0 && line.indexOf(options.scope) >= 0) {
                             scopeMatched = true;
                             return false;
                         }
                     } else {
                         scopeMatched = true;
                     }
-                    if (line.trim().indexOf('scope:') == 0) {
+                    if (line.trim().indexOf("scope:") === 0) {
                         return false;
                     }
                     pushLine(yamlLines, line);
+                    // eslint-disable-next-line consistent-return
                     return;
                 }
                 route = route || line.match(_this2.ROUTE_REGEX);

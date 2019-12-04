@@ -123,6 +123,21 @@ router.get('/pets/{id}', () => {
  *          $ref: "#/definitions/ErrorModel"
  */
 
- router.delete('/pets/{id}', () => {
+router.delete('/pets/{id}', () => {
 
- });
+});
+
+/*
+* @schema Pet
+* required:
+*   - id
+*   - name
+* properties:
+*   id:
+*     type: integer
+*     format: int64
+*   name:
+*     type: string
+*   tag:
+*     type: string
+*/

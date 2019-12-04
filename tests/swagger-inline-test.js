@@ -78,6 +78,24 @@ describe("Swagger Inline", () => {
             .catch(done);
     });
 
+    it("merges extracted schemes into the base swagger", done => {
+        swaggerInline(`${projectDir}/*.js`, { base: baseJSONPath })
+            .then(json => {
+                const outputJSON = JSON.parse(json);
+
+                Object.keys(outputJSON.components.schemas).forEach(
+                    component => {
+                        assert.isObject(
+                            outputJSON.components.schemas[component]
+                        );
+                    }
+                );
+
+                done();
+            })
+            .catch(done);
+    });
+
     it("outputs a specified json file", () => {
         const out = "./tmp/swagger.json";
         return swaggerInline(`${projectDir}/*.js`, { out }).then(() => {

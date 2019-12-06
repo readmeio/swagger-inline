@@ -85,13 +85,4 @@ describe('Swagger Inline', () => {
       })
       .catch(done);
   });
-
-  it('outputs a specified json file', () => {
-    const out = './tmp/swagger.json';
-    return swaggerInline(`${projectDir}/*.js`, { out }).then(() => {
-      const stat = fs.statSync(out);
-      assert.isTrue(stat.isFile());
-      fs.unlinkSync(out);
-    });
-  });
 });

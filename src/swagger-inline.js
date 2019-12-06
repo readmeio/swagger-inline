@@ -1,8 +1,6 @@
 const Promise = require('bluebird');
-const fs = require('fs-extra');
 const jsYaml = require('js-yaml');
 const _ = require('lodash');
-const chalk = require('chalk');
 
 const Loader = require('./loader');
 const Extractor = require('./extractor');
@@ -11,17 +9,7 @@ const Options = require('./options');
 function outputResult(object, options) {
   return new Promise(resolve => {
     const result = options.isJSON() ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
-    const outPath = options.getOut();
-    if (outPath) {
-      fs.outputFile(outPath, result, err => {
-        if (err) {
-          options.getLogger()(`Failed to write swagger to ${outPath}`);
-        }
-        resolve(result);
-      });
-    } else {
-      resolve(result);
-    }
+    resolve(result);
   });
 }
 
@@ -58,7 +46,7 @@ function swaggerInline(globPatterns, providedOptions) {
   }
 
   const options = new Options(providedOptions);
-  const log = options.getOut() ? options.getLogger() : () => {};
+  const log = options.getLogger();
 
   return Loader.resolvePaths(globPatterns, options).then(files => {
     const base = options.getBase();
@@ -67,7 +55,7 @@ function swaggerInline(globPatterns, providedOptions) {
       const swaggerVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
 
       if (Object.keys(baseObj).length === 0) {
-        log(chalk.yellow('No base swagger provided/found!'));
+        throw new Error('No base specification provided or found!');
       }
 
       log(`${files.length} files matched...`);
@@ -104,17 +92,16 @@ function swaggerInline(globPatterns, providedOptions) {
             });
             schemas = _.concat(schemas, scheme);
           } catch (e) {
-            log(chalk.red(`Error parsing ${fileInfo.fileName}`));
-            log(chalk.red(e.toString()));
+            throw new Error(e.toString(), fileInfo.fileName);
           }
         });
 
-        log(`${endpoints.length} swagger definitions found...`);
-        log(`${schemas.length} swagger schemas found...`);
+        log(`${endpoints.length} definitions found...`);
+        log(`${schemas.length} schemas found...`);
 
         const baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
         const swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
-        log(`swagger${options.getFormat()} created!`);
+
         return outputResult(swagger, options);
       });
     });

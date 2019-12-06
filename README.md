@@ -56,7 +56,7 @@ swaggerInline(['src/**/*.js', 'test/**/*.js'], {
 - `base`: Base specification to extend. ***Required**
 - `format`: Output filetype: `.json` or `.yaml` (default: `.json`)
 - `ignore`: An array of globs for files to ignore. (default: `['node_modules/**/*', 'bower_modules/**/*']`,
-- `logger`: Function called for logging. (default: `console.log`)
+- `logger`: Function called for logging. (default: empty closure)
 - `metadata`: Add additional annotations to the Swagger file, prefixed with `x-si`.
 - `scope`: Matches the scope field defined in each API. For example, if `--scope public` is supplied, all operations will be generated, if `--scope private`, only those operations that have a `scope: private` declaration will be included.
 

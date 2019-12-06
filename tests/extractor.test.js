@@ -1,5 +1,4 @@
 const fs = require('fs');
-const assert = require('chai').assert;
 
 const Extractor = require('../src/extractor');
 
@@ -17,12 +16,12 @@ describe('Extractor', () => {
           filename: language,
         });
 
-        assert.lengthOf(Object.keys(comments), 2);
+        expect(Object.keys(comments)).toHaveLength(2);
 
         Object.keys(comments).forEach((key, index) => {
           const comment = comments[key];
-          assert.equal(comment.info.type, expectations[index].type);
-          assert.include(comment.content, expectations[index].content);
+          expect(comment.info.type).toBe(expectations[index].type);
+          expect(comment.content).toContain(expectations[index].content);
         });
       });
     });
@@ -44,11 +43,11 @@ describe('Extractor', () => {
     it('extracts endpoints from comment strings', () => {
       const endpoint = Extractor.extractEndpoint(swaggerComment);
 
-      assert.equal(endpoint.method, 'get');
-      assert.equal(endpoint.route, '/pets');
-      assert.include(endpoint.description, 'Returns all');
-      assert.isObject(endpoint.responses);
-      assert.isObject(endpoint.responses['200']);
+      expect(endpoint.method).toBe('get');
+      expect(endpoint.route).toBe('/pets');
+      expect(endpoint.description).toContain('Returns all');
+      expect(typeof endpoint.responses).toBe('object');
+      expect(typeof endpoint.responses['200']).toBe('object');
     });
 
     const swaggerCommentSummary = [
@@ -66,24 +65,24 @@ describe('Extractor', () => {
     it('extracts endpoints from comment strings + summary', () => {
       const endpoint = Extractor.extractEndpoint(swaggerCommentSummary);
 
-      assert.equal(endpoint.method, 'get');
-      assert.equal(endpoint.route, '/pets');
-      assert.equal(endpoint.summary, 'Get pets');
-      assert.include(endpoint.description, 'Returns all');
-      assert.isObject(endpoint.responses);
-      assert.isObject(endpoint.responses['200']);
+      expect(endpoint.method).toBe('get');
+      expect(endpoint.route).toBe('/pets');
+      expect(endpoint.summary).toBe('Get pets');
+      expect(endpoint.description).toContain('Returns all');
+      expect(typeof endpoint.responses).toBe('object');
+      expect(typeof endpoint.responses['200']).toBe('object');
     });
 
     it('extracts endpoints from code strings', () => {
       const code = fs.readFileSync(`${__dirname}/fixtures/code/swagger-api.js`, 'utf-8');
       const endpoints = Extractor.extractEndpointsFromCode(code);
 
-      assert.lengthOf(endpoints, 4);
+      expect(endpoints).toHaveLength(4);
 
       endpoints.forEach(endpoint => {
-        assert.include(endpoint.route, 'pet');
-        assert.isString(endpoint.method);
-        assert.lengthOf(Object.keys(endpoint.responses), 2);
+        expect(endpoint.route).toContain('pet');
+        expect(typeof endpoint.method).toBe('string');
+        expect(Object.keys(endpoint.responses)).toHaveLength(2);
       });
     });
 
@@ -107,10 +106,10 @@ describe('Extractor', () => {
     it('extracts schemes from comment strings', () => {
       const scheme = Extractor.extractSchemas(swaggerSchemeComment);
 
-      assert.equal(scheme.name, 'Pet');
-      assert.isArray(scheme.required);
-      assert.isObject(scheme.properties);
-      assert.isObject(scheme.properties.id);
+      expect(scheme.name).toBe('Pet');
+      expect(Array.isArray(scheme.required)).toBeTruthy();
+      expect(typeof scheme.properties).toBe('object');
+      expect(typeof scheme.properties.id).toBe('object');
     });
 
     it('returns only endpoints', () => {
@@ -118,7 +117,7 @@ describe('Extractor', () => {
 
       const endpoints = Extractor.extractEndpointsFromCode(emptyCode);
 
-      assert.lengthOf(endpoints, 0);
+      expect(endpoints).toHaveLength(0);
     });
   });
 });

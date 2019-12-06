@@ -42,20 +42,23 @@ function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
 
 function swaggerInline(globPatterns, providedOptions) {
   if (typeof globPatterns === 'undefined') {
-    throw new TypeError('No files specificied');
+    throw new TypeError('No files specified.');
   }
 
   const options = new Options(providedOptions);
   const log = options.getLogger();
+  const base = options.getBase();
+
+  if (!base) {
+    throw new Error('No base specification provided!');
+  }
 
   return Loader.resolvePaths(globPatterns, options).then(files => {
-    const base = options.getBase();
-
     return Loader.loadBase(base, options).then(baseObj => {
       const swaggerVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
 
       if (Object.keys(baseObj).length === 0) {
-        throw new Error('No base specification provided or found!');
+        throw new Error(`The base specification either wasn't found, it it is not a Swagger or OpenAPI files.`);
       }
 
       log(`${files.length} files matched...`);

@@ -4,7 +4,7 @@ const cli = require('./cli');
 const swaggerInline = require('./swagger-inline');
 
 if (require.main === module) {
-    cli(process.argv);
+  cli(process.argv);
 } else {
-    module.exports = swaggerInline;
+  module.exports = swaggerInline;
 }

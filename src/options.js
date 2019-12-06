@@ -1,60 +1,60 @@
 const path = require('path');
 
 class Options {
-    constructor(providedOptions = {}) {
-        // eslint-disable-next-line prefer-object-spread
-        this.options = Object.assign({}, providedOptions);
+  constructor(providedOptions = {}) {
+    // eslint-disable-next-line prefer-object-spread
+    this.options = Object.assign({}, providedOptions);
 
-        Object.keys(Options.DEFAULTS).forEach(option => {
-            this.options[option] = this.options[option] || Options.DEFAULTS[option];
-        });
+    Object.keys(Options.DEFAULTS).forEach(option => {
+      this.options[option] = this.options[option] || Options.DEFAULTS[option];
+    });
 
-        if (this.options.base && !providedOptions.format) {
-            this.options.format = path.extname(this.options.base);
-        }
-
-        if (this.options.out) {
-            this.options.format = path.extname(this.options.out);
-        }
+    if (this.options.base && !providedOptions.format) {
+      this.options.format = path.extname(this.options.base);
     }
 
-    isJSON() {
-        return this.getFormat() === '.json' || !this.getFormat();
+    if (this.options.out) {
+      this.options.format = path.extname(this.options.out);
     }
+  }
 
-    getFormat() {
-        return this.options.format;
-    }
+  isJSON() {
+    return this.getFormat() === '.json' || !this.getFormat();
+  }
 
-    getBase() {
-        return this.options.base;
-    }
+  getFormat() {
+    return this.options.format;
+  }
 
-    getOut() {
-        return this.options.out;
-    }
+  getBase() {
+    return this.options.base;
+  }
 
-    getScope() {
-        return this.options.scope;
-    }
+  getOut() {
+    return this.options.out;
+  }
 
-    getLogger() {
-        return this.options.logger;
-    }
+  getScope() {
+    return this.options.scope;
+  }
 
-    getIgnore() {
-        return this.options.ignore;
-    }
+  getLogger() {
+    return this.options.logger;
+  }
 
-    getMetadata() {
-        return this.options.metadata;
-    }
+  getIgnore() {
+    return this.options.ignore;
+  }
+
+  getMetadata() {
+    return this.options.metadata;
+  }
 }
 
 Options.DEFAULTS = {
-    format: '.json',
-    logger: () => {},
-    ignore: ['node_modules/**/*', 'bower_modules/**/*'],
+  format: '.json',
+  logger: () => {},
+  ignore: ['node_modules/**/*', 'bower_modules/**/*'],
 };
 
 module.exports = Options;

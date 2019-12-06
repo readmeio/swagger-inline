@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-const fs = require("fs");
-const path = require("path");
-const Promise = require("bluebird");
-const jsYaml = require("js-yaml");
-const glob = require("multi-glob").glob;
+const fs = require('fs');
+const path = require('path');
+const Promise = require('bluebird');
+const jsYaml = require('js-yaml');
+const glob = require('multi-glob').glob;
 
 class Loader {
     static resolvePaths(filepaths, options) {
@@ -31,9 +31,7 @@ class Loader {
 
                     const swaggerPromises = swaggerCandidates.map(filepath => {
                         return Loader.loadData(filepath, options).then(data => {
-                            return data.swagger || data.openapi
-                                ? Promise.resolve(data)
-                                : Promise.reject();
+                            return data.swagger || data.openapi ? Promise.resolve(data) : Promise.reject();
                         });
                     });
 
@@ -61,16 +59,14 @@ class Loader {
             resolve(loadPromises);
         }).then(loadResults => {
             return loadResults.map(loadResult => {
-                return loadResult.isFulfilled()
-                    ? loadResult.value()
-                    : loadResult.reason();
+                return loadResult.isFulfilled() ? loadResult.value() : loadResult.reason();
             });
         });
     }
 
     static loadFile(filepath) {
         return new Promise((resolve, reject) => {
-            fs.readFile(filepath, "utf-8", (err, data) => {
+            fs.readFile(filepath, 'utf-8', (err, data) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -90,7 +86,7 @@ class Loader {
         return Loader.LOADER_METHODS[extname](filepath, options);
     }
 
-    static loadBase(base = "", options) {
+    static loadBase(base = '', options) {
         return new Promise(resolve => {
             fs.stat(base, (err, stat) => {
                 if (!err && stat.isFile()) {
@@ -111,20 +107,16 @@ class Loader {
     }
 
     static loadYAML(filepath, options) {
-        return Loader.loadFile(filepath).then(data =>
-            Loader.addMetadata(jsYaml.load(data), filepath, options)
-        );
+        return Loader.loadFile(filepath).then(data => Loader.addMetadata(jsYaml.load(data), filepath, options));
     }
 
     static loadJSON(filepath, options) {
-        return Loader.loadFile(filepath).then(data =>
-            Loader.addMetadata(JSON.parse(data), filepath, options)
-        );
+        return Loader.loadFile(filepath).then(data => Loader.addMetadata(JSON.parse(data), filepath, options));
     }
 
     static addMetadata(data, filepath, options) {
         if (options && options.getMetadata()) {
-            data["x-si-base"] = filepath;
+            data['x-si-base'] = filepath;
         }
         return data;
     }
@@ -132,14 +124,11 @@ class Loader {
     static addResponse(endpoints = {}) {
         // If there's no response, add a default one
         endpoints.forEach(endpoint => {
-            if (
-                !endpoint.responses ||
-                !Object.keys(endpoint.responses).length
-            ) {
+            if (!endpoint.responses || !Object.keys(endpoint.responses).length) {
                 endpoint.responses = {
-                    "200": {
-                        description: "Successful response"
-                    }
+                    '200': {
+                        description: 'Successful response',
+                    },
                 };
             }
         });
@@ -151,9 +140,9 @@ class Loader {
             if (endpoint && endpoint.parameters) {
                 const requestBody = [];
                 endpoint.parameters.forEach((param, i) => {
-                    if (typeof param === "string") {
+                    if (typeof param === 'string') {
                         param = Loader.expandParam(param, swaggerVersion);
-                        if (param.in === "body" && swaggerVersion >= 3) {
+                        if (param.in === 'body' && swaggerVersion >= 3) {
                             requestBody.push(param);
                         } else {
                             endpoint.parameters[i] = param;
@@ -162,9 +151,7 @@ class Loader {
                 });
 
                 // Remove the ones that weren't converted
-                endpoint.parameters = endpoint.parameters.filter(
-                    n => typeof n === "object"
-                );
+                endpoint.parameters = endpoint.parameters.filter(n => typeof n === 'object');
 
                 if (swaggerVersion >= 3 && Object.keys(requestBody).length) {
                     const properties = {};
@@ -172,13 +159,12 @@ class Loader {
                     let base = false;
 
                     requestBody.forEach(prop => {
-                        if (prop.name === "__base__") {
+                        if (prop.name === '__base__') {
                             base = prop;
                         } else {
                             properties[prop.name] = prop.schema;
                             if (prop.description) {
-                                properties[prop.name].description =
-                                    prop.description;
+                                properties[prop.name].description = prop.description;
                             }
                             if (prop.required) {
                                 required.push(prop.name);
@@ -191,9 +177,9 @@ class Loader {
                     let schema;
                     if (!base) {
                         schema = {
-                            type: "object",
+                            type: 'object',
                             required,
-                            properties
+                            properties,
                         };
                     } else {
                         schema = base.schema;
@@ -201,10 +187,10 @@ class Loader {
 
                     endpoint.requestBody = {
                         content: {
-                            "application/json": {
-                                schema
-                            }
-                        }
+                            'application/json': {
+                                schema,
+                            },
+                        },
                     };
 
                     if (base) {
@@ -214,24 +200,20 @@ class Loader {
                 }
 
                 // Remove any params that couldn't be parsed
-                endpoint.parameters = endpoint.parameters.filter(
-                    n => n !== false
-                );
+                endpoint.parameters = endpoint.parameters.filter(n => n !== false);
             }
         });
         return endpoints;
     }
 
-    static expandParam(param = "", swaggerVersion) {
-        const parsed = param.match(
-            /(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/
-        );
+    static expandParam(param = '', swaggerVersion) {
+        const parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);
 
         if (!parsed || !parsed[1] || !parsed[5]) return false;
 
         if (parsed && !parsed[2]) {
-            if (swaggerVersion >= 3 && parsed[1] === "body") {
-                parsed[2] = "__base__";
+            if (swaggerVersion >= 3 && parsed[1] === 'body') {
+                parsed[2] = '__base__';
             } else {
                 return false;
             }
@@ -239,11 +221,11 @@ class Loader {
 
         let out = {
             in: parsed[1],
-            name: parsed[2]
+            name: parsed[2],
         };
 
         const schema = {
-            type: parsed[5].toLowerCase()
+            type: parsed[5].toLowerCase(),
         };
 
         if (parsed[3]) schema.default = parsed[3].trim();
@@ -253,7 +235,7 @@ class Loader {
         // (Currently only supports ints and bools; we probably should find a library
         // to do this safer)
 
-        if (schema.type === "integer" && schema.default) {
+        if (schema.type === 'integer' && schema.default) {
             try {
                 schema.default = parseInt(schema.default, 10);
             } catch (e) {
@@ -261,11 +243,11 @@ class Loader {
             }
         }
 
-        if (schema.type === "boolean" && schema.default) {
-            schema.default = schema.default === "true";
+        if (schema.type === 'boolean' && schema.default) {
+            schema.default = schema.default === 'true';
         }
 
-        if (parsed[4] || out.in === "path") out.required = true;
+        if (parsed[4] || out.in === 'path') out.required = true;
         if (parsed[7]) out.description = parsed[7];
 
         // OAS 3.0 moves some schema stuff into its own thing
@@ -280,9 +262,9 @@ class Loader {
 }
 
 Loader.LOADER_METHODS = {
-    ".yaml": Loader.loadYAML,
-    ".yml": Loader.loadYAML,
-    ".json": Loader.loadJSON
+    '.yaml': Loader.loadYAML,
+    '.yml': Loader.loadYAML,
+    '.json': Loader.loadJSON,
 };
 Loader.SWAGGER_TYPES_REGEX = /\.json|\.yaml|\.yml/i;
 Loader.MAX_CONCURRENCY = 500;

@@ -1,25 +1,21 @@
-const Promise = require("bluebird");
-const fs = require("fs-extra");
-const jsYaml = require("js-yaml");
-const _ = require("lodash");
-const chalk = require("chalk");
+const Promise = require('bluebird');
+const fs = require('fs-extra');
+const jsYaml = require('js-yaml');
+const _ = require('lodash');
+const chalk = require('chalk');
 
-const Loader = require("./loader");
-const Extractor = require("./extractor");
-const Options = require("./options");
+const Loader = require('./loader');
+const Extractor = require('./extractor');
+const Options = require('./options');
 
 function outputResult(object, options) {
     return new Promise(resolve => {
-        const result = options.isJSON()
-            ? JSON.stringify(object, null, 2)
-            : jsYaml.dump(object);
+        const result = options.isJSON() ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
         const outPath = options.getOut();
         if (outPath) {
             fs.outputFile(outPath, result, err => {
                 if (err) {
-                    options.getLogger()(
-                        `Failed to write swagger to ${outPath}`
-                    );
+                    options.getLogger()(`Failed to write swagger to ${outPath}`);
                 }
                 resolve(result);
             });
@@ -33,32 +29,32 @@ function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
     return endpoints.reduce((prev, current) => {
         const method = current.method;
         const route = current.route;
-        const descriptor = _.omit(current, ["method", "route"]);
+        const descriptor = _.omit(current, ['method', 'route']);
 
         if (!method || !route) {
             return prev;
         }
 
-        return _.set(prev, ["paths", route, method], descriptor);
+        return _.set(prev, ['paths', route, method], descriptor);
     }, swaggerBase);
 }
 
 function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
     return schemas.reduce((prev, current) => {
         const name = current.name;
-        const descriptor = _.omit(current, ["name"]);
+        const descriptor = _.omit(current, ['name']);
 
         if (!name) {
             return prev;
         }
 
-        return _.set(prev, ["components", "schemas", name], descriptor);
+        return _.set(prev, ['components', 'schemas', name], descriptor);
     }, swaggerBase);
 }
 
 function swaggerInline(globPatterns, providedOptions) {
-    if (typeof globPatterns === "undefined") {
-        throw new TypeError("No files specificied");
+    if (typeof globPatterns === 'undefined') {
+        throw new TypeError('No files specificied');
     }
 
     const options = new Options(providedOptions);
@@ -68,13 +64,10 @@ function swaggerInline(globPatterns, providedOptions) {
         const base = options.getBase();
 
         return Loader.loadBase(base, options).then(baseObj => {
-            const swaggerVersion = parseInt(
-                baseObj.swagger || baseObj.openapi,
-                10
-            );
+            const swaggerVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
 
             if (Object.keys(baseObj).length === 0) {
-                log(chalk.yellow("No base swagger provided/found!"));
+                log(chalk.yellow('No base swagger provided/found!'));
             }
 
             log(`${files.length} files matched...`);
@@ -84,7 +77,7 @@ function swaggerInline(globPatterns, providedOptions) {
                         return { fileData, fileName: files[index] };
                     })
                     .filter(fileInfo => {
-                        return typeof fileInfo.fileData === "string";
+                        return typeof fileInfo.fileData === 'string';
                     });
 
                 let endpoints = [];
@@ -92,29 +85,20 @@ function swaggerInline(globPatterns, providedOptions) {
 
                 successfulFiles.forEach(fileInfo => {
                     try {
-                        let newEndpoints = Extractor.extractEndpointsFromCode(
-                            fileInfo.fileData,
-                            {
-                                filename: fileInfo.fileName,
-                                scope: options.getScope()
-                            }
-                        );
+                        let newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
+                            filename: fileInfo.fileName,
+                            scope: options.getScope(),
+                        });
 
                         newEndpoints = Loader.addResponse(newEndpoints);
 
-                        newEndpoints = Loader.expandParams(
-                            newEndpoints,
-                            swaggerVersion
-                        );
+                        newEndpoints = Loader.expandParams(newEndpoints, swaggerVersion);
                         endpoints = _.concat(endpoints, newEndpoints);
 
-                        const scheme = Extractor.extractSchemasFromCode(
-                            fileInfo.fileData,
-                            {
-                                filename: fileInfo.fileName,
-                                scope: options.getScope()
-                            }
-                        );
+                        const scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
+                            filename: fileInfo.fileName,
+                            scope: options.getScope(),
+                        });
                         _.remove(scheme, s => {
                             return _.isEmpty(s);
                         });
@@ -128,14 +112,8 @@ function swaggerInline(globPatterns, providedOptions) {
                 log(`${endpoints.length} swagger definitions found...`);
                 log(`${schemas.length} swagger schemas found...`);
 
-                const baseObjWithEndpoints = mergeEndpointsWithBase(
-                    baseObj,
-                    endpoints
-                );
-                const swagger = mergeSchemasWithBase(
-                    baseObjWithEndpoints,
-                    schemas
-                );
+                const baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
+                const swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
                 log(`swagger${options.getFormat()} created!`);
                 return outputResult(swagger, options);
             });

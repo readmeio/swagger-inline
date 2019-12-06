@@ -1,25 +1,23 @@
 /* eslint-disable no-console */
-const program = require("commander");
-const packageJson = require("../package.json");
-const Options = require("./options");
-const swaggerInline = require("./swagger-inline");
+const program = require('commander');
+const packageJson = require('../package.json');
+const Options = require('./options');
+const swaggerInline = require('./swagger-inline');
 
 function Cli(args) {
     program
         .version(packageJson.version)
-        .usage("[options] <inputGlobs ...>")
-        .option("-b, --base [path]", "A base swagger file.")
-        .option("-o, --out [path]", "Output file path.")
-        .option(
-            "-f, --format [format]",
-            "Output swagger format (.json or .yaml)."
-        )
-        .option("-s, --scope [scope]", "api scope to generate");
+        .usage('[options] <inputGlobs ...>')
+        .option('-b, --base [path]', 'A base swagger file.')
+        .option('-o, --out [path]', 'Output file path.')
+        .option('-f, --format [format]', 'Output swagger format (.json or .yaml).')
+        .option('-s, --scope [scope]', 'api scope to generate');
 
-    program.on("--help", () => {
+    program.on('--help', () => {
         [
-            "Example:",
-            '\tswagger-inline "./*.js" --base ./swaggerBase.json --out ./swagger.json --scope public'
+            '',
+            'Example:',
+            '\tswagger-inline "./*.js" --base ./swaggerBase.json --out ./swagger.json --scope public',
         ].forEach(line => console.log(line));
     });
 
@@ -35,7 +33,7 @@ function Cli(args) {
         format: program.format,
         out: program.out,
         scope: program.scope,
-        logger: console.log
+        logger: console.log,
     };
 
     swaggerInline(program.args, providedOptions)
@@ -47,7 +45,7 @@ function Cli(args) {
             }
         })
         .catch(err => {
-            console.log("An error occured:");
+            console.log('An error occured:');
             console.log(err);
         });
 }

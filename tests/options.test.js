@@ -17,44 +17,12 @@ describe('Options', () => {
       expect(options.getFormat()).toBe('.yaml');
       expect(options.getBase()).toBe('someFile.yaml');
     });
-
-    it('copies the output format', () => {
-      const options = new Options({ out: 'someFile.yaml' });
-      expect(options.getFormat()).toBe('.yaml');
-    });
-
-    it('output format overrides other provided options', () => {
-      let options = new Options({
-        base: 'someFile.yaml',
-        format: '.yaml',
-        out: 'someFile.json',
-      });
-
-      expect(options.getFormat()).toBe('.json');
-
-      options = new Options({
-        base: 'someFile.json',
-        format: '.json',
-        out: 'someFile.yaml',
-      });
-
-      expect(options.getFormat()).toBe('.yaml');
-    });
   });
 
   describe('isJSON', () => {
     it('is true when no format is provided', () => {
       const options = new Options({ format: '' });
       expect(options.isJSON()).toBeTruthy();
-    });
-  });
-
-  describe('#getOut()', () => {
-    it('returns the out option', () => {
-      const out = 'someFile.yaml';
-      const options = new Options({ out });
-
-      expect(options.getOut()).toBe(out);
     });
   });
 

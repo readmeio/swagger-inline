@@ -12,10 +12,6 @@ class Options {
     if (this.options.base && !providedOptions.format) {
       this.options.format = path.extname(this.options.base);
     }
-
-    if (this.options.out) {
-      this.options.format = path.extname(this.options.out);
-    }
   }
 
   isJSON() {
@@ -28,10 +24,6 @@ class Options {
 
   getBase() {
     return this.options.base;
-  }
-
-  getOut() {
-    return this.options.out;
   }
 
   getScope() {

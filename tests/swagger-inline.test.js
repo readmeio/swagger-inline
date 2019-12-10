@@ -11,18 +11,24 @@ describe('Swagger Inline', () => {
   it('requires inputs', () => {
     expect(() => {
       return swaggerInline();
-    }).toThrow('No files specificied');
+    }).toThrow('No files specified.');
   });
 
   it('returns a promise', () => {
-    const returned = swaggerInline('*.js', {});
+    const returned = swaggerInline('*.js', { base: baseJSONPath });
 
     expect(typeof returned.then).toBe('function');
     expect(typeof returned.catch).toBe('function');
   });
 
+  it('throws an error if no base was supplied', () => {
+    expect(() => {
+      return swaggerInline('*.js');
+    }).toThrow('No base specification provided!');
+  });
+
   it('resolves to a string', () => {
-    return swaggerInline(`${__dirname}/fixtures/project/*.js`).then(generatedSwagger => {
+    return swaggerInline(`${__dirname}/fixtures/project/*.js`, { base: baseJSONPath }).then(generatedSwagger => {
       expect(typeof generatedSwagger).toBe('string');
     });
   });
@@ -70,15 +76,6 @@ describe('Swagger Inline', () => {
       Object.keys(outputJSON.components.schemas).forEach(component => {
         expect(typeof outputJSON.components.schemas[component]).toBe('object');
       });
-    });
-  });
-
-  it('outputs a specified json file', () => {
-    const out = './tmp/swagger.json';
-    return swaggerInline(`${projectDir}/*.js`, { out }).then(() => {
-      const stat = fs.statSync(out);
-      expect(stat.isFile()).toBeTruthy();
-      fs.unlinkSync(out);
     });
   });
 });

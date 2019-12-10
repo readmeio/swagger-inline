@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Generate your OAS/Swagger files from inline comments.",
   "main": "build/index.js",
   "scripts": {

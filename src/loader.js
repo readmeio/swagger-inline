@@ -207,6 +207,7 @@ class Loader {
   }
 
   static expandParam(param = '', swaggerVersion) {
+    // eslint-disable-next-line unicorn/no-unsafe-regex
     const parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);
 
     if (!parsed || !parsed[1] || !parsed[5]) return false;

@@ -255,6 +255,7 @@ function () {
     value: function expandParam() {
       var param = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var swaggerVersion = arguments.length > 1 ? arguments[1] : undefined;
+      // eslint-disable-next-line unicorn/no-unsafe-regex
       var parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);
       if (!parsed || !parsed[1] || !parsed[5]) return false;
 

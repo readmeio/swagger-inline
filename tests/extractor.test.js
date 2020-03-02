@@ -107,7 +107,7 @@ describe('Extractor', () => {
       const scheme = Extractor.extractSchemas(swaggerSchemeComment);
 
       expect(scheme.name).toBe('Pet');
-      expect(Array.isArray(scheme.required)).toBeTruthy();
+      expect(Array.isArray(scheme.required)).toBe(true);
       expect(typeof scheme.properties).toBe('object');
       expect(typeof scheme.properties.id).toBe('object');
     });

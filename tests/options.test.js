@@ -6,7 +6,7 @@ describe('Options', () => {
       const options = new Options();
 
       expect(options.getFormat()).toBe('.json');
-      expect(options.isJSON()).toBeTruthy();
+      expect(options.isJSON()).toBe(true);
     });
   });
 
@@ -22,7 +22,7 @@ describe('Options', () => {
   describe('isJSON', () => {
     it('is true when no format is provided', () => {
       const options = new Options({ format: '' });
-      expect(options.isJSON()).toBeTruthy();
+      expect(options.isJSON()).toBe(true);
     });
   });
 

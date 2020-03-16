@@ -1,3 +1,17 @@
+## <small>3.0.2 (2020-03-16)</small>
+
+* docs: moving changelog generation over to conventional-changelog-cli ([b5f2f48](https://github.com/readmeio/swagger-inline/commit/b5f2f48))
+* chore(deps-dev): Bump @babel/preset-env from 7.8.4 to 7.8.6 (#62) ([1bc6179](https://github.com/readmeio/swagger-inline/commit/1bc6179)), closes [#62](https://github.com/readmeio/swagger-inline/issues/62)
+* chore(deps-dev): Bump @babel/preset-env from 7.8.6 to 7.8.7 (#64) ([204933d](https://github.com/readmeio/swagger-inline/commit/204933d)), closes [#64](https://github.com/readmeio/swagger-inline/issues/64)
+* chore(deps-dev): Bump @readme/eslint-config from 1.13.0 to 1.14.0 (#63) ([ea6bae0](https://github.com/readmeio/swagger-inline/commit/ea6bae0)), closes [#63](https://github.com/readmeio/swagger-inline/issues/63)
+* chore(deps-dev): Bump @readme/eslint-config from 1.14.0 to 1.15.0 (#66) ([d01ef0f](https://github.com/readmeio/swagger-inline/commit/d01ef0f)), closes [#66](https://github.com/readmeio/swagger-inline/issues/66)
+* chore(deps): [Security] Bump acorn from 6.4.0 to 6.4.1 (#65) ([c2e1cd0](https://github.com/readmeio/swagger-inline/commit/c2e1cd0)), closes [#65](https://github.com/readmeio/swagger-inline/issues/65)
+* chore(deps): Bump acorn from 6.4.0 to 6.4.1 (#68) ([def044a](https://github.com/readmeio/swagger-inline/commit/def044a)), closes [#68](https://github.com/readmeio/swagger-inline/issues/68)
+* chore(deps): Bump commander from 4.1.1 to 5.0.0 (#67) ([b961611](https://github.com/readmeio/swagger-inline/commit/b961611)), closes [#67](https://github.com/readmeio/swagger-inline/issues/67)
+* build: updating dist files ([61f606b](https://github.com/readmeio/swagger-inline/commit/61f606b))
+
+
+
 ## <small>3.0.1 (2020-02-24)</small>
 
 * build: 3.0.1 release ([2b8b9ce](https://github.com/readmeio/swagger-inline/commit/2b8b9ce))

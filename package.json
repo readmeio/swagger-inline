@@ -35,7 +35,7 @@
   "homepage": "https://github.com/readmeio/swagger-inline#readme",
   "dependencies": {
     "bluebird": "^3.4.1",
-    "commander": "^4.0.1",
+    "commander": "^5.0.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
     "multi-glob": "^1.0.2",

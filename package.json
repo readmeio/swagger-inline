@@ -9,10 +9,10 @@
     "prepublish": "npm run-script build",
     "pretest": "npm run lint && npm run prettier",
     "prettier": "prettier --list-different --write \"./**/**.js\"",
+    "release": "conventional-changelog -i CHANGELOG.md -s -r0",
     "start": "babel --watch src/ -d build/",
     "test": "jest --coverage tests/",
-    "test-watch": "jest --coverage --watch tests/",
-    "version": "auto-changelog -v $(node -e \"console.log('v' + require('./package.json').version)\") && git add CHANGELOG.md"
+    "test-watch": "jest --coverage --watch tests/"
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
     "@babel/cli": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
     "@readme/eslint-config": "^1.7.0",
-    "auto-changelog": "^1.16.2",
+    "conventional-changelog-cli": "^2.0.31",
     "eslint": "^6.7.2",
     "jest": "^25.1.0",
     "prettier": "^1.19.1"

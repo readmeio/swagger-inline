@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
-    "@readme/eslint-config": "^1.7.0",
+    "@readme/eslint-config": "^2.0.0",
     "conventional-changelog-cli": "^2.0.31",
     "eslint": "^6.7.2",
     "jest": "^25.1.0",

@@ -8,7 +8,7 @@ const glob = require('multi-glob').glob;
 class Loader {
   static resolvePaths(filepaths, options) {
     const ignore = options ? options.getIgnore() : undefined;
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       glob(filepaths, { ignore }, (err, files) => {
         return err === null ? resolve(files) : reject(err);
       });

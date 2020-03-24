@@ -9,11 +9,20 @@ function pushLine(array, line) {
   return false;
 }
 
+function loadYamlWithPrettyErrors(prettyObject, yamlLines) {
+  try {
+    return jsYaml.load(yamlLines.join('\n'));
+  } catch (e) {
+    e.message = `YAML Exception in '${prettyObject}':\n${e.message}`;
+    throw e;
+  }
+}
+
 function buildEndpoint(route, yamlLines) {
   const endpoint = {};
 
   if (route) {
-    const yamlObject = jsYaml.load(yamlLines.join('\n'));
+    const yamlObject = loadYamlWithPrettyErrors(`${route[1]} ${route[2]}`, yamlLines);
 
     endpoint.method = route[1];
     endpoint.route = route[2];
@@ -29,7 +38,7 @@ function buildSchema(schema, yamlLines) {
   const scheme = {};
 
   if (schema) {
-    const yamlObject = jsYaml.load(yamlLines.join('\n'));
+    const yamlObject = loadYamlWithPrettyErrors(`Schema: ${schema[1]}`, yamlLines);
 
     scheme.name = schema[1];
     Object.assign(scheme, yamlObject);

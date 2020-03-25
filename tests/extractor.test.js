@@ -119,5 +119,46 @@ describe('Extractor', () => {
 
       expect(endpoints).toHaveLength(0);
     });
+
+    const swaggerCommentMalformed = [
+      '',
+      ' @api [get] /pets',
+      '  description: "Returns all pets from the system that the user has access to"', // This line has an extra space
+      ' responses:',
+      '   "200":',
+      '     description: "A list of pets."',
+      '     schema:',
+      '       type: "String"',
+      '',
+    ].join('\n');
+
+    it('prints pretty errors for endpoints that cannot be parsed', () => {
+      expect(() => {
+        Extractor.extractEndpoint(swaggerCommentMalformed);
+      }).toThrow("YAML Exception in 'get /pets'");
+    });
+
+    const swaggerSchemaMalformed = [
+      '',
+      ' @schema Pet',
+      '    required:', // This line has an extra space
+      '     - id',
+      '     - name',
+      '   properties:',
+      '     id:',
+      '       type: integer',
+      '       format: int64',
+      '     name:',
+      '       type: string',
+      '     tag:',
+      '       type: string',
+      '',
+    ].join('\n');
+
+    it('prints pretty errors for schemas that cannot be parsed', () => {
+      expect(() => {
+        Extractor.extractSchemas(swaggerSchemaMalformed);
+      }).toThrow("YAML Exception in 'Schema: Pet'");
+    });
   });
 });

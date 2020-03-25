@@ -1,3 +1,11 @@
+## <small>3.0.3 (2020-03-25)</small>
+
+* feat: prettier YAML errors (#72) ([96fa1ee](https://github.com/readmeio/swagger-inline/commit/96fa1ee)), closes [#72](https://github.com/readmeio/swagger-inline/issues/72)
+* chore(deps-dev): Bump @babel/preset-env from 7.8.7 to 7.9.0 (#71) ([a45173e](https://github.com/readmeio/swagger-inline/commit/a45173e)), closes [#71](https://github.com/readmeio/swagger-inline/issues/71)
+* chore(deps-dev): Bump @readme/eslint-config from 1.15.0 to 2.0.0 (#70) ([5b8adc6](https://github.com/readmeio/swagger-inline/commit/5b8adc6)), closes [#70](https://github.com/readmeio/swagger-inline/issues/70)
+
+
+
 ## <small>3.0.2 (2020-03-16)</small>
 
 * docs: moving changelog generation over to conventional-changelog-cli ([b5f2f48](https://github.com/readmeio/swagger-inline/commit/b5f2f48))

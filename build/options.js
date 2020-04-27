@@ -8,9 +8,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var path = require('path');
 
-var Options =
-/*#__PURE__*/
-function () {
+var Options = /*#__PURE__*/function () {
   function Options() {
     var _this = this;
 

@@ -1,3 +1,22 @@
+## <small>3.0.4 (2020-04-27)</small>
+
+* chore: excluding coverage/ from npm publishes ([d82bbbd](https://github.com/readmeio/swagger-inline/commit/d82bbbd))
+* chore(deps-dev): Bump @babel/preset-env from 7.9.0 to 7.9.5 (#80) ([6782221](https://github.com/readmeio/swagger-inline/commit/6782221)), closes [#80](https://github.com/readmeio/swagger-inline/issues/80)
+* chore(deps-dev): Bump @readme/eslint-config from 2.0.0 to 2.0.2 (#73) ([b1c8361](https://github.com/readmeio/swagger-inline/commit/b1c8361)), closes [#73](https://github.com/readmeio/swagger-inline/issues/73)
+* chore(deps-dev): Bump @readme/eslint-config from 2.0.2 to 2.0.3 (#76) ([01b79b7](https://github.com/readmeio/swagger-inline/commit/01b79b7)), closes [#76](https://github.com/readmeio/swagger-inline/issues/76)
+* chore(deps-dev): Bump @readme/eslint-config from 2.0.3 to 2.0.4 (#83) ([88e4c1b](https://github.com/readmeio/swagger-inline/commit/88e4c1b)), closes [#83](https://github.com/readmeio/swagger-inline/issues/83)
+* chore(deps-dev): Bump jest from 25.1.0 to 25.2.4 (#74) ([ccbcf33](https://github.com/readmeio/swagger-inline/commit/ccbcf33)), closes [#74](https://github.com/readmeio/swagger-inline/issues/74)
+* chore(deps-dev): Bump jest from 25.2.4 to 25.2.7 (#78) ([45db47d](https://github.com/readmeio/swagger-inline/commit/45db47d)), closes [#78](https://github.com/readmeio/swagger-inline/issues/78)
+* chore(deps-dev): Bump jest from 25.2.7 to 25.3.0 (#81) ([4267dbc](https://github.com/readmeio/swagger-inline/commit/4267dbc)), closes [#81](https://github.com/readmeio/swagger-inline/issues/81)
+* chore(deps-dev): Bump jest from 25.3.0 to 25.4.0 (#82) ([dcb3017](https://github.com/readmeio/swagger-inline/commit/dcb3017)), closes [#82](https://github.com/readmeio/swagger-inline/issues/82)
+* chore(deps-dev): Bump prettier from 2.0.1 to 2.0.2 (#75) ([69bd496](https://github.com/readmeio/swagger-inline/commit/69bd496)), closes [#75](https://github.com/readmeio/swagger-inline/issues/75)
+* chore(deps-dev): Bump prettier from 2.0.2 to 2.0.3 (#77) ([5ea526d](https://github.com/readmeio/swagger-inline/commit/5ea526d)), closes [#77](https://github.com/readmeio/swagger-inline/issues/77)
+* chore(deps-dev): Bump prettier from 2.0.3 to 2.0.4 (#79) ([2ada9c4](https://github.com/readmeio/swagger-inline/commit/2ada9c4)), closes [#79](https://github.com/readmeio/swagger-inline/issues/79)
+* chore(deps-dev): Bump prettier from 2.0.4 to 2.0.5 (#85) ([db1595c](https://github.com/readmeio/swagger-inline/commit/db1595c)), closes [#85](https://github.com/readmeio/swagger-inline/issues/85)
+* chore(deps): Bump commander from 5.0.0 to 5.1.0 (#84) ([9f290b9](https://github.com/readmeio/swagger-inline/commit/9f290b9)), closes [#84](https://github.com/readmeio/swagger-inline/issues/84)
+
+
+
 ## <small>3.0.3 (2020-03-25)</small>
 
 * feat: prettier YAML errors (#72) ([96fa1ee](https://github.com/readmeio/swagger-inline/commit/96fa1ee)), closes [#72](https://github.com/readmeio/swagger-inline/issues/72)

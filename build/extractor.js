@@ -58,9 +58,7 @@ function buildSchema(schema, yamlLines) {
   return scheme;
 }
 
-var Extractor =
-/*#__PURE__*/
-function () {
+var Extractor = /*#__PURE__*/function () {
   function Extractor() {
     _classCallCheck(this, Extractor);
   }

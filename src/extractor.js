@@ -113,24 +113,23 @@ class Extractor {
     let route = null;
     let scopeMatched = false;
 
-    lines.some(line => {
+    lines.forEach(line => {
       if (route) {
         if (options && options.scope) {
           if (line.trim().indexOf('scope:') === 0 && line.indexOf(options.scope) >= 0) {
             scopeMatched = true;
-            return false;
+            return;
           }
         } else {
           scopeMatched = true;
         }
         if (line.trim().indexOf('scope:') === 0) {
-          return false;
+          return;
         }
         pushLine(yamlLines, line);
-        return undefined;
+        return;
       }
       route = route || line.match(this.SCHEMA_REGEX);
-      return false;
     });
 
     if (!scopeMatched) {

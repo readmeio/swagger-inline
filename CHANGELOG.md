@@ -1,3 +1,18 @@
+## <small>3.0.5 (2020-05-26)</small>
+
+* chore: adding a few more items into npmignore ([170ed04](https://github.com/readmeio/swagger-inline/commit/170ed04))
+* chore(deps-dev): Bump @babel/preset-env from 7.9.5 to 7.9.6 (#86) ([f8e349b](https://github.com/readmeio/swagger-inline/commit/f8e349b)), closes [#86](https://github.com/readmeio/swagger-inline/issues/86)
+* chore(deps-dev): Bump @readme/eslint-config from 2.0.4 to 2.0.6 (#88) ([c909ca8](https://github.com/readmeio/swagger-inline/commit/c909ca8)), closes [#88](https://github.com/readmeio/swagger-inline/issues/88)
+* chore(deps-dev): Bump @readme/eslint-config from 2.0.6 to 2.2.0 (#89) ([de12419](https://github.com/readmeio/swagger-inline/commit/de12419)), closes [#89](https://github.com/readmeio/swagger-inline/issues/89)
+* chore(deps-dev): Bump conventional-changelog-cli from 2.0.31 to 2.0.34 (#91) ([41a7074](https://github.com/readmeio/swagger-inline/commit/41a7074)), closes [#91](https://github.com/readmeio/swagger-inline/issues/91)
+* chore(deps-dev): Bump jest from 25.4.0 to 25.5.4 (#87) ([461aedf](https://github.com/readmeio/swagger-inline/commit/461aedf)), closes [#87](https://github.com/readmeio/swagger-inline/issues/87)
+* chore(deps-dev): Bump jest from 25.5.4 to 26.0.1 (#90) ([436622e](https://github.com/readmeio/swagger-inline/commit/436622e)), closes [#90](https://github.com/readmeio/swagger-inline/issues/90)
+* chore(deps-dev): upgrading eslint packages to their latest versions ([0784429](https://github.com/readmeio/swagger-inline/commit/0784429))
+* chore(deps): Bump js-yaml from 3.13.1 to 3.14.0 (#93) ([6672418](https://github.com/readmeio/swagger-inline/commit/6672418)), closes [#93](https://github.com/readmeio/swagger-inline/issues/93)
+* test: expanding unit tests to run against node 14 ([28d3dca](https://github.com/readmeio/swagger-inline/commit/28d3dca))
+
+
+
 ## <small>3.0.4 (2020-04-27)</small>
 
 * chore: excluding coverage/ from npm publishes ([d82bbbd](https://github.com/readmeio/swagger-inline/commit/d82bbbd))

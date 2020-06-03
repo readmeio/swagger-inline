@@ -140,27 +140,26 @@ var Extractor = /*#__PURE__*/function () {
       var yamlLines = [];
       var route = null;
       var scopeMatched = false;
-      lines.some(function (line) {
+      lines.forEach(function (line) {
         if (route) {
           if (options && options.scope) {
             if (line.trim().indexOf('scope:') === 0 && line.indexOf(options.scope) >= 0) {
               scopeMatched = true;
-              return false;
+              return;
             }
           } else {
             scopeMatched = true;
           }
 
           if (line.trim().indexOf('scope:') === 0) {
-            return false;
+            return;
           }
 
           pushLine(yamlLines, line);
-          return undefined;
+          return;
         }
 
         route = route || line.match(_this4.SCHEMA_REGEX);
-        return false;
       });
 
       if (!scopeMatched) {

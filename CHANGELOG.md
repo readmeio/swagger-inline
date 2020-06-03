@@ -1,3 +1,13 @@
+## <small>3.0.6 (2020-06-03)</small>
+
+* ci: create Dependabot config file (#97) ([df83550](https://github.com/readmeio/swagger-inline/commit/df83550)), closes [#97](https://github.com/readmeio/swagger-inline/issues/97)
+* chore(deps-dev): Bump @babel/cli from 7.8.4 to 7.10.1 (#95) ([4bf630c](https://github.com/readmeio/swagger-inline/commit/4bf630c)), closes [#95](https://github.com/readmeio/swagger-inline/issues/95)
+* chore(deps-dev): Bump @babel/preset-env from 7.9.6 to 7.10.2 (#96) ([a1bd1ba](https://github.com/readmeio/swagger-inline/commit/a1bd1ba)), closes [#96](https://github.com/readmeio/swagger-inline/issues/96)
+* docs: adding a CoC and contributing guide ([e75c43b](https://github.com/readmeio/swagger-inline/commit/e75c43b))
+* docs: refreshing the readme a bit ([6ddf933](https://github.com/readmeio/swagger-inline/commit/6ddf933))
+
+
+
 ## <small>3.0.5 (2020-05-26)</small>
 
 * chore: adding a few more items into npmignore ([170ed04](https://github.com/readmeio/swagger-inline/commit/170ed04))

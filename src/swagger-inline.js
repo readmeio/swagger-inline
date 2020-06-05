@@ -74,7 +74,7 @@ function swaggerInline(globPatterns, providedOptions) {
         let endpoints = [];
         let schemas = [];
 
-        successfulFiles.forEach(fileInfo => {
+        return Promise.all(successfulFiles.map(fileInfo => {
           try {
             let newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
               filename: fileInfo.fileName,
@@ -94,18 +94,22 @@ function swaggerInline(globPatterns, providedOptions) {
               return _.isEmpty(s);
             });
             schemas = _.concat(schemas, scheme);
+            return Promise.resolve()
           } catch (e) {
-            throw new Error(e.toString(), fileInfo.fileName);
+            return Promise.reject(new Error(e.toString(), fileInfo.fileName))
           }
-        });
+        })).then(() => {
+          log(`${endpoints.length} definitions found...`);
+          log(`${schemas.length} schemas found...`);
 
-        log(`${endpoints.length} definitions found...`);
-        log(`${schemas.length} schemas found...`);
+          const baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
+          const swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
 
-        const baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
-        const swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
-
-        return outputResult(swagger, options);
+          return outputResult(swagger, options);
+        }).catch(e => {
+          console.error(e);
+          process.exit(-1);
+        })
       });
     });
   });

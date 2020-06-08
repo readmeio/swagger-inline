@@ -55,7 +55,7 @@ var Options = /*#__PURE__*/function () {
   }, {
     key: "getIgnore",
     value: function getIgnore() {
-      return this.options.ignore;
+      return 'ignore' in this.options ? this.options.ignore : [];
     }
   }, {
     key: "getMetadata",

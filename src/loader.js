@@ -3,16 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const Promise = require('bluebird');
 const jsYaml = require('js-yaml');
-const glob = require('multi-glob').glob;
+const globby = require('globby');
 
 class Loader {
   static resolvePaths(filepaths, options) {
-    const ignore = options ? options.getIgnore() : undefined;
-    return new Promise(function (resolve, reject) {
-      glob(filepaths, { ignore }, (err, files) => {
-        return err === null ? resolve(files) : reject(err);
-      });
-    });
+    const ignore = options ? options.getIgnore() : [];
+
+    return globby(filepaths, { ignore });
   }
 
   static findSwagger(directory = process.cwd(), options) {

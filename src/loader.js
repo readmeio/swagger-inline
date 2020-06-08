@@ -90,17 +90,23 @@ class Loader {
     return new Promise((resolve, reject) => {
       fs.stat(base, (err, stat) => {
         if (!err && stat.isFile()) {
-          this.loadData(base, options).then(baseData => {
-            resolve(baseData);
-          }).catch(reject);
+          this.loadData(base, options)
+            .then(baseData => {
+              resolve(baseData);
+            })
+            .catch(reject);
         } else if (!err && stat.isDirectory()) {
-          this.findSwagger(base, options).then(baseData => {
-            resolve(baseData);
-          }).catch(reject);
+          this.findSwagger(base, options)
+            .then(baseData => {
+              resolve(baseData);
+            })
+            .catch(reject);
         } else {
-          this.findSwagger(process.cwd(), options).then(baseData => {
-            resolve(baseData);
-          }).catch(reject);
+          this.findSwagger(process.cwd(), options)
+            .then(baseData => {
+              resolve(baseData);
+            })
+            .catch(reject);
         }
       });
     });

@@ -1,3 +1,12 @@
+## 3.1.0 (2020-06-08)
+
+* chore: swapping multi-glob for globby (#102) ([1d0ca8b](https://github.com/readmeio/swagger-inline/commit/1d0ca8b)), closes [#102](https://github.com/readmeio/swagger-inline/issues/102)
+* chore(deps-dev): bump @readme/eslint-config from 3.1.0 to 3.1.3 (#98) ([0ba4cf0](https://github.com/readmeio/swagger-inline/commit/0ba4cf0)), closes [#98](https://github.com/readmeio/swagger-inline/issues/98)
+* chore(deps-dev): bump eslint from 7.1.0 to 7.2.0 (#101) ([902c438](https://github.com/readmeio/swagger-inline/commit/902c438)), closes [#101](https://github.com/readmeio/swagger-inline/issues/101)
+* Fix uncaught error on invalid JSON/YAML ([dfe1694](https://github.com/readmeio/swagger-inline/commit/dfe1694))
+
+
+
 ## <small>3.0.6 (2020-06-03)</small>
 
 * ci: create Dependabot config file (#97) ([df83550](https://github.com/readmeio/swagger-inline/commit/df83550)), closes [#97](https://github.com/readmeio/swagger-inline/issues/97)

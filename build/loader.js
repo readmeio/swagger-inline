@@ -17,7 +17,7 @@ var Promise = require('bluebird');
 
 var jsYaml = require('js-yaml');
 
-var glob = require('multi-glob').glob;
+var globby = require('globby');
 
 var Loader = /*#__PURE__*/function () {
   function Loader() {
@@ -27,13 +27,9 @@ var Loader = /*#__PURE__*/function () {
   _createClass(Loader, null, [{
     key: "resolvePaths",
     value: function resolvePaths(filepaths, options) {
-      var ignore = options ? options.getIgnore() : undefined;
-      return new Promise(function (resolve, reject) {
-        glob(filepaths, {
-          ignore: ignore
-        }, function (err, files) {
-          return err === null ? resolve(files) : reject(err);
-        });
+      var ignore = options ? options.getIgnore() : [];
+      return globby(filepaths, {
+        ignore: ignore
       });
     }
   }, {

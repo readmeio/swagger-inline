@@ -113,20 +113,20 @@ var Loader = /*#__PURE__*/function () {
 
       var base = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var options = arguments.length > 1 ? arguments[1] : undefined;
-      return new Promise(function (resolve) {
+      return new Promise(function (resolve, reject) {
         fs.stat(base, function (err, stat) {
           if (!err && stat.isFile()) {
             _this.loadData(base, options).then(function (baseData) {
               resolve(baseData);
-            });
+            })["catch"](reject);
           } else if (!err && stat.isDirectory()) {
             _this.findSwagger(base, options).then(function (baseData) {
               resolve(baseData);
-            });
+            })["catch"](reject);
           } else {
             _this.findSwagger(process.cwd(), options).then(function (baseData) {
               resolve(baseData);
-            });
+            })["catch"](reject);
           }
         });
       });

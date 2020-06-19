@@ -30,7 +30,8 @@ function Cli(args) {
     console.log(output);
   })["catch"](function (err) {
     console.log('An error occured:');
-    console.log(err);
+    console.error(err);
+    process.exit(-1);
   });
 }
 

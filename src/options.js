@@ -35,7 +35,7 @@ class Options {
   }
 
   getIgnore() {
-    return this.options.ignore;
+    return 'ignore' in this.options ? this.options.ignore : [];
   }
 
   getMetadata() {

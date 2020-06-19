@@ -107,9 +107,8 @@ function swaggerInline(globPatterns, providedOptions) {
 
           return outputResult(swagger, options);
         }).catch(e => {
-          console.error(e);
-          process.exit(-1);
-        })
+          return Promise.reject(e);
+        });
       });
     });
   });

@@ -1,3 +1,20 @@
+## <small>3.1.1 (2020-07-01)</small>
+
+* fix: adding in some code that didn't get pulled in in #99 ([cea1b5f](https://github.com/readmeio/swagger-inline/commit/cea1b5f)), closes [#99](https://github.com/readmeio/swagger-inline/issues/99)
+* fix: non-zero value on failure and print errors #92 (#99) ([99564bf](https://github.com/readmeio/swagger-inline/commit/99564bf)), closes [#92](https://github.com/readmeio/swagger-inline/issues/92) [#99](https://github.com/readmeio/swagger-inline/issues/99) [#92](https://github.com/readmeio/swagger-inline/issues/92)
+* chore(deps-dev): bump @babel/cli from 7.10.1 to 7.10.3 (#107) ([f8f1e7f](https://github.com/readmeio/swagger-inline/commit/f8f1e7f)), closes [#107](https://github.com/readmeio/swagger-inline/issues/107)
+* chore(deps-dev): bump @babel/cli from 7.10.3 to 7.10.4 (#109) ([366a770](https://github.com/readmeio/swagger-inline/commit/366a770)), closes [#109](https://github.com/readmeio/swagger-inline/issues/109)
+* chore(deps-dev): bump @babel/preset-env from 7.10.2 to 7.10.3 (#105) ([5afdd5a](https://github.com/readmeio/swagger-inline/commit/5afdd5a)), closes [#105](https://github.com/readmeio/swagger-inline/issues/105)
+* chore(deps-dev): bump @babel/preset-env from 7.10.3 to 7.10.4 (#108) ([e2d06ec](https://github.com/readmeio/swagger-inline/commit/e2d06ec)), closes [#108](https://github.com/readmeio/swagger-inline/issues/108)
+* chore(deps-dev): bump @readme/eslint-config from 3.1.3 to 3.2.0 (#103) ([9404d10](https://github.com/readmeio/swagger-inline/commit/9404d10)), closes [#103](https://github.com/readmeio/swagger-inline/issues/103)
+* chore(deps-dev): bump @readme/eslint-config from 3.2.0 to 3.2.1 (#104) ([4740f14](https://github.com/readmeio/swagger-inline/commit/4740f14)), closes [#104](https://github.com/readmeio/swagger-inline/issues/104)
+* chore(deps-dev): bump @readme/eslint-config from 3.2.1 to 3.3.2 (#110) ([6dcae2d](https://github.com/readmeio/swagger-inline/commit/6dcae2d)), closes [#110](https://github.com/readmeio/swagger-inline/issues/110)
+* chore(deps-dev): bump eslint from 7.2.0 to 7.3.1 (#112) ([b66e2e8](https://github.com/readmeio/swagger-inline/commit/b66e2e8)), closes [#112](https://github.com/readmeio/swagger-inline/issues/112)
+* chore(deps-dev): bump jest from 26.0.1 to 26.1.0 (#111) ([85c209f](https://github.com/readmeio/swagger-inline/commit/85c209f)), closes [#111](https://github.com/readmeio/swagger-inline/issues/111)
+* ci: upping the frequency of dependabot to monthly ([587f620](https://github.com/readmeio/swagger-inline/commit/587f620))
+
+
+
 ## 3.1.0 (2020-06-08)
 
 * chore: swapping multi-glob for globby (#102) ([1d0ca8b](https://github.com/readmeio/swagger-inline/commit/1d0ca8b)), closes [#102](https://github.com/readmeio/swagger-inline/issues/102)

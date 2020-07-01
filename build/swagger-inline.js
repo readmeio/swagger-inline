@@ -85,7 +85,7 @@ function swaggerInline(globPatterns, providedOptions) {
         });
         var endpoints = [];
         var schemas = [];
-        successfulFiles.forEach(function (fileInfo) {
+        return Promise.all(successfulFiles.map(function (fileInfo) {
           try {
             var newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
               filename: fileInfo.fileName,
@@ -104,15 +104,19 @@ function swaggerInline(globPatterns, providedOptions) {
             });
 
             schemas = _.concat(schemas, scheme);
+            return Promise.resolve();
           } catch (e) {
-            throw new Error(e.toString(), fileInfo.fileName);
+            return Promise.reject(new Error(e.toString(), fileInfo.fileName));
           }
+        })).then(function () {
+          log("".concat(endpoints.length, " definitions found..."));
+          log("".concat(schemas.length, " schemas found..."));
+          var baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
+          var swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
+          return outputResult(swagger, options);
+        })["catch"](function (e) {
+          return Promise.reject(e);
         });
-        log("".concat(endpoints.length, " definitions found..."));
-        log("".concat(schemas.length, " schemas found..."));
-        var baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
-        var swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
-        return outputResult(swagger, options);
       });
     });
   });

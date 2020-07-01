@@ -74,38 +74,45 @@ function swaggerInline(globPatterns, providedOptions) {
         let endpoints = [];
         let schemas = [];
 
-        successfulFiles.forEach(fileInfo => {
-          try {
-            let newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
-              filename: fileInfo.fileName,
-              scope: options.getScope(),
-            });
+        return Promise.all(
+          successfulFiles.map(fileInfo => {
+            try {
+              let newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
+                filename: fileInfo.fileName,
+                scope: options.getScope(),
+              });
 
-            newEndpoints = Loader.addResponse(newEndpoints);
+              newEndpoints = Loader.addResponse(newEndpoints);
 
-            newEndpoints = Loader.expandParams(newEndpoints, swaggerVersion);
-            endpoints = _.concat(endpoints, newEndpoints);
+              newEndpoints = Loader.expandParams(newEndpoints, swaggerVersion);
+              endpoints = _.concat(endpoints, newEndpoints);
 
-            const scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
-              filename: fileInfo.fileName,
-              scope: options.getScope(),
-            });
-            _.remove(scheme, s => {
-              return _.isEmpty(s);
-            });
-            schemas = _.concat(schemas, scheme);
-          } catch (e) {
-            throw new Error(e.toString(), fileInfo.fileName);
-          }
-        });
+              const scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
+                filename: fileInfo.fileName,
+                scope: options.getScope(),
+              });
+              _.remove(scheme, s => {
+                return _.isEmpty(s);
+              });
+              schemas = _.concat(schemas, scheme);
+              return Promise.resolve();
+            } catch (e) {
+              return Promise.reject(new Error(e.toString(), fileInfo.fileName));
+            }
+          })
+        )
+          .then(() => {
+            log(`${endpoints.length} definitions found...`);
+            log(`${schemas.length} schemas found...`);
 
-        log(`${endpoints.length} definitions found...`);
-        log(`${schemas.length} schemas found...`);
+            const baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
+            const swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
 
-        const baseObjWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
-        const swagger = mergeSchemasWithBase(baseObjWithEndpoints, schemas);
-
-        return outputResult(swagger, options);
+            return outputResult(swagger, options);
+          })
+          .catch(e => {
+            return Promise.reject(e);
+          });
       });
     });
   });

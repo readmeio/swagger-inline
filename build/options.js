@@ -62,6 +62,11 @@ var Options = /*#__PURE__*/function () {
     value: function getMetadata() {
       return this.options.metadata;
     }
+  }, {
+    key: "getIgnoreErrors",
+    value: function getIgnoreErrors() {
+      return this.options.ignoreErrors;
+    }
   }]);
 
   return Options;
@@ -70,6 +75,7 @@ var Options = /*#__PURE__*/function () {
 Options.DEFAULTS = {
   format: '.json',
   logger: function logger() {},
-  ignore: ['node_modules/**/*', 'bower_modules/**/*']
+  ignore: ['node_modules/**/*', 'bower_modules/**/*'],
+  ignoreErrors: false
 };
 module.exports = Options;

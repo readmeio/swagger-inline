@@ -89,14 +89,16 @@ function swaggerInline(globPatterns, providedOptions) {
           try {
             var newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
               filename: fileInfo.fileName,
-              scope: options.getScope()
+              scope: options.getScope(),
+              ignoreErrors: options.getIgnoreErrors()
             });
             newEndpoints = Loader.addResponse(newEndpoints);
             newEndpoints = Loader.expandParams(newEndpoints, swaggerVersion);
             endpoints = _.concat(endpoints, newEndpoints);
             var scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
               filename: fileInfo.fileName,
-              scope: options.getScope()
+              scope: options.getScope(),
+              ignoreErrors: options.getIgnoreErrors()
             });
 
             _.remove(scheme, function (s) {

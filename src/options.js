@@ -41,12 +41,17 @@ class Options {
   getMetadata() {
     return this.options.metadata;
   }
+
+  getIgnoreErrors() {
+    return this.options.ignoreErrors;
+  }
 }
 
 Options.DEFAULTS = {
   format: '.json',
   logger: () => {},
   ignore: ['node_modules/**/*', 'bower_modules/**/*'],
+  ignoreErrors: false,
 };
 
 module.exports = Options;

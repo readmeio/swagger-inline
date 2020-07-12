@@ -73,7 +73,7 @@ class Extractor {
     try {
       return extractComments(code, options);
     } catch (e) {
-      if(options.ignoreErrors) {
+      if (options.ignoreErrors) {
         return {};
       }
       throw e;

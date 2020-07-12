@@ -90,7 +90,15 @@ var Extractor = /*#__PURE__*/function () {
   }, {
     key: "extractComments",
     value: function extractComments(code, options) {
-      return _extractComments(code, options);
+      try {
+        return _extractComments(code, options);
+      } catch (e) {
+        if (options.ignoreErrors) {
+          return {};
+        }
+
+        throw e;
+      }
     }
   }, {
     key: "extractEndpoint",

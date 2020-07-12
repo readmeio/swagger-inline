@@ -80,6 +80,7 @@ function swaggerInline(globPatterns, providedOptions) {
               let newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
                 filename: fileInfo.fileName,
                 scope: options.getScope(),
+                ignoreErrors: options.getIgnoreErrors(),
               });
 
               newEndpoints = Loader.addResponse(newEndpoints);
@@ -90,6 +91,7 @@ function swaggerInline(globPatterns, providedOptions) {
               const scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
                 filename: fileInfo.fileName,
                 scope: options.getScope(),
+                ignoreErrors: options.getIgnoreErrors(),
               });
               _.remove(scheme, s => {
                 return _.isEmpty(s);

@@ -70,7 +70,14 @@ class Extractor {
   }
 
   static extractComments(code, options) {
-    return extractComments(code, options);
+    try {
+      return extractComments(code, options);
+    } catch (e) {
+      if (options.ignoreErrors) {
+        return {};
+      }
+      throw e;
+    }
   }
 
   static extractEndpoint(comment, options) {

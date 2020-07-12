@@ -1,3 +1,9 @@
+## 3.2.0 (2020-07-12)
+
+* feat: add new option to ignore errors (#113) ([02cdaf6](https://github.com/readmeio/swagger-inline/commit/02cdaf6)), closes [#113](https://github.com/readmeio/swagger-inline/issues/113)
+
+
+
 ## <small>3.1.1 (2020-07-01)</small>
 
 * fix: adding in some code that didn't get pulled in in #99 ([cea1b5f](https://github.com/readmeio/swagger-inline/commit/cea1b5f)), closes [#99](https://github.com/readmeio/swagger-inline/issues/99)

@@ -1,3 +1,17 @@
+## <small>3.2.1 (2020-08-04)</small>
+
+* fix: display file name in error message (#123) ([e4739eb](https://github.com/readmeio/swagger-inline/commit/e4739eb)), closes [#123](https://github.com/readmeio/swagger-inline/issues/123)
+* chore(deps-dev): bump @babel/cli from 7.10.4 to 7.10.5 (#116) ([df63d64](https://github.com/readmeio/swagger-inline/commit/df63d64)), closes [#116](https://github.com/readmeio/swagger-inline/issues/116)
+* chore(deps-dev): bump @babel/preset-env from 7.10.4 to 7.11.0 (#119) ([b8b1a46](https://github.com/readmeio/swagger-inline/commit/b8b1a46)), closes [#119](https://github.com/readmeio/swagger-inline/issues/119)
+* chore(deps-dev): bump @readme/eslint-config from 3.3.2 to 3.4.0 (#120) ([07a3a28](https://github.com/readmeio/swagger-inline/commit/07a3a28)), closes [#120](https://github.com/readmeio/swagger-inline/issues/120)
+* chore(deps-dev): bump eslint from 7.3.1 to 7.6.0 (#117) ([7defdcd](https://github.com/readmeio/swagger-inline/commit/7defdcd)), closes [#117](https://github.com/readmeio/swagger-inline/issues/117)
+* chore(deps-dev): bump jest from 26.1.0 to 26.2.2 (#121) ([05c37d5](https://github.com/readmeio/swagger-inline/commit/05c37d5)), closes [#121](https://github.com/readmeio/swagger-inline/issues/121)
+* chore(deps): bump commander from 5.1.0 to 6.0.0 (#115) ([08f7618](https://github.com/readmeio/swagger-inline/commit/08f7618)), closes [#115](https://github.com/readmeio/swagger-inline/issues/115)
+* chore(deps): bump lodash from 4.17.15 to 4.17.19 (#114) ([7077950](https://github.com/readmeio/swagger-inline/commit/7077950)), closes [#114](https://github.com/readmeio/swagger-inline/issues/114)
+* chore(deps): bump multilang-extract-comments from 0.3.2 to 0.3.3 (#118) ([a14fc3c](https://github.com/readmeio/swagger-inline/commit/a14fc3c)), closes [#118](https://github.com/readmeio/swagger-inline/issues/118)
+
+
+
 ## 3.2.0 (2020-07-12)
 
 * feat: add new option to ignore errors (#113) ([02cdaf6](https://github.com/readmeio/swagger-inline/commit/02cdaf6)), closes [#113](https://github.com/readmeio/swagger-inline/issues/113)

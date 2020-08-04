@@ -99,7 +99,7 @@ function swaggerInline(globPatterns, providedOptions) {
               schemas = _.concat(schemas, scheme);
               return Promise.resolve();
             } catch (e) {
-              return Promise.reject(new Error(e.toString(), fileInfo.fileName));
+              return Promise.reject(new Error(`${e.toString()} \n at ${fileInfo.fileName}`));
             }
           })
         )

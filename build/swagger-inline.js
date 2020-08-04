@@ -108,7 +108,7 @@ function swaggerInline(globPatterns, providedOptions) {
             schemas = _.concat(schemas, scheme);
             return Promise.resolve();
           } catch (e) {
-            return Promise.reject(new Error(e.toString(), fileInfo.fileName));
+            return Promise.reject(new Error("".concat(e.toString(), " \n at ").concat(fileInfo.fileName)));
           }
         })).then(function () {
           log("".concat(endpoints.length, " definitions found..."));

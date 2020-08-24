@@ -62,6 +62,7 @@ swaggerInline(['src/**/*.js', 'test/**/*.js'], {
 - `logger`: Function called for logging. (default: empty closure)
 - `metadata`: Add additional annotations to the Swagger file, prefixed with `x-si`.
 - `scope`: Matches the scope field defined in each API. For example, if `--scope public` is supplied, all operations will be generated, if `--scope private`, only those operations that have a `scope: private` declaration will be included.
+- `ignoreErrors`: Ignore errors due to image files or unknown file types when parsing files. (default: `false`)
 
 ## Examples
 ### Standard usage

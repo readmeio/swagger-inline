@@ -158,7 +158,7 @@ var Loader = /*#__PURE__*/function () {
       endpoints.forEach(function (endpoint) {
         if (!endpoint.responses || !Object.keys(endpoint.responses).length) {
           endpoint.responses = {
-            '200': {
+            200: {
               description: 'Successful response'
             }
           };

@@ -1,3 +1,18 @@
+## <small>3.2.2 (2020-09-01)</small>
+
+* chore(deps-dev): bump @babel/cli from 7.10.5 to 7.11.5 (#130) ([2d70cca](https://github.com/readmeio/swagger-inline/commit/2d70cca)), closes [#130](https://github.com/readmeio/swagger-inline/issues/130)
+* chore(deps-dev): bump @babel/preset-env from 7.11.0 to 7.11.5 (#131) ([76ad91e](https://github.com/readmeio/swagger-inline/commit/76ad91e)), closes [#131](https://github.com/readmeio/swagger-inline/issues/131)
+* chore(deps-dev): bump @readme/eslint-config from 3.4.0 to 3.4.2 (#132) ([ab9bc3d](https://github.com/readmeio/swagger-inline/commit/ab9bc3d)), closes [#132](https://github.com/readmeio/swagger-inline/issues/132)
+* chore(deps-dev): bump conventional-changelog-cli from 2.0.34 to 2.1.0 (#129) ([910645f](https://github.com/readmeio/swagger-inline/commit/910645f)), closes [#129](https://github.com/readmeio/swagger-inline/issues/129)
+* chore(deps-dev): bump eslint from 7.6.0 to 7.8.0 (#133) ([ac85e8e](https://github.com/readmeio/swagger-inline/commit/ac85e8e)), closes [#133](https://github.com/readmeio/swagger-inline/issues/133)
+* chore(deps-dev): bump jest from 26.2.2 to 26.4.2 (#128) ([0a0a0a2](https://github.com/readmeio/swagger-inline/commit/0a0a0a2)), closes [#128](https://github.com/readmeio/swagger-inline/issues/128)
+* chore(deps-dev): bump prettier from 2.0.5 to 2.1.1 (#127) ([3ec7230](https://github.com/readmeio/swagger-inline/commit/3ec7230)), closes [#127](https://github.com/readmeio/swagger-inline/issues/127)
+* chore(deps): bump commander from 6.0.0 to 6.1.0 (#134) ([b72688f](https://github.com/readmeio/swagger-inline/commit/b72688f)), closes [#134](https://github.com/readmeio/swagger-inline/issues/134)
+* chore(deps): bump lodash from 4.17.19 to 4.17.20 (#126) ([ddfa23a](https://github.com/readmeio/swagger-inline/commit/ddfa23a)), closes [#126](https://github.com/readmeio/swagger-inline/issues/126)
+* docs: Add a description of ignoreErrors option (#125) ([d2d2ea3](https://github.com/readmeio/swagger-inline/commit/d2d2ea3)), closes [#125](https://github.com/readmeio/swagger-inline/issues/125)
+
+
+
 ## <small>3.2.1 (2020-08-04)</small>
 
 * fix: display file name in error message (#123) ([e4739eb](https://github.com/readmeio/swagger-inline/commit/e4739eb)), closes [#123](https://github.com/readmeio/swagger-inline/issues/123)

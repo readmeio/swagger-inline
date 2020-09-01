@@ -129,7 +129,7 @@ class Loader {
     endpoints.forEach(endpoint => {
       if (!endpoint.responses || !Object.keys(endpoint.responses).length) {
         endpoint.responses = {
-          '200': {
+          200: {
             description: 'Successful response',
           },
         };

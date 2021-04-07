@@ -35,8 +35,8 @@ function Cli(args) {
       console.log(output);
     })
     .catch(err => {
-      console.log('An error occured:');
-      console.log(err);
+      console.error('An error occured:');
+      console.error(err);
       process.exit(-1);
     });
 }

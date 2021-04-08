@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Generate your OAS/Swagger files from inline comments.",
   "main": "build/index.js",
   "scripts": {
@@ -8,7 +8,6 @@
     "lint": "eslint .",
     "prepublish": "npm run-script build",
     "pretest": "npm run lint && npm run prettier",
-    "prettier": "prettier --list-different --write \"./**/**.js\"",
     "release": "conventional-changelog -i CHANGELOG.md -s",
     "start": "babel --watch src/ -d build/",
     "test": "jest --coverage tests/",

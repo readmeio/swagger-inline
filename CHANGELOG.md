@@ -1,3 +1,37 @@
+## <small>3.2.3 (2021-04-08)</small>
+
+* chore(deps-dev): bump @babel/cli from 7.11.5 to 7.11.6 (#136) ([37c8226](https://github.com/readmeio/swagger-inline/commit/37c8226)), closes [#136](https://github.com/readmeio/swagger-inline/issues/136)
+* chore(deps-dev): bump @babel/cli from 7.11.6 to 7.12.1 (#139) ([cf69903](https://github.com/readmeio/swagger-inline/commit/cf69903)), closes [#139](https://github.com/readmeio/swagger-inline/issues/139)
+* chore(deps-dev): bump @babel/cli from 7.12.1 to 7.12.8 (#148) ([ce56727](https://github.com/readmeio/swagger-inline/commit/ce56727)), closes [#148](https://github.com/readmeio/swagger-inline/issues/148)
+* chore(deps-dev): bump @babel/cli from 7.12.8 to 7.12.10 (#160) ([5dedec4](https://github.com/readmeio/swagger-inline/commit/5dedec4)), closes [#160](https://github.com/readmeio/swagger-inline/issues/160)
+* chore(deps-dev): bump @babel/preset-env from 7.11.5 to 7.12.1 (#142) ([d49ccb7](https://github.com/readmeio/swagger-inline/commit/d49ccb7)), closes [#142](https://github.com/readmeio/swagger-inline/issues/142)
+* chore(deps-dev): bump @babel/preset-env from 7.12.1 to 7.12.11 (#154) ([23f848a](https://github.com/readmeio/swagger-inline/commit/23f848a)), closes [#154](https://github.com/readmeio/swagger-inline/issues/154)
+* chore(deps-dev): bump @readme/eslint-config from 3.4.2 to 3.5.0 (#137) ([88eeee9](https://github.com/readmeio/swagger-inline/commit/88eeee9)), closes [#137](https://github.com/readmeio/swagger-inline/issues/137)
+* chore(deps-dev): bump @readme/eslint-config from 3.5.0 to 3.6.2 (#141) ([c2361af](https://github.com/readmeio/swagger-inline/commit/c2361af)), closes [#141](https://github.com/readmeio/swagger-inline/issues/141)
+* chore(deps-dev): bump @readme/eslint-config from 3.6.2 to 3.7.1 (#147) ([bb0dc1b](https://github.com/readmeio/swagger-inline/commit/bb0dc1b)), closes [#147](https://github.com/readmeio/swagger-inline/issues/147)
+* chore(deps-dev): bump @readme/eslint-config from 3.7.1 to 4.0.0 (#157) ([e031539](https://github.com/readmeio/swagger-inline/commit/e031539)), closes [#157](https://github.com/readmeio/swagger-inline/issues/157)
+* chore(deps-dev): bump conventional-changelog-cli from 2.1.0 to 2.1.1 (#145) ([3421a2a](https://github.com/readmeio/swagger-inline/commit/3421a2a)), closes [#145](https://github.com/readmeio/swagger-inline/issues/145)
+* chore(deps-dev): bump eslint from 7.10.0 to 7.12.1 (#143) ([776f27c](https://github.com/readmeio/swagger-inline/commit/776f27c)), closes [#143](https://github.com/readmeio/swagger-inline/issues/143)
+* chore(deps-dev): bump eslint from 7.12.1 to 7.14.0 (#151) ([55b21f7](https://github.com/readmeio/swagger-inline/commit/55b21f7)), closes [#151](https://github.com/readmeio/swagger-inline/issues/151)
+* chore(deps-dev): bump eslint from 7.14.0 to 7.16.0 (#156) ([eb66d78](https://github.com/readmeio/swagger-inline/commit/eb66d78)), closes [#156](https://github.com/readmeio/swagger-inline/issues/156)
+* chore(deps-dev): bump eslint from 7.16.0 to 7.23.0 (#177) ([af33a5d](https://github.com/readmeio/swagger-inline/commit/af33a5d)), closes [#177](https://github.com/readmeio/swagger-inline/issues/177)
+* chore(deps-dev): bump eslint from 7.8.0 to 7.10.0 (#135) ([c227654](https://github.com/readmeio/swagger-inline/commit/c227654)), closes [#135](https://github.com/readmeio/swagger-inline/issues/135)
+* chore(deps-dev): bump jest from 26.4.2 to 26.6.1 (#144) ([49874b0](https://github.com/readmeio/swagger-inline/commit/49874b0)), closes [#144](https://github.com/readmeio/swagger-inline/issues/144)
+* chore(deps-dev): bump jest from 26.6.1 to 26.6.3 (#150) ([8af086a](https://github.com/readmeio/swagger-inline/commit/8af086a)), closes [#150](https://github.com/readmeio/swagger-inline/issues/150)
+* chore(deps-dev): bump prettier from 2.1.1 to 2.1.2 (#138) ([ee8a393](https://github.com/readmeio/swagger-inline/commit/ee8a393)), closes [#138](https://github.com/readmeio/swagger-inline/issues/138)
+* chore(deps-dev): bump prettier from 2.1.2 to 2.2.1 (#146) ([82208d0](https://github.com/readmeio/swagger-inline/commit/82208d0)), closes [#146](https://github.com/readmeio/swagger-inline/issues/146)
+* chore(deps): bump commander from 6.1.0 to 6.2.0 (#140) ([beafbb2](https://github.com/readmeio/swagger-inline/commit/beafbb2)), closes [#140](https://github.com/readmeio/swagger-inline/issues/140)
+* chore(deps): bump commander from 6.2.0 to 6.2.1 (#158) ([d374517](https://github.com/readmeio/swagger-inline/commit/d374517)), closes [#158](https://github.com/readmeio/swagger-inline/issues/158)
+* chore(deps): bump globby from 11.0.1 to 11.0.2 (#162) ([5505e6c](https://github.com/readmeio/swagger-inline/commit/5505e6c)), closes [#162](https://github.com/readmeio/swagger-inline/issues/162)
+* chore(deps): bump globby from 11.0.2 to 11.0.3 (#176) ([678447b](https://github.com/readmeio/swagger-inline/commit/678447b)), closes [#176](https://github.com/readmeio/swagger-inline/issues/176)
+* chore(deps): bump ini from 1.3.5 to 1.3.8 (#153) ([8d9f16c](https://github.com/readmeio/swagger-inline/commit/8d9f16c)), closes [#153](https://github.com/readmeio/swagger-inline/issues/153)
+* chore(deps): bump js-yaml from 3.14.0 to 3.14.1 (#159) ([173d513](https://github.com/readmeio/swagger-inline/commit/173d513)), closes [#159](https://github.com/readmeio/swagger-inline/issues/159)
+* chore(deps): bump lodash from 4.17.20 to 4.17.21 (#169) ([cab3ae4](https://github.com/readmeio/swagger-inline/commit/cab3ae4)), closes [#169](https://github.com/readmeio/swagger-inline/issues/169)
+* chore(deps): bump node-notifier from 8.0.0 to 8.0.1 (#155) ([1c724f9](https://github.com/readmeio/swagger-inline/commit/1c724f9)), closes [#155](https://github.com/readmeio/swagger-inline/issues/155)
+* fix: Write errors to stderr (#179) ([39b428f](https://github.com/readmeio/swagger-inline/commit/39b428f)), closes [#179](https://github.com/readmeio/swagger-inline/issues/179)
+
+
+
 ## <small>3.2.2 (2020-09-01)</small>
 
 * chore(deps-dev): bump @babel/cli from 7.10.5 to 7.11.5 (#130) ([2d70cca](https://github.com/readmeio/swagger-inline/commit/2d70cca)), closes [#130](https://github.com/readmeio/swagger-inline/issues/130)

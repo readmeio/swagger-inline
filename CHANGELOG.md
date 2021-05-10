@@ -1,3 +1,13 @@
+## 4.0.0 (2021-05-10)
+
+* docs: fixing a bad url in the readme ([048a00c](https://github.com/readmeio/swagger-inline/commit/048a00c))
+* chore(deps-dev): bump @readme/eslint-config from 4.1.1 to 5.0.5 (#189) ([c1b3098](https://github.com/readmeio/swagger-inline/commit/c1b3098)), closes [#189](https://github.com/readmeio/swagger-inline/issues/189)
+* chore(deps): bump js-yaml from 3.14.1 to 4.1.0 (#182) ([2fa0aaa](https://github.com/readmeio/swagger-inline/commit/2fa0aaa)), closes [#182](https://github.com/readmeio/swagger-inline/issues/182)
+* chore(deps): bump multilang-extract-comments from 0.3.3 to 0.4.0 (#190) ([943cc38](https://github.com/readmeio/swagger-inline/commit/943cc38)), closes [#190](https://github.com/readmeio/swagger-inline/issues/190)
+* feat: drop support for node 10 (#188) ([bad9bb4](https://github.com/readmeio/swagger-inline/commit/bad9bb4)), closes [#188](https://github.com/readmeio/swagger-inline/issues/188)
+
+
+
 ## <small>3.2.3 (2021-04-08)</small>
 
 * chore(deps-dev): bump @babel/cli from 7.11.5 to 7.11.6 (#136) ([37c8226](https://github.com/readmeio/swagger-inline/commit/37c8226)), closes [#136](https://github.com/readmeio/swagger-inline/issues/136)

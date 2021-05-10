@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "3.2.3",
+  "version": "4.0.0",
   "description": "Generate your OAS/Swagger files from inline comments.",
   "author": "Readme.io",
   "license": "ISC",

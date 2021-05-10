@@ -2,17 +2,12 @@
   "name": "swagger-inline",
   "version": "3.2.3",
   "description": "Generate your OAS/Swagger files from inline comments.",
-  "main": "build/index.js",
-  "scripts": {
-    "build": "babel src/ -d build",
-    "lint": "eslint .",
-    "prepublish": "npm run-script build",
-    "pretest": "npm run lint && npm run prettier",
-    "release": "conventional-changelog -i CHANGELOG.md -s",
-    "start": "babel --watch src/ -d build/",
-    "test": "jest --coverage tests/",
-    "test-watch": "jest --coverage --watch tests/"
+  "author": "Readme.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/readmeio/swagger-inline/issues"
   },
+  "homepage": "https://github.com/readmeio/swagger-inline#readme",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/readmeio/swagger-inline.git"
@@ -26,12 +21,22 @@
     "inline",
     "comments"
   ],
-  "author": "Readme.io",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/readmeio/swagger-inline/issues"
+  "engines": {
+    "node": "^12 || ^14 || ^16"
   },
-  "homepage": "https://github.com/readmeio/swagger-inline#readme",
+  "main": "build/index.js",
+  "bin": {
+    "swagger-inline": "build/index.js"
+  },
+  "scripts": {
+    "build": "babel src/ -d build",
+    "lint": "eslint .",
+    "prepublish": "npm run-script build",
+    "pretest": "npm run lint",
+    "release": "conventional-changelog -i CHANGELOG.md -s",
+    "start": "babel --watch src/ -d build/",
+    "test": "jest --coverage tests/"
+  },
   "dependencies": {
     "bluebird": "^3.4.1",
     "commander": "^6.0.0",
@@ -48,9 +53,6 @@
     "eslint": "^7.1.0",
     "jest": "^26.0.1",
     "prettier": "^2.0.1"
-  },
-  "bin": {
-    "swagger-inline": "build/index.js"
   },
   "babel": {
     "presets": [

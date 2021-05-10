@@ -29,8 +29,8 @@ function Cli(args) {
   swaggerInline(program.args, providedOptions).then(function (output) {
     console.log(output);
   })["catch"](function (err) {
-    console.log('An error occured:');
-    console.log(err);
+    console.error('An error occured:');
+    console.error(err);
     process.exit(-1);
   });
 }

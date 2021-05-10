@@ -38,7 +38,7 @@
     "globby": "^11.0.1",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
-    "multilang-extract-comments": "^0.3.2"
+    "multilang-extract-comments": "^0.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",

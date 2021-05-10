@@ -2,7 +2,7 @@
 
 Node module for extracting Swagger/OpenAPI endpoints from inline comments.
 
-[![npm](https://img.shields.io/npm/v/swagger-inline)](https://npm.im/swagger-inline) [![Build](https://github.com/readmeio/swagger-inline/workflows/Node%20CI/badge.svg)](https://github.com/readmeio/swagger-inline)
+[![npm](https://img.shields.io/npm/v/swagger-inline)](https://npm.im/swagger-inline) [![Build](https://github.com/readmeio/swagger-inline/workflows/CI/badge.svg)](https://github.com/readmeio/swagger-inline)
 
 [![](https://d3vv6lp55qjaqc.cloudfront.net/items/1M3C3j0I0s0j3T362344/Untitled-2.png)](https://readme.io)
 

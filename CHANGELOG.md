@@ -1,3 +1,12 @@
+## <small>4.0.1 (2021-06-01)</small>
+
+* chore(deps-dev): bump @babel/cli from 7.13.16 to 7.14.3 (#194) ([36636f6](https://github.com/readmeio/swagger-inline/commit/36636f6)), closes [#194](https://github.com/readmeio/swagger-inline/issues/194)
+* chore(deps-dev): bump @babel/preset-env from 7.14.1 to 7.14.4 (#192) ([343ea4b](https://github.com/readmeio/swagger-inline/commit/343ea4b)), closes [#192](https://github.com/readmeio/swagger-inline/issues/192)
+* chore(deps-dev): bump eslint from 7.26.0 to 7.27.0 (#193) ([5ce7d71](https://github.com/readmeio/swagger-inline/commit/5ce7d71)), closes [#193](https://github.com/readmeio/swagger-inline/issues/193)
+* chore(deps-dev): bump jest from 26.6.3 to 27.0.3 (#191) ([9649234](https://github.com/readmeio/swagger-inline/commit/9649234)), closes [#191](https://github.com/readmeio/swagger-inline/issues/191)
+
+
+
 ## 4.0.0 (2021-05-10)
 
 * docs: fixing a bad url in the readme ([048a00c](https://github.com/readmeio/swagger-inline/commit/048a00c))

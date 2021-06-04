@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 const program = require('commander');
-const packageJson = require('../package.json');
-const swaggerInline = require('./swagger-inline');
+const pkg = require('../package.json');
+const swaggerInline = require('.');
 
-function Cli(args) {
+module.exports = function (args) {
   program
-    .version(packageJson.version)
+    .version(pkg.version)
     .usage('[options] <inputGlobs ...>')
-    .option('-b, --base [path]', 'A base Swagger file.')
+    .option('-b, --base [path]', 'A base OpenAPI or Swagger definition to build off of.')
     .option('-f, --format [format]', 'Output format (.json or .yaml).')
     .option('-s, --scope [scope]', 'API scope to constrain against');
 
@@ -39,6 +39,4 @@ function Cli(args) {
       console.error(err);
       process.exit(-1);
     });
-}
-
-module.exports = Cli;
+};

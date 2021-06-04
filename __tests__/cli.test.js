@@ -15,22 +15,25 @@ function runCommand(cmd, cwd) {
   });
 }
 
-describe('Cli', () => {
+describe('CLI', () => {
   it('is a function', () => {
     expect(typeof cli).toBe('function');
   });
 
-  it('should exit process with non-zero code', () => {
+  it('should exit process with non-zero code on a failure', () => {
     const workDir = path.resolve(__dirname, '../');
-    const cmd = `node src/index tests/fixtures/code/swagger-api-with-error.js --base tests/fixtures/project/swaggerBase.json`;
+    const cmd = `node bin/swagger-inline __tests__/__fixtures__/code/swagger-api-with-error.js --base __tests__/__fixtures__/project/swaggerBase.json`;
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).not.toBe(0);
+      expect(result.error.message).toMatch(
+        'Error: YAMLException: can not read an implicit mapping pair; a colon is missed (12:57)'
+      );
     });
   });
 
   it('should exit process with zero code', () => {
     const workDir = path.resolve(__dirname, '../');
-    const cmd = `node src/index tests/fixtures/code/swagger-api.js --base tests/fixtures/project/swaggerBase.json`;
+    const cmd = `node bin/swagger-inline __tests__/__fixtures__/code/swagger-api.js --base __tests__/__fixtures__/project/swaggerBase.json`;
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).toBe(0);
     });

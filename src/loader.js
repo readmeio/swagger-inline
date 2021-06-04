@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
-const Promise = require('bluebird');
 const jsYaml = require('js-yaml');
 const globby = require('globby');
+const any = require('promise.any');
 
 class Loader {
   static resolvePaths(filepaths, options) {
@@ -13,64 +13,27 @@ class Loader {
   }
 
   static findSwagger(directory = process.cwd(), options) {
-    return new Promise((resolve, reject) => {
-      fs.readdir(directory, (err, files) => {
-        if (err) {
-          reject(err);
-        } else {
-          const swaggerCandidates = files
-            .filter(file => {
-              return Loader.SWAGGER_TYPES_REGEX.test(file);
-            })
-            .map(file => {
-              return path.join(directory, file);
-            });
-
-          const swaggerPromises = swaggerCandidates.map(filepath => {
-            return Loader.loadData(filepath, options).then(data => {
-              return data.swagger || data.openapi ? Promise.resolve(data) : Promise.reject();
-            });
+    return fs
+      .readdir(directory)
+      .then(files => {
+        const candidates = files.filter(file => Loader.TYPES_REGEX.test(file)).map(file => path.join(directory, file));
+        const promises = candidates.map(filepath => {
+          return Loader.loadData(filepath, options).then(data => {
+            return data.swagger || data.openapi ? Promise.resolve(data) : Promise.reject();
           });
+        });
 
-          Promise.any(swaggerPromises)
-            .then(loadedSwagger => {
-              resolve(loadedSwagger);
-            })
-            .catch(() => {
-              resolve({});
-            });
-        }
-      });
-    });
+        return any(promises).catch(Promise.reject);
+      })
+      .catch(Promise.reject);
   }
 
   static loadFiles(filepaths) {
-    return new Promise(resolve => {
-      const loadPromises = Promise.map(
-        filepaths,
-        filepath => {
-          return Loader.loadFile(filepath).reflect();
-        },
-        { concurrency: Loader.MAX_CONCURRENCY }
-      );
-      resolve(loadPromises);
-    }).then(loadResults => {
-      return loadResults.map(loadResult => {
-        return loadResult.isFulfilled() ? loadResult.value() : loadResult.reason();
-      });
-    });
+    return Promise.all(filepaths.map(filepath => Loader.loadFile(filepath))).catch(err => Promise.reject(err));
   }
 
-  static loadFile(filepath) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(filepath, 'utf-8', (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    });
+  static loadFile(file) {
+    return fs.readFile(file, 'utf8');
   }
 
   static loadData(filepath, options) {
@@ -80,33 +43,26 @@ class Loader {
     if (!loadFunction) {
       throw new Error(`Did not recognize ${filepath}.`);
     }
+
     return Loader.LOADER_METHODS[extname](filepath, options);
   }
 
   static loadBase(base = '', options) {
-    return new Promise((resolve, reject) => {
-      fs.stat(base, (err, stat) => {
-        if (!err && stat.isFile()) {
-          this.loadData(base, options)
-            .then(baseData => {
-              resolve(baseData);
-            })
-            .catch(reject);
-        } else if (!err && stat.isDirectory()) {
-          this.findSwagger(base, options)
-            .then(baseData => {
-              resolve(baseData);
-            })
-            .catch(reject);
-        } else {
-          this.findSwagger(process.cwd(), options)
-            .then(baseData => {
-              resolve(baseData);
-            })
-            .catch(reject);
+    return fs
+      .stat(base)
+      .then(stat => {
+        if (stat.isFile()) {
+          return this.loadData(base, options).catch(err => Promise.reject(err));
+        } else if (stat.isDirectory()) {
+          return this.findSwagger(base, options).catch(err => Promise.reject(err));
         }
+
+        return this.findSwagger(process.cwd(), options).catch(err => Promise.reject(err));
+      })
+      .catch(() => {
+        // Return an empty object if we have any problems.
+        return {};
       });
-    });
   }
 
   static loadYAML(filepath, options) {
@@ -138,14 +94,14 @@ class Loader {
     return endpoints;
   }
 
-  static expandParams(endpoints = {}, swaggerVersion) {
+  static expandParams(endpoints = {}, specVersion) {
     endpoints.forEach(endpoint => {
       if (endpoint && endpoint.parameters) {
         const requestBody = [];
         endpoint.parameters.forEach((param, i) => {
           if (typeof param === 'string') {
-            param = Loader.expandParam(param, swaggerVersion);
-            if (param.in === 'body' && swaggerVersion >= 3) {
+            param = Loader.expandParam(param, specVersion);
+            if (param.in === 'body' && specVersion >= 3) {
               requestBody.push(param);
             } else {
               endpoint.parameters[i] = param;
@@ -156,7 +112,7 @@ class Loader {
         // Remove the ones that weren't converted
         endpoint.parameters = endpoint.parameters.filter(n => typeof n === 'object');
 
-        if (swaggerVersion >= 3 && Object.keys(requestBody).length) {
+        if (specVersion >= 3 && Object.keys(requestBody).length) {
           const properties = {};
           let required = [];
           let base = false;
@@ -270,7 +226,6 @@ Loader.LOADER_METHODS = {
   '.yml': Loader.loadYAML,
   '.json': Loader.loadJSON,
 };
-Loader.SWAGGER_TYPES_REGEX = /\.json|\.yaml|\.yml/i;
-Loader.MAX_CONCURRENCY = 500;
+Loader.TYPES_REGEX = /\.json|\.yaml|\.yml/i;
 
 module.exports = Loader;

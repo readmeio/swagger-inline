@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Example OpenAPI base file for `swagger-inline`.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://petstore.swagger.io/v2"
+    }
+  ]
+}

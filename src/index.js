@@ -1,5 +1,4 @@
 const jsYaml = require('js-yaml');
-const _ = require('lodash');
 
 const Loader = require('./loader');
 const Extractor = require('./extractor');
@@ -14,28 +13,37 @@ function outputResult(object, options) {
 
 function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
   return endpoints.reduce((prev, current) => {
-    const method = current.method;
-    const route = current.route;
-    const descriptor = _.omit(current, ['method', 'route']);
-
+    const { method, route, ...operation } = current;
     if (!method || !route) {
       return prev;
     }
 
-    return _.set(prev, ['paths', route, method], descriptor);
+    /* eslint-disable no-param-reassign */
+    if (!prev.paths) prev.paths = {};
+    if (!prev.paths[route]) prev.paths[route] = {};
+
+    prev.paths[route][method] = operation;
+    /* eslint-enable no-param-reassign */
+
+    return prev;
   }, swaggerBase);
 }
 
 function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
   return schemas.reduce((prev, current) => {
-    const name = current.name;
-    const descriptor = _.omit(current, ['name']);
-
+    const { name, ...schema } = current;
     if (!name) {
       return prev;
     }
 
-    return _.set(prev, ['components', 'schemas', name], descriptor);
+    /* eslint-disable no-param-reassign */
+    if (!prev.components) prev.components = {};
+    if (!prev.components.schemas) prev.components.schemas = {};
+
+    prev.components.schemas[name] = schema;
+    /* eslint-enable no-param-reassign */
+
+    return prev;
   }, swaggerBase);
 }
 
@@ -82,19 +90,15 @@ function swaggerInline(globPatterns, providedOptions) {
                 newEndpoints = Loader.addResponse(newEndpoints);
 
                 newEndpoints = Loader.expandParams(newEndpoints, specVersion);
-                endpoints = _.concat(endpoints, newEndpoints);
+                endpoints = endpoints.concat(newEndpoints);
 
-                const scheme = Extractor.extractSchemasFromCode(fileInfo.fileData, {
+                const schema = Extractor.extractSchemasFromCode(fileInfo.fileData, {
                   filename: fileInfo.fileName,
                   scope: options.getScope(),
                   ignoreErrors: options.getIgnoreErrors(),
-                });
+                }).filter(s => Object.keys(s).length);
 
-                _.remove(scheme, s => {
-                  return _.isEmpty(s);
-                });
-
-                schemas = _.concat(schemas, scheme);
+                schemas = schemas.concat(schema);
                 return Promise.resolve();
               } catch (e) {
                 return Promise.reject(new Error(`${e.toString()} \n at ${fileInfo.fileName}`));

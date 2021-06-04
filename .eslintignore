@@ -1,3 +1,2 @@
-build/*
+__tests__/__fixtures__/*
 coverage/
-tests/fixtures/*

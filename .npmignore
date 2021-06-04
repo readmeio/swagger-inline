@@ -1,8 +1,7 @@
+__tests__/
 .github/
-build/
 coverage/
 node_modules/
-tests/
 .eslint*
 .gitignore
 .prettier*

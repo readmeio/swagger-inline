@@ -1,7 +1,7 @@
 {
   "name": "swagger-inline",
   "version": "4.0.1",
-  "description": "Generate your OAS/Swagger files from inline comments.",
+  "description": "Generate an OpenAPI/Swagger definition from inline comments.",
   "author": "Readme.io",
   "license": "ISC",
   "bugs": {
@@ -24,40 +24,38 @@
   "engines": {
     "node": "^12 || ^14 || ^16"
   },
-  "main": "build/index.js",
+  "main": "src/index.js",
   "bin": {
-    "swagger-inline": "build/index.js"
+    "swagger-inline": "src/swagger-inline"
   },
   "scripts": {
-    "build": "babel src/ -d build",
     "lint": "eslint .",
-    "prepublish": "npm run-script build",
     "pretest": "npm run lint",
     "release": "conventional-changelog -i CHANGELOG.md -s",
-    "start": "babel --watch src/ -d build/",
-    "test": "jest --coverage tests/"
+    "test": "jest --coverage"
   },
   "dependencies": {
-    "bluebird": "^3.4.1",
     "commander": "^6.0.0",
     "globby": "^11.0.1",
     "js-yaml": "^4.1.0",
-    "lodash": "^4.17.11",
-    "multilang-extract-comments": "^0.4.0"
+    "multilang-extract-comments": "^0.4.0",
+    "promise.any": "^2.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/preset-env": "^7.7.6",
     "@readme/eslint-config": "^5.0.5",
     "conventional-changelog-cli": "^2.0.31",
     "eslint": "^7.1.0",
     "jest": "^27.0.3",
     "prettier": "^2.0.1"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
+  "prettier": "@readme/eslint-config/prettier",
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      "<rootDir>/__tests__/__fixtures__/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/__fixtures__/"
     ]
-  },
-  "prettier": "@readme/eslint-config/prettier"
+  }
 }

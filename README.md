@@ -1,6 +1,6 @@
 # swagger-inline
 
-Node module for extracting Swagger/OpenAPI endpoints from inline comments.
+Generate an OpenAPI/Swagger definition from inline comments.
 
 [![npm](https://img.shields.io/npm/v/swagger-inline)](https://npm.im/swagger-inline) [![Build](https://github.com/readmeio/swagger-inline/workflows/CI/badge.svg)](https://github.com/readmeio/swagger-inline)
 
@@ -15,25 +15,25 @@ Node module for extracting Swagger/OpenAPI endpoints from inline comments.
 ## Installation
 
 ```
-npm install --save-dev swagger-inline
+npm install swagger-inline --save-dev
 ```
 
 ## Usage
 ### CLI
 ```
-swagger-inline [--base] [--format] <inputGlobs ...>
+npx swagger-inline [--base] [--format] <inputGlobs ...>
 ```
 
 #### Example
 
 ```bash
-swagger-inline "./*.js" --base 'swaggerBase.json' > api.json
+npx swagger-inline "./*.js" --base 'swaggerBase.json' > api.json
 ```
 
 #### Options
 The `inputGlobs` argument is a list of files, or globs, to search for Swagger/OAS comments.
 
-- `base`: Base specification to extend. ***Required**
+- `base`: Base API specification to extend. ***Required**
 - `format`: Output filetype: `.json` or `.yaml` (default: `.json`)
 - `scope`: Matches the scope field defined in each API. For example, if `--scope public` is supplied, all operations will be generated, if `--scope private`, only those operations that have a `scope: private` declaration will be included.
 

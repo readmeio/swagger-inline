@@ -1,3 +1,9 @@
+## <small>4.1.1 (2021-06-04)</small>
+
+* fix: typo in the bin directive ([c5320dc](https://github.com/readmeio/swagger-inline/commit/c5320dc))
+
+
+
 ## 4.1.0 (2021-06-04)
 
 * feat: small rewrite to eliminate bluebird and lodash (#195) ([d698578](https://github.com/readmeio/swagger-inline/commit/d698578)), closes [#195](https://github.com/readmeio/swagger-inline/issues/195)

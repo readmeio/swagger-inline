@@ -1,3 +1,9 @@
+## 4.1.0 (2021-06-04)
+
+* feat: small rewrite to eliminate bluebird and lodash (#195) ([d698578](https://github.com/readmeio/swagger-inline/commit/d698578)), closes [#195](https://github.com/readmeio/swagger-inline/issues/195)
+
+
+
 ## <small>4.0.1 (2021-06-01)</small>
 
 * chore(deps-dev): bump @babel/cli from 7.13.16 to 7.14.3 (#194) ([36636f6](https://github.com/readmeio/swagger-inline/commit/36636f6)), closes [#194](https://github.com/readmeio/swagger-inline/issues/194)

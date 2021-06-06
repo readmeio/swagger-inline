@@ -1,6 +1,3 @@
-const fs = require('fs');
-const jsYaml = require('js-yaml');
-
 const swaggerInline = require('../src');
 
 describe('Swagger Inline', () => {
@@ -35,20 +32,14 @@ describe('Swagger Inline', () => {
     ['OpenAPI', `${__dirname}/__fixtures__/project-openapi`, 'openapiBase'],
     ['Swagger', `${__dirname}/__fixtures__/project`, 'swaggerBase'],
   ])('%s', (c, projectDir, base) => {
-    const baseYAMLPath = `${projectDir}/${base}.yaml`;
-    const baseJSONPath = `${projectDir}/${base}.json`;
-
     it('supports JSON', () => {
-      return swaggerInline(`${projectDir}/*.js`, { base: baseJSONPath }).then(json => {
+      return swaggerInline(`${projectDir}/*`, { base: `${projectDir}/${base}.json` }).then(json => {
         expect(JSON.parse(json)).toMatchSnapshot();
       });
     });
 
     it('supports YAML', () => {
-      const baseYAML = jsYaml.load(fs.readFileSync(baseYAMLPath, 'utf-8'));
-      expect(Object.keys(baseYAML).length).toBeGreaterThan(0);
-
-      return swaggerInline(`${projectDir}/*.js`, { base: baseYAMLPath }).then(yaml => {
+      return swaggerInline(`${projectDir}/*`, { base: `${projectDir}/${base}.yaml` }).then(yaml => {
         expect(yaml).toMatchSnapshot();
 
         expect(() => {

@@ -1,4 +1,5 @@
 const jsYaml = require('js-yaml');
+const path = require('path');
 
 const Loader = require('./loader');
 const Extractor = require('./extractor');
@@ -80,13 +81,23 @@ function swaggerInline(globPatterns, providedOptions) {
 
           return Promise.all(
             detectedFiles.map(fileInfo => {
+              let newEndpoints;
               try {
-                let newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
+                newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
                   filename: fileInfo.fileName,
                   scope: options.getScope(),
                   ignoreErrors: options.getIgnoreErrors(),
                 });
+              } catch (err) {
+                // If the file that we failed to parse is a text file, let's just ignore it.
+                if (['.json', '.md', '.txt'].includes(path.extname(fileInfo.fileName))) {
+                  return Promise.resolve();
+                }
 
+                return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
+              }
+
+              try {
                 newEndpoints = Loader.addResponse(newEndpoints);
 
                 newEndpoints = Loader.expandParams(newEndpoints, specVersion);
@@ -100,8 +111,8 @@ function swaggerInline(globPatterns, providedOptions) {
 
                 schemas = schemas.concat(schema);
                 return Promise.resolve();
-              } catch (e) {
-                return Promise.reject(new Error(`${e.toString()} \n at ${fileInfo.fileName}`));
+              } catch (err) {
+                return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
               }
             })
           )

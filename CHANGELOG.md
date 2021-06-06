@@ -1,3 +1,9 @@
+## <small>4.1.3 (2021-06-06)</small>
+
+* fix: ignore errors where a files language can't be determined ([263ca6c](https://github.com/readmeio/swagger-inline/commit/263ca6c))
+
+
+
 ## <small>4.1.2 (2021-06-06)</small>
 
 * fix: improved error handling for files that don't have docblocks (#196) ([58526c6](https://github.com/readmeio/swagger-inline/commit/58526c6)), closes [#196](https://github.com/readmeio/swagger-inline/issues/196)

@@ -1,3 +1,13 @@
+## <small>4.1.4 (2021-07-06)</small>
+
+* chore(deps-dev): bump @readme/eslint-config from 5.0.5 to 5.1.0 (#202) ([b9def82](https://github.com/readmeio/swagger-inline/commit/b9def82)), closes [#202](https://github.com/readmeio/swagger-inline/issues/202)
+* chore(deps-dev): bump eslint from 7.27.0 to 7.29.0 (#197) ([20f0ab0](https://github.com/readmeio/swagger-inline/commit/20f0ab0)), closes [#197](https://github.com/readmeio/swagger-inline/issues/197)
+* chore(deps-dev): bump jest from 27.0.3 to 27.0.6 (#200) ([d2d8aed](https://github.com/readmeio/swagger-inline/commit/d2d8aed)), closes [#200](https://github.com/readmeio/swagger-inline/issues/200)
+* chore(deps-dev): bump prettier from 2.3.0 to 2.3.2 (#199) ([c24ea3c](https://github.com/readmeio/swagger-inline/commit/c24ea3c)), closes [#199](https://github.com/readmeio/swagger-inline/issues/199)
+* chore(deps): bump globby from 11.0.3 to 11.0.4 (#201) ([907e905](https://github.com/readmeio/swagger-inline/commit/907e905)), closes [#201](https://github.com/readmeio/swagger-inline/issues/201)
+
+
+
 ## <small>4.1.3 (2021-06-06)</small>
 
 * fix: ignore errors where a files language can't be determined ([263ca6c](https://github.com/readmeio/swagger-inline/commit/263ca6c))

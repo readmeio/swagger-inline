@@ -42,7 +42,7 @@
     "promise.any": "^2.0.2"
   },
   "devDependencies": {
-    "@readme/eslint-config": "^5.0.5",
+    "@readme/eslint-config": "^6.0.0",
     "conventional-changelog-cli": "^2.0.31",
     "eslint": "^7.1.0",
     "jest": "^27.0.3",

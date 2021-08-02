@@ -1,5 +1,17 @@
 version: 2
 updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    reviewers:
+      - erunion
+    labels:
+      - scope:dependency
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -8,4 +20,13 @@ updates:
     reviewers:
       - erunion
     labels:
-      - dependencies
+      - scope:dependency
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+    ignore:
+      # globby@12 is now an ESM-only package and can't be loaded here without a rewrite.
+      # https://github.com/sindresorhus/globby/releases/tag/v12.0.0
+      - dependency-name: globby
+        versions:
+          - ">= 12"

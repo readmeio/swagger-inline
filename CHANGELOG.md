@@ -1,3 +1,10 @@
+## <small>4.1.5 (2021-08-02)</small>
+
+* chore(deps): bump actions/setup-node from 2.1.5 to 2.3.0 (#207) ([5194f48](https://github.com/readmeio/swagger-inline/commit/5194f48)), closes [#207](https://github.com/readmeio/swagger-inline/issues/207)
+* chore(deps): upgrading dev deps and running npm audit ([03a38d4](https://github.com/readmeio/swagger-inline/commit/03a38d4))
+
+
+
 ## <small>4.1.4 (2021-07-06)</small>
 
 * chore(deps-dev): bump @readme/eslint-config from 5.0.5 to 5.1.0 (#202) ([b9def82](https://github.com/readmeio/swagger-inline/commit/b9def82)), closes [#202](https://github.com/readmeio/swagger-inline/issues/202)

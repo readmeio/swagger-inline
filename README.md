@@ -138,7 +138,7 @@ paths:
           schema:
             type: String
 components:
-  schemes:
+  schemas:
     Pet:
       required:
         - id

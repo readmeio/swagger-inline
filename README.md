@@ -83,6 +83,7 @@ schemes: ['http']
 
 /**
  * @api [get] /pets
+ * bodyContentType: "application/json"
  * description: "Returns all pets from the system that the user has access to"
  * responses:
  *   "200":

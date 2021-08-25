@@ -1,3 +1,13 @@
+## 4.2.0 (2021-08-25)
+
+* ci: updating the dependabot label ([7da4e39](https://github.com/readmeio/swagger-inline/commit/7da4e39))
+* docs: adding a LICENSE ([0bad2be](https://github.com/readmeio/swagger-inline/commit/0bad2be))
+* chore(deps): bump actions/setup-node from 2.3.0 to 2.4.0 (#211) ([9a585ad](https://github.com/readmeio/swagger-inline/commit/9a585ad)), closes [#211](https://github.com/readmeio/swagger-inline/issues/211)
+* feat: add support for custom body content type (#210) ([9372e06](https://github.com/readmeio/swagger-inline/commit/9372e06)), closes [#210](https://github.com/readmeio/swagger-inline/issues/210)
+* docs: correct example Output typo (#208) ([24136d2](https://github.com/readmeio/swagger-inline/commit/24136d2)), closes [#208](https://github.com/readmeio/swagger-inline/issues/208)
+
+
+
 ## <small>4.1.5 (2021-08-02)</small>
 
 * chore(deps): bump actions/setup-node from 2.1.5 to 2.3.0 (#207) ([5194f48](https://github.com/readmeio/swagger-inline/commit/5194f48)), closes [#207](https://github.com/readmeio/swagger-inline/issues/207)

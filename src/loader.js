@@ -143,10 +143,10 @@ class Loader {
           } else {
             schema = base.schema;
           }
-          
-          let bodyContentType = 'application/json'
+
+          let bodyContentType = 'application/json';
           if (base.bodyContentType) {
-            bodyContentType = base.bodyContentType
+            bodyContentType = base.bodyContentType;
           }
 
           endpoint.requestBody = {

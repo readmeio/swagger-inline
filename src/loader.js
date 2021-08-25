@@ -144,9 +144,14 @@ class Loader {
             schema = base.schema;
           }
 
+          let bodyContentType = 'application/json';
+          if (endpoint.bodyContentType) {
+            bodyContentType = endpoint.bodyContentType;
+          }
+
           endpoint.requestBody = {
             content: {
-              'application/json': {
+              [bodyContentType]: {
                 schema,
               },
             },

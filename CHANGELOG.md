@@ -1,3 +1,12 @@
+## <small>4.2.1 (2021-09-01)</small>
+
+* chore(deps-dev): bump @readme/eslint-config from 6.0.0 to 6.1.0 (#213) ([54f2599](https://github.com/readmeio/swagger-inline/commit/54f2599)), closes [#213](https://github.com/readmeio/swagger-inline/issues/213)
+* chore(deps-dev): bump jest from 27.0.6 to 27.1.0 (#214) ([dcdb68b](https://github.com/readmeio/swagger-inline/commit/dcdb68b)), closes [#214](https://github.com/readmeio/swagger-inline/issues/214)
+* chore(deps-dev): dropping conventional-changelog-cli in favor of npx ([604ca49](https://github.com/readmeio/swagger-inline/commit/604ca49))
+* chore(deps): running npm audit ([05e7396](https://github.com/readmeio/swagger-inline/commit/05e7396))
+
+
+
 ## 4.2.0 (2021-08-25)
 
 * ci: updating the dependabot label ([7da4e39](https://github.com/readmeio/swagger-inline/commit/7da4e39))

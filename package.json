@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Generate an OpenAPI/Swagger definition from inline comments.",
   "author": "Readme.io",
   "license": "ISC",

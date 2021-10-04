@@ -1,3 +1,17 @@
+## <small>4.2.2 (2021-10-04)</small>
+
+* fix: issue where `scope` schema properties were picked up as scope params ([0d1d537](https://github.com/readmeio/swagger-inline/commit/0d1d537)), closes [#215](https://github.com/readmeio/swagger-inline/issues/215)
+* chore(deps-dev): bump @readme/eslint-config from 6.1.0 to 7.1.1 (#216) ([b92beb6](https://github.com/readmeio/swagger-inline/commit/b92beb6)), closes [#216](https://github.com/readmeio/swagger-inline/issues/216)
+* chore(deps-dev): bump jest from 27.1.0 to 27.2.4 (#218) ([c5c5de8](https://github.com/readmeio/swagger-inline/commit/c5c5de8)), closes [#218](https://github.com/readmeio/swagger-inline/issues/218)
+* chore(deps-dev): bump prettier from 2.3.2 to 2.4.1 (#219) ([eb621ab](https://github.com/readmeio/swagger-inline/commit/eb621ab)), closes [#219](https://github.com/readmeio/swagger-inline/issues/219)
+* chore(deps-dev): upgrading @readme/eslint-config to 7.2.0 ([a7cf2f2](https://github.com/readmeio/swagger-inline/commit/a7cf2f2))
+* chore(deps): bump actions/setup-node from 2.4.0 to 2.4.1 (#220) ([a9e3d61](https://github.com/readmeio/swagger-inline/commit/a9e3d61)), closes [#220](https://github.com/readmeio/swagger-inline/issues/220)
+* ci: setting up codeql ([d324f41](https://github.com/readmeio/swagger-inline/commit/d324f41))
+* docs: adding a pull request template ([5033a10](https://github.com/readmeio/swagger-inline/commit/5033a10))
+* docs: adding a security policy ([a0f2ace](https://github.com/readmeio/swagger-inline/commit/a0f2ace))
+
+
+
 ## <small>4.2.1 (2021-09-01)</small>
 
 * chore(deps-dev): bump @readme/eslint-config from 6.0.0 to 6.1.0 (#213) ([54f2599](https://github.com/readmeio/swagger-inline/commit/54f2599)), closes [#213](https://github.com/readmeio/swagger-inline/issues/213)

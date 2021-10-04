@@ -96,9 +96,15 @@ class Extractor {
         } else {
           scopeMatched = true;
         }
-        if (line.trim().indexOf('scope:') === 0) {
-          return false;
+
+        if (line.trim().match(/scope:/)) {
+          // Only return false here if this line is an explicit `scope: {string}` property and not perhaps a `scope`
+          // property within a request body, parameter, or response schema.
+          if (line.trim().match(/scope: (.*)/)) {
+            return false;
+          }
         }
+
         pushLine(yamlLines, line);
         // eslint-disable-next-line consistent-return
         return;

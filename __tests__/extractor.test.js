@@ -168,5 +168,15 @@ describe('Extractor', () => {
         Extractor.extractSchemas(malformedSchema);
       }).toThrow("YAML Exception in 'Schema: Pet'");
     });
+
+    it('can parse an OAS block if there exists a `scope` property within an object', () => {
+      const code = fs.readFileSync(`${__dirname}/__fixtures__/endpoint-with-scope-obj-prop.js`, 'utf-8');
+
+      let endpoints = Extractor.extractEndpointsFromCode(code);
+      expect(endpoints).toHaveLength(3);
+
+      endpoints = Extractor.extractEndpointsFromCode(code, { scope: 'patchScope' });
+      expect(endpoints).toHaveLength(1);
+    });
   });
 });

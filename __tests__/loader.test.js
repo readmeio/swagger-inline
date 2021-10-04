@@ -42,21 +42,21 @@ describe('Loader', () => {
     it('loads JSON file data', () => {
       const jsonPath = `${__dirname}/__fixtures__/project/swaggerBase.json`;
       return Loader.loadBase(jsonPath).then(base => {
-        expect(base.swagger).not.toBeUndefined();
+        expect(base.swagger).toBeDefined();
       });
     });
 
     it('loads YAML file data', () => {
       const yamlPath = `${__dirname}/__fixtures__/project/swaggerBase.yaml`;
       return Loader.loadBase(yamlPath).then(base => {
-        expect(base.swagger).not.toBeUndefined();
+        expect(base.swagger).toBeDefined();
       });
     });
 
     it('searches for a base API definition in the provided directory', () => {
       const dir = `${__dirname}/__fixtures__/project/`;
       return Loader.loadBase(dir).then(base => {
-        expect(base.swagger).not.toBeUndefined();
+        expect(base.swagger).toBeDefined();
       });
     });
 
@@ -240,7 +240,7 @@ describe('Loader', () => {
       const yamlObject = jsYaml.load(fs.readFileSync(yamlPath, 'utf-8'));
       return Loader.loadData(yamlPath).then(yaml => {
         Object.keys(yamlObject).forEach(key => {
-          expect(yaml[key]).not.toBeUndefined();
+          expect(yaml[key]).toBeDefined();
         });
       });
     });
@@ -250,7 +250,7 @@ describe('Loader', () => {
       const jsonObject = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
       return Loader.loadData(jsonPath).then(json => {
         Object.keys(jsonObject).forEach(key => {
-          expect(json[key]).not.toBeUndefined();
+          expect(json[key]).toBeDefined();
         });
       });
     });

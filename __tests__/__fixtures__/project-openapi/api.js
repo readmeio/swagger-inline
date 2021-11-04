@@ -1,4 +1,36 @@
 /*
+ * @api [post] /pets
+ *    description: "Creates a new pet in the store. Duplicates are allowed"
+ *    operationId: "addPet"
+ *    requestBody:
+ *      description: "Pet to add to the store"
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: "#/components/schemas/Pet"
+ *    responses:
+ *      "200":
+ *        description: "pet response"
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: "array"
+ *              items:
+ *                $ref: "#/components/schemas/Pet"
+ *      default:
+ *        description: "unexpected error"
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: "#/components/schemas/ErrorModel"
+ */
+
+router.post('/pets', () => {
+
+});
+
+/*
  * @api [get] /pets
  *    description: "Returns all pets from the system that the user has access to"
  *    operationId: "findPets"
@@ -39,38 +71,6 @@
  */
 
 router.get('/pets', () => {
-
-});
-
-/*
- * @api [post] /pets
- *    description: "Creates a new pet in the store. Duplicates are allowed"
- *    operationId: "addPet"
- *    requestBody:
- *      description: "Pet to add to the store"
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: "#/components/schemas/Pet"
- *    responses:
- *      "200":
- *        description: "pet response"
- *        content:
- *          application/json:
- *            schema:
- *              type: "array"
- *              items:
- *                $ref: "#/components/schemas/Pet"
- *      default:
- *        description: "unexpected error"
- *        content:
- *          application/json:
- *            schema:
- *              $ref: "#/components/schemas/ErrorModel"
- */
-
-router.post('/pets', () => {
 
 });
 

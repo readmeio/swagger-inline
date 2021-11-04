@@ -339,6 +339,12 @@ paths:
                 $ref: '#/components/schemas/ErrorModel'
 components:
   schemas:
+    ErrorModel:
+      required:
+        - message
+      properties:
+        message:
+          type: string
     Pet:
       required:
         - id
@@ -350,12 +356,6 @@ components:
         name:
           type: string
         tag:
-          type: string
-    ErrorModel:
-      required:
-        - message
-      properties:
-        message:
           type: string
 "
 `;

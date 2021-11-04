@@ -13,7 +13,7 @@ function outputResult(object, options) {
 }
 
 function sortObj(obj, compare) {
-  const sorted = compare ? Object.keys(obj).sort(compare) : Object.keys(obj);
+  const sorted = compare ? Object.keys(obj).sort(compare) : Object.keys(obj).sort();
   return sorted.reduce(function (result, key) {
     // eslint-disable-next-line no-param-reassign
     result[key] = obj[key];

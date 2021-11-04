@@ -1,3 +1,9 @@
+## <small>5.0.1 (2021-11-04)</small>
+
+* fix: typo where some paths weren't always sorted ([3b6ea28](https://github.com/readmeio/swagger-inline/commit/3b6ea28))
+
+
+
 ## 5.0.0 (2021-11-04)
 
 This is a major release because this work introduces and forces generated API definitions to have paths and component schemas ordered alphabetically.

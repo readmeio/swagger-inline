@@ -12,7 +12,20 @@ function outputResult(object, options) {
   });
 }
 
+function sortObj(obj, compare) {
+  const sorted = compare ? Object.keys(obj).sort(compare) : Object.keys(obj);
+  return sorted.reduce(function (result, key) {
+    // eslint-disable-next-line no-param-reassign
+    result[key] = obj[key];
+    return result;
+  }, {});
+}
+
 function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
+  // To ensure consistent sorting of HTTP methods let's universally enforce the following order.
+  const methodPriority = new Map();
+  ['get', 'post', 'put', 'patch', 'delete', 'options', 'head', 'trace'].forEach((x, i) => methodPriority.set(x, i));
+
   return endpoints.reduce((prev, current) => {
     const { method, route, ...operation } = current;
     if (!method || !route) {
@@ -24,6 +37,12 @@ function mergeEndpointsWithBase(swaggerBase = {}, endpoints = []) {
     if (!prev.paths[route]) prev.paths[route] = {};
 
     prev.paths[route][method] = operation;
+
+    // Resort everything to be alphabetical.
+    prev.paths = sortObj(prev.paths);
+    prev.paths[route] = sortObj(prev.paths[route], (a, b) => {
+      return methodPriority.get(a) - methodPriority.get(b);
+    });
     /* eslint-enable no-param-reassign */
 
     return prev;
@@ -42,6 +61,7 @@ function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
     if (!prev.components.schemas) prev.components.schemas = {};
 
     prev.components.schemas[name] = schema;
+    prev.components.schemas = sortObj(prev.components.schemas);
     /* eslint-enable no-param-reassign */
 
     return prev;

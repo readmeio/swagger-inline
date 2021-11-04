@@ -1,3 +1,28 @@
+## 5.0.0 (2021-11-04)
+
+This is a major release because this work introduces and forces generated API definitions to have paths and component schemas ordered alphabetically.
+
+Path operations are also sorted now but in with the following priority: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`, and finally `TRACE`.
+
+🎉
+
+* feat: ensuring that exported definitions are sorted by path and method (#225) ([c272295](https://github.com/readmeio/swagger-inline/commit/c272295)), closes [#225](https://github.com/readmeio/swagger-inline/issues/225)
+* build: 4.2.2 release ([df3a24d](https://github.com/readmeio/swagger-inline/commit/df3a24d))
+* chore(deps-dev): bump @readme/eslint-config from 6.1.0 to 7.1.1 (#216) ([b92beb6](https://github.com/readmeio/swagger-inline/commit/b92beb6)), closes [#216](https://github.com/readmeio/swagger-inline/issues/216)
+* chore(deps-dev): bump @readme/eslint-config from 7.2.1 to 7.2.2 (#222) ([8961f8c](https://github.com/readmeio/swagger-inline/commit/8961f8c)), closes [#222](https://github.com/readmeio/swagger-inline/issues/222)
+* chore(deps-dev): bump jest from 27.1.0 to 27.2.4 (#218) ([c5c5de8](https://github.com/readmeio/swagger-inline/commit/c5c5de8)), closes [#218](https://github.com/readmeio/swagger-inline/issues/218)
+* chore(deps-dev): bump jest from 27.2.4 to 27.3.1 (#223) ([8b5e45a](https://github.com/readmeio/swagger-inline/commit/8b5e45a)), closes [#223](https://github.com/readmeio/swagger-inline/issues/223)
+* chore(deps-dev): bump prettier from 2.3.2 to 2.4.1 (#219) ([eb621ab](https://github.com/readmeio/swagger-inline/commit/eb621ab)), closes [#219](https://github.com/readmeio/swagger-inline/issues/219)
+* chore(deps-dev): upgrading @readme/eslint-config to 7.2.0 ([a7cf2f2](https://github.com/readmeio/swagger-inline/commit/a7cf2f2))
+* chore(deps): bump actions/checkout from 2.3.4 to 2.3.5 (#224) ([3c2a875](https://github.com/readmeio/swagger-inline/commit/3c2a875)), closes [#224](https://github.com/readmeio/swagger-inline/issues/224)
+* chore(deps): bump actions/setup-node from 2.4.0 to 2.4.1 (#220) ([a9e3d61](https://github.com/readmeio/swagger-inline/commit/a9e3d61)), closes [#220](https://github.com/readmeio/swagger-inline/issues/220)
+* fix: issue where `scope` schema properties were picked up as scope params ([0d1d537](https://github.com/readmeio/swagger-inline/commit/0d1d537)), closes [#215](https://github.com/readmeio/swagger-inline/issues/215)
+* ci: setting up codeql ([d324f41](https://github.com/readmeio/swagger-inline/commit/d324f41))
+* docs: adding a pull request template ([5033a10](https://github.com/readmeio/swagger-inline/commit/5033a10))
+* docs: adding a security policy ([a0f2ace](https://github.com/readmeio/swagger-inline/commit/a0f2ace))
+
+
+
 ## <small>4.2.2 (2021-10-04)</small>
 
 * fix: issue where `scope` schema properties were picked up as scope params ([0d1d537](https://github.com/readmeio/swagger-inline/commit/0d1d537)), closes [#215](https://github.com/readmeio/swagger-inline/issues/215)

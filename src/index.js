@@ -112,7 +112,7 @@ function swaggerInline(globPatterns, providedOptions) {
                 // If the file that we failed to parse is a text file, let's just ignore it.
                 if (['.json', '.md', '.txt'].includes(path.extname(fileInfo.fileName))) {
                   return Promise.resolve();
-                } else if (new RegExp(/Cannot find language definition/).test(err.message)) {
+                } else if (/Cannot find language definition/.test(err.message)) {
                   return Promise.resolve();
                 }
 

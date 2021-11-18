@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 /* eslint-disable no-param-reassign */
 const fs = require('fs').promises;
 const path = require('path');

@@ -1,3 +1,14 @@
+## <small>5.0.2 (2021-12-01)</small>
+
+* chore(deps-dev): bump eslint from 8.2.0 to 8.3.0 (#228) ([7762181](https://github.com/readmeio/swagger-inline/commit/7762181)), closes [#228](https://github.com/readmeio/swagger-inline/issues/228)
+* chore(deps-dev): bump jest from 27.3.1 to 27.4.3 (#230) ([5a7fd08](https://github.com/readmeio/swagger-inline/commit/5a7fd08)), closes [#230](https://github.com/readmeio/swagger-inline/issues/230)
+* chore(deps-dev): bump prettier from 2.4.1 to 2.5.0 (#229) ([e4145a4](https://github.com/readmeio/swagger-inline/commit/e4145a4)), closes [#229](https://github.com/readmeio/swagger-inline/issues/229)
+* chore(deps-dev): upgrading eslint to v8 ([367730f](https://github.com/readmeio/swagger-inline/commit/367730f))
+* chore(deps): bump actions/checkout from 2.3.5 to 2.4.0 (#232) ([ee31d47](https://github.com/readmeio/swagger-inline/commit/ee31d47)), closes [#232](https://github.com/readmeio/swagger-inline/issues/232)
+* chore(deps): bump actions/setup-node from 2.4.1 to 2.5.0 (#231) ([1b37117](https://github.com/readmeio/swagger-inline/commit/1b37117)), closes [#231](https://github.com/readmeio/swagger-inline/issues/231)
+
+
+
 ## <small>5.0.1 (2021-11-04)</small>
 
 * fix: typo where some paths weren't always sorted ([3b6ea28](https://github.com/readmeio/swagger-inline/commit/3b6ea28))

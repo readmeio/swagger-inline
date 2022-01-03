@@ -1,3 +1,14 @@
+## <small>5.0.3 (2022-01-03)</small>
+
+* chore(deps-dev): bump @readme/eslint-config from 8.0.2 to 8.1.1 (#236) ([43df869](https://github.com/readmeio/swagger-inline/commit/43df869)), closes [#236](https://github.com/readmeio/swagger-inline/issues/236)
+* chore(deps-dev): bump eslint from 8.3.0 to 8.6.0 (#233) ([c3bef0c](https://github.com/readmeio/swagger-inline/commit/c3bef0c)), closes [#233](https://github.com/readmeio/swagger-inline/issues/233)
+* chore(deps-dev): bump jest from 27.4.3 to 27.4.5 (#234) ([0c3a109](https://github.com/readmeio/swagger-inline/commit/0c3a109)), closes [#234](https://github.com/readmeio/swagger-inline/issues/234)
+* chore(deps-dev): bump prettier from 2.5.0 to 2.5.1 (#235) ([dbc9311](https://github.com/readmeio/swagger-inline/commit/dbc9311)), closes [#235](https://github.com/readmeio/swagger-inline/issues/235)
+* chore(deps): bump actions/setup-node from 2.5.0 to 2.5.1 (#238) ([21c9163](https://github.com/readmeio/swagger-inline/commit/21c9163)), closes [#238](https://github.com/readmeio/swagger-inline/issues/238)
+* chore(deps): bump promise.any from 2.0.2 to 2.0.3 (#237) ([a3401e9](https://github.com/readmeio/swagger-inline/commit/a3401e9)), closes [#237](https://github.com/readmeio/swagger-inline/issues/237)
+
+
+
 ## <small>5.0.2 (2021-12-01)</small>
 
 * chore(deps-dev): bump eslint from 8.2.0 to 8.3.0 (#228) ([7762181](https://github.com/readmeio/swagger-inline/commit/7762181)), closes [#228](https://github.com/readmeio/swagger-inline/issues/228)

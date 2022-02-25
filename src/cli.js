@@ -9,7 +9,8 @@ module.exports = function (args) {
     .usage('[options] <inputGlobs ...>')
     .option('-b, --base [path]', 'A base OpenAPI or Swagger definition to build off of.')
     .option('-f, --format [format]', 'Output format (.json or .yaml).')
-    .option('-s, --scope [scope]', 'API scope to constrain against');
+    .option('-s, --scope [scope]', 'API scope to constrain against')
+    .option('-p, -- pattern [pattern]', 'Custom comment pattern supported by the multilang-extract-comments library');
 
   program.on('--help', () => {
     console.log('');
@@ -28,6 +29,7 @@ module.exports = function (args) {
     base: program.base,
     format: program.format,
     scope: program.scope,
+    pattern: program.pattern
   };
 
   swaggerInline(program.args, providedOptions)

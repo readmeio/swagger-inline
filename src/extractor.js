@@ -48,6 +48,7 @@ function buildSchema(schema, yamlLines) {
 
 class Extractor {
   static extractEndpointsFromCode(code, options) {
+    
     const comments = this.extractComments(code, options);
 
     return Object.keys(comments)

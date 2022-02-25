@@ -44,6 +44,10 @@ class Options {
   getIgnoreErrors() {
     return this.options.ignoreErrors;
   }
+
+  getPattern() {
+    return this.options.pattern;
+  }
 }
 
 Options.DEFAULTS = {
@@ -51,6 +55,7 @@ Options.DEFAULTS = {
   logger: () => {},
   ignore: ['node_modules/**/*', 'bower_modules/**/*'],
   ignoreErrors: false,
+  pattern: null
 };
 
 module.exports = Options;

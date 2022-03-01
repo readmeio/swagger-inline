@@ -28,7 +28,7 @@ describe('Extractor', () => {
 
       it('can extract comments from custom pattern and custom file', () => {
         const code = fs.readFileSync(`${__dirname}/__fixtures__/code/apex.cls`, 'utf-8');
-        const customPattern = JSON.parse((fs.readFileSync(`${__dirname}/__fixtures__/patterns/pattern-valid.json`)));
+        const customPattern = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures__/patterns/pattern-valid.json`));
         const comments = Extractor.extractComments(code, {
           filename: 'apex.cls',
           pattern: customPattern

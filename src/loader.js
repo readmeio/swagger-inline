@@ -52,7 +52,7 @@ class Loader {
     return Loader.loadFile(filepath).then(pattern => {
       return JSON.parse(pattern);
     }).catch((err) => {
-      // Return null if we have any problems, potetial for more rubust error handling.
+      // Return null if we have any problems, potential for more rubust error handling.
       return null;
     });
   }

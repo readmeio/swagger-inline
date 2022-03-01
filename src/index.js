@@ -4,7 +4,6 @@ const path = require('path');
 const Loader = require('./loader');
 const Extractor = require('./extractor');
 const Options = require('./options');
-const { option } = require('commander');
 
 function outputResult(object, options) {
   return new Promise(resolve => {

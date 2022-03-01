@@ -76,7 +76,7 @@ describe('Loader', () => {
     });
 
     it('returns null if the file is invalid json', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-valid.json';
+      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-invalid.json';
       return Loader.loadPattern(patternPath).then(pattern => {
         expect(pattern).toBeNull();
       });

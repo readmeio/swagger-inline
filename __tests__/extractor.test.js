@@ -31,7 +31,7 @@ describe('Extractor', () => {
         const customPattern = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures__/patterns/pattern-valid.json`));
         const comments = Extractor.extractComments(code, {
           filename: 'apex.cls',
-          pattern: customPattern
+          pattern: customPattern,
         });
 
         expect(Object.keys(comments)).toHaveLength(2);

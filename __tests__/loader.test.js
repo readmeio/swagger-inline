@@ -68,28 +68,28 @@ describe('Loader', () => {
   });
 
   describe('#loadPattern', () => {
-    it ('returns a pattern object', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-valid.json'
+    it('returns a pattern object', () => {
+      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-valid.json';
       return Loader.loadPattern(patternPath).then(pattern => {
         expect(pattern).toBeDefined();
       });
     });
 
-    it ('returns null if the file is invalid json', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-valid.json'
+    it('returns null if the file is invalid json', () => {
+      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-valid.json';
       return Loader.loadPattern(patternPath).then(pattern => {
         expect(pattern).toBeNull();
       });
     });
 
-    it ('returns null if the file does not exist', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-that-does-not-exist.json'
+    it('returns null if the file does not exist', () => {
+      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-that-does-not-exist.json';
       return Loader.loadPattern(patternPath).then(pattern => {
         expect(pattern).toBeNull();
       });
     });
 
-    it ('does not error when the filepath input param is null', () => {
+    it('does not error when the filepath input param is null', () => {
       return Loader.loadPattern(null).then(pattern => {
         expect(pattern).toBeNull();
       });

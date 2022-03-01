@@ -60,7 +60,7 @@ Options.DEFAULTS = {
   logger: () => {},
   ignore: ['node_modules/**/*', 'bower_modules/**/*'],
   ignoreErrors: false,
-  pattern: null
+  pattern: null,
 };
 
 module.exports = Options;

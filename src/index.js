@@ -92,14 +92,13 @@ function swaggerInline(globPatterns, providedOptions) {
       log(`${files.length} files matched...`);
 
       return Loader.loadPattern(options.getPattern()).then(pattern => {
-
         if (pattern) {
           options.setPattern(pattern);
         } else {
           // if there is no valid pattern specifed reset the pattern attribute to it's default to prevent error.
           options.setPattern(Options.DEFAULTS['pattern']);
         }
-    
+
         return Loader.loadFiles(files)
           .then(filesData => {
             const detectedFiles = filesData.map((fileData, index) => {
@@ -117,7 +116,7 @@ function swaggerInline(globPatterns, providedOptions) {
                     filename: fileInfo.fileName,
                     scope: options.getScope(),
                     ignoreErrors: options.getIgnoreErrors(),
-                    pattern: options.getPattern()
+                    pattern: options.getPattern(),
                   });
                 } catch (err) {
                   // If the file that we failed to parse is a text file, let's just ignore it.
@@ -140,7 +139,7 @@ function swaggerInline(globPatterns, providedOptions) {
                     filename: fileInfo.fileName,
                     scope: options.getScope(),
                     ignoreErrors: options.getIgnoreErrors(),
-                    pattern: options.getPattern()
+                    pattern: options.getPattern(),
                   }).filter(s => Object.keys(s).length);
 
                   schemas = schemas.concat(schema);
@@ -166,7 +165,7 @@ function swaggerInline(globPatterns, providedOptions) {
           .catch(err => {
             return Promise.reject(err);
           });
-        });
+      });
     });
   });
 }

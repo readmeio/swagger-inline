@@ -49,12 +49,14 @@ class Loader {
   }
 
   static loadPattern(filepath) {
-    return Loader.loadFile(filepath).then(pattern => {
-      return JSON.parse(pattern);
-    }).catch((err) => {
-      // Return null if we have any problems, potential for more rubust error handling.
-      return null;
-    });
+    return Loader.loadFile(filepath)
+      .then(pattern => {
+        return JSON.parse(pattern);
+      })
+      .catch(err => {
+        // Return null if we have any problems, potential for more rubust error handling.
+        return null;
+      });
   }
 
   static loadBase(base = '', options) {

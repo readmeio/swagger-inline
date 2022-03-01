@@ -4,6 +4,7 @@ const path = require('path');
 const Loader = require('./loader');
 const Extractor = require('./extractor');
 const Options = require('./options');
+const { option } = require('commander');
 
 function outputResult(object, options) {
   return new Promise(resolve => {
@@ -90,69 +91,82 @@ function swaggerInline(globPatterns, providedOptions) {
       }
 
       log(`${files.length} files matched...`);
-      return Loader.loadFiles(files)
-        .then(filesData => {
-          const detectedFiles = filesData.map((fileData, index) => {
-            return { fileData, fileName: files[index] };
-          });
 
-          let endpoints = [];
-          let schemas = [];
+      return Loader.loadPattern(options.getPattern()).then(pattern => {
 
-          return Promise.all(
-            detectedFiles.map(fileInfo => {
-              let newEndpoints;
-              try {
-                newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
-                  filename: fileInfo.fileName,
-                  scope: options.getScope(),
-                  ignoreErrors: options.getIgnoreErrors(),
-                });
-              } catch (err) {
-                // If the file that we failed to parse is a text file, let's just ignore it.
-                if (['.json', '.md', '.txt'].includes(path.extname(fileInfo.fileName))) {
-                  return Promise.resolve();
-                } else if (/Cannot find language definition/.test(err.message)) {
-                  return Promise.resolve();
+        if (pattern) {
+          options.setPattern(pattern);
+        } else {
+          // if there is no valid pattern specifed reset the pattern attribute to it's default to prevent error.
+          options.setPattern(Options.DEFAULTS['pattern']);
+        }
+    
+        return Loader.loadFiles(files)
+          .then(filesData => {
+            const detectedFiles = filesData.map((fileData, index) => {
+              return { fileData, fileName: files[index] };
+            });
+
+            let endpoints = [];
+            let schemas = [];
+
+            return Promise.all(
+              detectedFiles.map(fileInfo => {
+                let newEndpoints;
+                try {
+                  newEndpoints = Extractor.extractEndpointsFromCode(fileInfo.fileData, {
+                    filename: fileInfo.fileName,
+                    scope: options.getScope(),
+                    ignoreErrors: options.getIgnoreErrors(),
+                    pattern: options.getPattern()
+                  });
+                } catch (err) {
+                  // If the file that we failed to parse is a text file, let's just ignore it.
+                  if (['.json', '.md', '.txt'].includes(path.extname(fileInfo.fileName))) {
+                    return Promise.resolve();
+                  } else if (/Cannot find language definition/.test(err.message)) {
+                    return Promise.resolve();
+                  }
+
+                  return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
                 }
 
-                return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
-              }
+                try {
+                  newEndpoints = Loader.addResponse(newEndpoints);
 
-              try {
-                newEndpoints = Loader.addResponse(newEndpoints);
+                  newEndpoints = Loader.expandParams(newEndpoints, specVersion);
+                  endpoints = endpoints.concat(newEndpoints);
 
-                newEndpoints = Loader.expandParams(newEndpoints, specVersion);
-                endpoints = endpoints.concat(newEndpoints);
+                  const schema = Extractor.extractSchemasFromCode(fileInfo.fileData, {
+                    filename: fileInfo.fileName,
+                    scope: options.getScope(),
+                    ignoreErrors: options.getIgnoreErrors(),
+                    pattern: options.getPattern()
+                  }).filter(s => Object.keys(s).length);
 
-                const schema = Extractor.extractSchemasFromCode(fileInfo.fileData, {
-                  filename: fileInfo.fileName,
-                  scope: options.getScope(),
-                  ignoreErrors: options.getIgnoreErrors(),
-                }).filter(s => Object.keys(s).length);
+                  schemas = schemas.concat(schema);
+                  return Promise.resolve();
+                } catch (err) {
+                  return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
+                }
+              })
+            )
+              .then(() => {
+                log(`${endpoints.length} definitions found...`);
+                log(`${schemas.length} schemas found...`);
 
-                schemas = schemas.concat(schema);
-                return Promise.resolve();
-              } catch (err) {
-                return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
-              }
-            })
-          )
-            .then(() => {
-              log(`${endpoints.length} definitions found...`);
-              log(`${schemas.length} schemas found...`);
+                const baseWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
+                const swagger = mergeSchemasWithBase(baseWithEndpoints, schemas);
 
-              const baseWithEndpoints = mergeEndpointsWithBase(baseObj, endpoints);
-              const swagger = mergeSchemasWithBase(baseWithEndpoints, schemas);
-
-              return outputResult(swagger, options);
-            })
-            .catch(err => {
-              return Promise.reject(err);
-            });
-        })
-        .catch(err => {
-          return Promise.reject(err);
+                return outputResult(swagger, options);
+              })
+              .catch(err => {
+                return Promise.reject(err);
+              });
+          })
+          .catch(err => {
+            return Promise.reject(err);
+          });
         });
     });
   });

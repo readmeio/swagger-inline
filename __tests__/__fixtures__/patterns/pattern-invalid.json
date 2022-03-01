@@ -1,0 +1,12 @@
+{
+	"name: "Apex",
+	"nameMatchers": [".cls"],
+	"singleLineComment": [{
+		"start": "//"
+	}],
+	"multiLineComment": [{
+		"start": "/*",
+		"middle": "",
+		"end": "*/"
+	}]
+}

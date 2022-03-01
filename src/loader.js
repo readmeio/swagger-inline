@@ -48,6 +48,15 @@ class Loader {
     return Loader.LOADER_METHODS[extname](filepath, options);
   }
 
+  static loadPattern(filepath) {
+    return Loader.loadFile(filepath).then(pattern => {
+      return JSON.parse(pattern);
+    }).catch((err) => {
+      // Return null if we have any problems, potetial for more rubust error handling.
+      return null;
+    });
+  }
+
   static loadBase(base = '', options) {
     return fs
       .stat(base)

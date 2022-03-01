@@ -25,6 +25,23 @@ describe('Extractor', () => {
           expect(comment.content).toContain(expectations[index].content);
         });
       });
+
+      it('can extract comments from custom pattern and custom file', () => {
+        const code = fs.readFileSync(`${__dirname}/__fixtures__/code/apex.cls`, 'utf-8');
+        const customPattern = JSON.parse((fs.readFileSync(`${__dirname}/__fixtures__/patterns/pattern-valid.json`)));
+        const comments = Extractor.extractComments(code, {
+          filename: 'apex.cls',
+          pattern: customPattern
+        });
+
+        expect(Object.keys(comments)).toHaveLength(2);
+
+        Object.keys(comments).forEach((key, index) => {
+          const comment = comments[key];
+          expect(comment.info.type).toBe(expectations[index].type);
+          expect(comment.content).toContain(expectations[index].content);
+        });
+      });
     });
   });
 

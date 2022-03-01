@@ -51,7 +51,6 @@ class Extractor {
   static extractEndpointsFromCode(code, options) {
     
     const comments = this.extractComments(code, options);
-    
     return Object.keys(comments)
       .map(commentKey => {
         const comment = comments[commentKey];

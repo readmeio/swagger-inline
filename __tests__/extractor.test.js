@@ -34,6 +34,7 @@ describe('Extractor', () => {
           pattern: customPattern
         });
 
+        
         expect(Object.keys(comments)).toHaveLength(2);
 
         Object.keys(comments).forEach((key, index) => {

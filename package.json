@@ -31,6 +31,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
+    "prettier": "prettier --list-different --write \"./**/**.js\"",
     "release": "npx conventional-changelog-cli -i CHANGELOG.md -s",
     "test": "jest --coverage"
   },

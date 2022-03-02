@@ -88,11 +88,9 @@ describe('Loader', () => {
       });
     });
 
-    it('returns null if the file is invalid json', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-invalid.json';
-      return Loader.loadPattern(patternPath).then(pattern => {
-        expect(pattern).toBeNull();
-      });
+    it('returns null if the file is invalid json', async () => {
+      const patternPath = `${__dirname}/__fixtures__/patterns/pattern-invalid.json`;
+      await expect(Loader.loadPattern(patternPath)).resolves.toBeNull();
     });
 
     it('returns null if the file does not exist', () => {

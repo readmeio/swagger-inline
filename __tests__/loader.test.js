@@ -67,6 +67,42 @@ describe('Loader', () => {
     });
   });
 
+  describe('#loadPattern', () => {
+    it('returns a pattern object', async () => {
+      const patternPath = `${__dirname}/__fixtures__/patterns/pattern-valid.json`;
+      await expect(Loader.loadPattern(patternPath)).resolves.toStrictEqual({
+        multiLineComment: [
+          {
+            end: '*/',
+            middle: '',
+            start: '/*',
+          },
+        ],
+        name: 'Apex',
+        nameMatchers: ['.cls'],
+        singleLineComment: [
+          {
+            start: '//',
+          },
+        ],
+      });
+    });
+
+    it('returns null if the file is invalid json', async () => {
+      const patternPath = `${__dirname}/__fixtures__/patterns/pattern-invalid.json`;
+      await expect(Loader.loadPattern(patternPath)).resolves.toBeNull();
+    });
+
+    it('returns null if the file does not exist', async () => {
+      const patternPath = `${__dirname}/__fixtures__/patterns/pattern-that-does-not-exist.json`;
+      await expect(Loader.loadPattern(patternPath)).resolves.toBeNull();
+    });
+
+    it('does not error when the filepath input param is null', async () => {
+      await expect(Loader.loadPattern(null)).resolves.toBeNull();
+    });
+  });
+
   describe('#loadFiles', () => {
     it('loads arrays of files', () => {
       return Loader.loadFiles([`${__dirname}/../package.json`, `${__dirname}/../package.json`]).then(files => {

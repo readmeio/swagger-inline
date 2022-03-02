@@ -1,6 +1,5 @@
 const extractComments = require('multilang-extract-comments');
 const jsYaml = require('js-yaml');
-
 function pushLine(array, line) {
   if (line.trim()) {
     array.push(line);
@@ -49,7 +48,6 @@ function buildSchema(schema, yamlLines) {
 class Extractor {
   static extractEndpointsFromCode(code, options) {
     const comments = this.extractComments(code, options);
-
     return Object.keys(comments)
       .map(commentKey => {
         const comment = comments[commentKey];

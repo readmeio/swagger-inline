@@ -93,11 +93,9 @@ describe('Loader', () => {
       await expect(Loader.loadPattern(patternPath)).resolves.toBeNull();
     });
 
-    it('returns null if the file does not exist', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-that-does-not-exist.json';
-      return Loader.loadPattern(patternPath).then(pattern => {
-        expect(pattern).toBeNull();
-      });
+    it('returns null if the file does not exist', async () => {
+      const patternPath = `${__dirname}/__fixtures__/patterns/pattern-that-does-not-exist.json`;
+      await expect(Loader.loadPattern(patternPath)).resolves.toBeNull();
     });
 
     it('does not error when the filepath input param is null', () => {

@@ -1,5 +1,6 @@
 const extractComments = require('multilang-extract-comments');
 const jsYaml = require('js-yaml');
+
 function pushLine(array, line) {
   if (line.trim()) {
     array.push(line);

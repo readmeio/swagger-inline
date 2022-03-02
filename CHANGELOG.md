@@ -1,3 +1,17 @@
+## 5.1.0 (2022-03-02)
+
+* chore: adding a prettier script ([c718583](https://github.com/readmeio/swagger-inline/commit/c718583))
+* chore: fixing some eslint issues ([0a08291](https://github.com/readmeio/swagger-inline/commit/0a08291))
+* chore(deps-dev): bump @readme/eslint-config from 8.2.0 to 8.4.2 (#244) ([66786ed](https://github.com/readmeio/swagger-inline/commit/66786ed)), closes [#244](https://github.com/readmeio/swagger-inline/issues/244)
+* chore(deps-dev): bump eslint from 8.8.0 to 8.10.0 (#246) ([25ce96c](https://github.com/readmeio/swagger-inline/commit/25ce96c)), closes [#246](https://github.com/readmeio/swagger-inline/issues/246)
+* chore(deps-dev): bump jest from 27.4.7 to 27.5.1 (#245) ([1e482a8](https://github.com/readmeio/swagger-inline/commit/1e482a8)), closes [#245](https://github.com/readmeio/swagger-inline/issues/245)
+* chore(deps-dev): bumping dev deps ([425e4b2](https://github.com/readmeio/swagger-inline/commit/425e4b2))
+* chore(deps): bump actions/checkout from 2.4.0 to 3 (#247) ([9c89a22](https://github.com/readmeio/swagger-inline/commit/9c89a22)), closes [#247](https://github.com/readmeio/swagger-inline/issues/247)
+* chore(deps): bump actions/setup-node from 2.5.1 to 3 (#248) ([2729a85](https://github.com/readmeio/swagger-inline/commit/2729a85)), closes [#248](https://github.com/readmeio/swagger-inline/issues/248)
+* Pattern support (#249) ([2caec29](https://github.com/readmeio/swagger-inline/commit/2caec29)), closes [#249](https://github.com/readmeio/swagger-inline/issues/249)
+
+
+
 ## <small>5.0.4 (2022-02-01)</small>
 
 * chore(deps-dev): bump @readme/eslint-config from 8.1.1 to 8.2.0 (#239) ([2b4cf95](https://github.com/readmeio/swagger-inline/commit/2b4cf95)), closes [#239](https://github.com/readmeio/swagger-inline/issues/239)

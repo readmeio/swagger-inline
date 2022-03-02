@@ -68,10 +68,23 @@ describe('Loader', () => {
   });
 
   describe('#loadPattern', () => {
-    it('returns a pattern object', () => {
-      const patternPath = '${__dirname}/__fixtures__/patterns/pattern-valid.json';
-      return Loader.loadPattern(patternPath).then(pattern => {
-        expect(pattern).toBeDefined();
+    it('returns a pattern object', async () => {
+      const patternPath = `${__dirname}/__fixtures__/patterns/pattern-valid.json`;
+      await expect(Loader.loadPattern(patternPath)).resolves.toStrictEqual({
+        multiLineComment: [
+          {
+            end: '*/',
+            middle: '',
+            start: '/*',
+          },
+        ],
+        name: 'Apex',
+        nameMatchers: ['.cls'],
+        singleLineComment: [
+          {
+            start: '//',
+          },
+        ],
       });
     });
 

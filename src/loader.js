@@ -53,7 +53,7 @@ class Loader {
       .then(pattern => {
         return JSON.parse(pattern);
       })
-      .catch(err => {
+      .catch(() => {
         // Return null if we have any problems, potential for more rubust error handling.
         return null;
       });

@@ -96,7 +96,7 @@ function swaggerInline(globPatterns, providedOptions) {
           options.setPattern(pattern);
         } else {
           // if there is no valid pattern specifed reset the pattern attribute to it's default to prevent error.
-          options.setPattern(Options.DEFAULTS['pattern']);
+          options.setPattern(Options.DEFAULTS.pattern);
         }
 
         return Loader.loadFiles(files)

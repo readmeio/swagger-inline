@@ -98,10 +98,8 @@ describe('Loader', () => {
       await expect(Loader.loadPattern(patternPath)).resolves.toBeNull();
     });
 
-    it('does not error when the filepath input param is null', () => {
-      return Loader.loadPattern(null).then(pattern => {
-        expect(pattern).toBeNull();
-      });
+    it('does not error when the filepath input param is null', async () => {
+      await expect(Loader.loadPattern(null)).resolves.toBeNull();
     });
   });
 

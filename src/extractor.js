@@ -11,7 +11,7 @@ function pushLine(array, line) {
 
 function loadYamlWithPrettyErrors(prettyObject, yamlLines) {
   try {
-    return jsYaml.load(yamlLines.join('\n'.replace('\t','    ')));
+    return jsYaml.load(yamlLines.join('\n').replace(/\t/g, ' '));
   } catch (e) {
     e.message = `YAML Exception in '${prettyObject}':\n${e.message}`;
     throw e;

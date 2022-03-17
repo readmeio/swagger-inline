@@ -1,3 +1,10 @@
+## <small>5.1.1 (2022-03-17)</small>
+
+* fix: replacing all instances of `/t` ([93781c9](https://github.com/readmeio/swagger-inline/commit/93781c9))
+* feat(extractor): add support for tabs in inline-comments (#252) ([c446cc9](https://github.com/readmeio/swagger-inline/commit/c446cc9)), closes [#252](https://github.com/readmeio/swagger-inline/issues/252)
+
+
+
 ## 5.1.0 (2022-03-02)
 
 * chore: adding a prettier script ([c718583](https://github.com/readmeio/swagger-inline/commit/c718583))

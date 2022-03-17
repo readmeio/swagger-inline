@@ -183,6 +183,7 @@ class Loader {
   }
 
   static expandParam(param = '', swaggerVersion) {
+    let hasRef = false;
     // eslint-disable-next-line unicorn/no-unsafe-regex
     const parsed = param.match(/(?:\((.*)\))?\s*([\w._-]*)(?:=([^{*]*))?([*])?\s*{(.*?)(?::(.*))?}\s*(.*)?/);
 
@@ -201,34 +202,48 @@ class Loader {
       name: parsed[2],
     };
 
-    const schema = {
-      type: parsed[5].toLowerCase(),
-    };
+    const schema = {};
 
-    if (parsed[3]) schema.default = parsed[3].trim();
-    if (parsed[6]) schema.format = parsed[6];
+    if (parsed[5].toLowerCase() === 'ref') {
+      let ref = parsed[6];
 
-    // Format defaults
-    // (Currently only supports ints and bools; we probably should find a library
-    // to do this safer)
+      // Determines if the ref points to a url or local file.
+      // This should be reliable enough because JSON Pointers don't normally contain the '.' character
 
-    if (schema.type === 'integer' && schema.default) {
-      try {
-        schema.default = parseInt(schema.default, 10);
-      } catch (e) {
-        // noop
+      const isURLOrFile = ref.includes('.');
+      if (!ref.startsWith('#/') && !isURLOrFile) {
+        ref = swaggerVersion >= 3 ? `#/components/${ref}` : `#/definitions/${ref}`;
       }
-    }
+      schema.$ref = ref;
+      hasRef = true;
+    } else {
+      schema.type = parsed[5].toLowerCase();
 
-    if (schema.type === 'boolean' && schema.default) {
-      schema.default = schema.default === 'true';
+      if (parsed[3]) schema.default = parsed[3].trim();
+      if (parsed[6]) schema.format = parsed[6];
+
+      // Format defaults
+      // (Currently only supports ints and bools; we probably should find a library
+      // to do this safer)
+
+      if (schema.type === 'integer' && schema.default) {
+        try {
+          schema.default = parseInt(schema.default, 10);
+        } catch (e) {
+          // noop
+        }
+      }
+
+      if (schema.type === 'boolean' && schema.default) {
+        schema.default = schema.default === 'true';
+      }
     }
 
     if (parsed[4] || out.in === 'path') out.required = true;
     if (parsed[7]) out.description = parsed[7];
 
     // OAS 3.0 moves some schema stuff into its own thing
-    if (swaggerVersion >= 3) {
+    if (swaggerVersion >= 3 || hasRef) {
       out.schema = schema;
     } else {
       out = Object.assign(out, schema);

@@ -1,3 +1,9 @@
+## 5.2.0 (2022-03-17)
+
+* feat: add refs to shorthand parameter syntax (#250) ([e5fef29](https://github.com/readmeio/swagger-inline/commit/e5fef29)), closes [#250](https://github.com/readmeio/swagger-inline/issues/250)
+
+
+
 ## <small>5.1.1 (2022-03-17)</small>
 
 * fix: replacing all instances of `/t` ([93781c9](https://github.com/readmeio/swagger-inline/commit/93781c9))

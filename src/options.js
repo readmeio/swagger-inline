@@ -53,6 +53,14 @@ class Options {
     this.options.pattern = pattern;
     return this.options;
   }
+
+  getTitle() {
+    return this.options.title;
+  }
+
+  getApiVersion() {
+    return this.options.apiVersion;
+  }
 }
 
 Options.DEFAULTS = {
@@ -61,6 +69,8 @@ Options.DEFAULTS = {
   ignore: ['node_modules/**/*', 'bower_modules/**/*'],
   ignoreErrors: false,
   pattern: null,
+  title: null,
+  apiVersion: null,
 };
 
 module.exports = Options;

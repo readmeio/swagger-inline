@@ -68,6 +68,17 @@ function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
   }, swaggerBase);
 }
 
+function updateTitleAndVersion(baseObj, options) {
+  const info = baseObj.info ? baseObj.info : {};
+  if (options.getTitle()) {
+    info.title = options.getTitle();
+  }
+  if (options.getApiVersion()) {
+    info.version = options.getApiVersion();
+  }
+  return info;
+}
+
 function swaggerInline(globPatterns, providedOptions) {
   if (typeof globPatterns === 'undefined') {
     throw new TypeError('No files specified.');
@@ -90,6 +101,8 @@ function swaggerInline(globPatterns, providedOptions) {
       }
 
       log(`${files.length} files matched...`);
+
+      baseObj.info = updateTitleAndVersion(baseObj, options); // eslint-disable-line no-param-reassign
 
       return Loader.loadPattern(options.getPattern()).then(pattern => {
         if (pattern) {

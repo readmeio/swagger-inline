@@ -15,7 +15,7 @@ module.exports = function (args) {
       'Custom comment pattern supported by the multilang-extract-comments library in the form of a JSON file'
     ).option(
       '-t, --title [title]',
-      'Value to update the title attribute with in the base OpenAPI or Swagger definition'
+      'Value to update the `info.title` attribute with in the base OpenAPI or Swagger definition'
     ).option(
       '-v, --apiVersion [version]',
       'Value to update the version attribute with in the base OpenAPI or Swagger definition'

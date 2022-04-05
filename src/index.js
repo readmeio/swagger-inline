@@ -101,8 +101,8 @@ function swaggerInline(globPatterns, providedOptions) {
       }
 
       log(`${files.length} files matched...`);
-      
-      baseObj.info = updateTitleAndVersion(baseObj, options);
+
+      baseObj.info = updateTitleAndVersion(baseObj, options); // eslint-disable-line no-param-reassign
 
       return Loader.loadPattern(options.getPattern()).then(pattern => {
         if (pattern) {

@@ -55,7 +55,7 @@ describe('CLI', () => {
     });
   });
 
-  it("should update the tile and version when specified via the CLI", () => {
+  it("should update the title and version when specified via the CLI", () => {
     const workDir = path.resolve(__dirname, '../');
     const cmd = `node bin/swagger-inline __tests__/__fixtures__/project-openapi --base __tests__/__fixtures__/project-openapi/openapiBase.json --title testTitle --apiVersion 2.0`;
     return runCommand(cmd, workDir).then(result => {

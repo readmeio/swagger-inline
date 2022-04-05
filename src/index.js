@@ -5,7 +5,6 @@ const Loader = require('./loader');
 const Extractor = require('./extractor');
 const Options = require('./options');
 
-
 function outputResult(object, options) {
   return new Promise(resolve => {
     const result = options.isJSON() ? JSON.stringify(object, null, 2) : jsYaml.dump(object);

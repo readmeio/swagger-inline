@@ -386,6 +386,7 @@ Object {
     },
   },
   "host": "petstore.swagger.io",
+  "info": Object {},
   "paths": Object {
     "/pets": Object {
       "get": Object {
@@ -544,6 +545,7 @@ host: petstore.swagger.io
 basePath: /api
 schemes:
   - http
+info: {}
 paths:
   /pets:
     get:

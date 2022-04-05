@@ -105,7 +105,6 @@ function swaggerInline(globPatterns, providedOptions) {
 
       updateTitleAndVersion(baseObj, options);
 
-
       return Loader.loadPattern(options.getPattern()).then(pattern => {
         if (pattern) {
           options.setPattern(pattern);

@@ -1,3 +1,15 @@
+## 5.3.0 (2022-04-05)
+
+* chore: removing some docs from the repo as they're in our .github/ repo now ([749259a](https://github.com/readmeio/swagger-inline/commit/749259a))
+* chore(deps-dev): bump @readme/eslint-config from 8.4.4 to 8.5.1 (#256) ([fe899a4](https://github.com/readmeio/swagger-inline/commit/fe899a4)), closes [#256](https://github.com/readmeio/swagger-inline/issues/256)
+* chore(deps-dev): bump eslint from 8.10.0 to 8.12.0 (#254) ([7517b50](https://github.com/readmeio/swagger-inline/commit/7517b50)), closes [#254](https://github.com/readmeio/swagger-inline/issues/254)
+* chore(deps-dev): bump prettier from 2.5.1 to 2.6.1 (#253) ([964cd17](https://github.com/readmeio/swagger-inline/commit/964cd17)), closes [#253](https://github.com/readmeio/swagger-inline/issues/253)
+* chore(deps): bump minimist from 1.2.5 to 1.2.6 (#257) ([f49a86f](https://github.com/readmeio/swagger-inline/commit/f49a86f)), closes [#257](https://github.com/readmeio/swagger-inline/issues/257)
+* test: resolving some broken tests ([318d794](https://github.com/readmeio/swagger-inline/commit/318d794))
+* feat(index): add ability to specify `title` and `version` from CLI. (#258) ([b767dec](https://github.com/readmeio/swagger-inline/commit/b767dec)), closes [#258](https://github.com/readmeio/swagger-inline/issues/258)
+
+
+
 ## 5.2.0 (2022-03-17)
 
 * feat: add refs to shorthand parameter syntax (#250) ([e5fef29](https://github.com/readmeio/swagger-inline/commit/e5fef29)), closes [#250](https://github.com/readmeio/swagger-inline/issues/250)

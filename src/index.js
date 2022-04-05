@@ -5,6 +5,7 @@ const Loader = require('./loader');
 const Extractor = require('./extractor');
 const Options = require('./options');
 
+
 function outputResult(object, options) {
   return new Promise(resolve => {
     const result = options.isJSON() ? JSON.stringify(object, null, 2) : jsYaml.dump(object);
@@ -68,6 +69,18 @@ function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
   }, swaggerBase);
 }
 
+function updateTitleAndVersion(baseObj, options) {
+  let info = baseObj.info ? baseObj.info : {};
+  if (options.getTitle()) {
+    info.title = options.getTitle();
+  }
+  if (options.getApiVersion()) {
+    info.version = options.getApiVersion();
+  }
+  baseObj.info = info;
+  return baseObj;
+}
+
 function swaggerInline(globPatterns, providedOptions) {
   if (typeof globPatterns === 'undefined') {
     throw new TypeError('No files specified.');
@@ -84,12 +97,15 @@ function swaggerInline(globPatterns, providedOptions) {
   return Loader.resolvePaths(globPatterns, options).then(files => {
     return Loader.loadBase(base, options).then(baseObj => {
       const specVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
-
+      
       if (Object.keys(baseObj).length === 0) {
         throw new Error(`The base specification either wasn't found, or it is not a Swagger or OpenAPI definition.`);
       }
 
       log(`${files.length} files matched...`);
+
+      updateTitleAndVersion(baseObj, options);
+
 
       return Loader.loadPattern(options.getPattern()).then(pattern => {
         if (pattern) {

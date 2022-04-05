@@ -54,4 +54,16 @@ describe('CLI', () => {
       expect(Object.keys(stdout.paths)).toHaveLength(2);
     });
   });
+
+  it("should update the tile and version when specified via the CLI", () => {
+    const workDir = path.resolve(__dirname, '../');
+    const cmd = `node bin/swagger-inline __tests__/__fixtures__/project-openapi --base __tests__/__fixtures__/project-openapi/openapiBase.json --title testTitle --apiVersion 2.0`;
+    return runCommand(cmd, workDir).then(result => {
+      expect(result.code).toBe(0);
+
+      const stdout = JSON.parse(result.stdout);
+      expect(stdout.info.title).toBe('testTitle');
+      expect(stdout.info.version).toBe('2.0');
+    });
+  });
 });

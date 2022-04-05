@@ -18,7 +18,7 @@ module.exports = function (args) {
       'Value to update the `info.title` attribute with in the base OpenAPI or Swagger definition'
     ).option(
       '-v, --apiVersion [version]',
-      'Value to update the version attribute with in the base OpenAPI or Swagger definition'
+      'Value to update the `info.version` attribute with in the base OpenAPI or Swagger definition'
     );
 
   program.on('--help', () => {

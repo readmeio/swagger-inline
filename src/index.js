@@ -69,15 +69,14 @@ function mergeSchemasWithBase(swaggerBase = {}, schemas = []) {
 }
 
 function updateTitleAndVersion(baseObj, options) {
-  let info = baseObj.info ? baseObj.info : {};
+  const info = baseObj.info ? baseObj.info : {};
   if (options.getTitle()) {
     info.title = options.getTitle();
   }
   if (options.getApiVersion()) {
     info.version = options.getApiVersion();
   }
-  baseObj.info = info;
-  return baseObj;
+  return info;
 }
 
 function swaggerInline(globPatterns, providedOptions) {
@@ -96,14 +95,14 @@ function swaggerInline(globPatterns, providedOptions) {
   return Loader.resolvePaths(globPatterns, options).then(files => {
     return Loader.loadBase(base, options).then(baseObj => {
       const specVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
-      
+
       if (Object.keys(baseObj).length === 0) {
         throw new Error(`The base specification either wasn't found, or it is not a Swagger or OpenAPI definition.`);
       }
 
       log(`${files.length} files matched...`);
-
-      updateTitleAndVersion(baseObj, options);
+      
+      baseObj.info = updateTitleAndVersion(baseObj, options);
 
       return Loader.loadPattern(options.getPattern()).then(pattern => {
         if (pattern) {

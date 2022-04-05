@@ -61,7 +61,6 @@ class Options {
   getApiVersion() {
     return this.options.apiVersion;
   }
-
 }
 
 Options.DEFAULTS = {
@@ -71,7 +70,7 @@ Options.DEFAULTS = {
   ignoreErrors: false,
   pattern: null,
   title: null,
-  apiVersion: null
+  apiVersion: null,
 };
 
 module.exports = Options;

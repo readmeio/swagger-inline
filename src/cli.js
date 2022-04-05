@@ -13,10 +13,12 @@ module.exports = function (args) {
     .option(
       '-p, --pattern [pattern]',
       'Custom comment pattern supported by the multilang-extract-comments library in the form of a JSON file'
-    ).option(
+    )
+    .option(
       '-t, --title [title]',
       'Value to update the `info.title` attribute with in the base OpenAPI or Swagger definition'
-    ).option(
+    )
+    .option(
       '-v, --apiVersion [version]',
       'Value to update the `info.version` attribute with in the base OpenAPI or Swagger definition'
     );
@@ -40,7 +42,7 @@ module.exports = function (args) {
     scope: program.scope,
     pattern: program.pattern,
     title: program.title,
-    apiVersion: program.apiVersion
+    apiVersion: program.apiVersion,
   };
 
   swaggerInline(program.args, providedOptions)

@@ -22,7 +22,7 @@
     "comments"
   ],
   "engines": {
-    "node": "^12 || ^14 || ^16"
+    "node": ">=14"
   },
   "main": "src/index.js",
   "bin": {

@@ -1,3 +1,11 @@
+## 6.0.0 (2022-04-26)
+
+* chore(deps-dev): bumping out of date deps ([a6b85fd](https://github.com/readmeio/swagger-inline/commit/a6b85fd))
+* chore(deps-dev): upgrading jest to v28 ([7ae129e](https://github.com/readmeio/swagger-inline/commit/7ae129e))
+* feat: supporting node 18, dropping support for node 12 (#259) ([08f3249](https://github.com/readmeio/swagger-inline/commit/08f3249)), closes [#259](https://github.com/readmeio/swagger-inline/issues/259)
+
+
+
 ## 5.3.0 (2022-04-05)
 
 * chore: removing some docs from the repo as they're in our .github/ repo now ([749259a](https://github.com/readmeio/swagger-inline/commit/749259a))

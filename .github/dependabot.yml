@@ -25,6 +25,10 @@ updates:
       prefix: chore(deps)
       prefix-development: chore(deps-dev)
     ignore:
+      - dependency-name: commander
+        versions:
+          - "*"
+
       # globby@12 is now an ESM-only package and can't be loaded here without a rewrite.
       # https://github.com/sindresorhus/globby/releases/tag/v12.0.0
       - dependency-name: globby

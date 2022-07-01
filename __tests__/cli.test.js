@@ -22,7 +22,8 @@ describe('CLI', () => {
 
   it('should exit process with non-zero code on a failure', () => {
     const workDir = path.resolve(__dirname, '../');
-    const cmd = `node bin/swagger-inline __tests__/__fixtures__/code/swagger-api-with-error.js --base __tests__/__fixtures__/project/swaggerBase.json`;
+    const cmd =
+      'node bin/swagger-inline __tests__/__fixtures__/code/swagger-api-with-error.js --base __tests__/__fixtures__/project/swaggerBase.json';
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).not.toBe(0);
       expect(result.error.message).toMatch(
@@ -33,7 +34,8 @@ describe('CLI', () => {
 
   it('should exit process with zero code', () => {
     const workDir = path.resolve(__dirname, '../');
-    const cmd = `node bin/swagger-inline __tests__/__fixtures__/code/swagger-api.js --base __tests__/__fixtures__/project/swaggerBase.json`;
+    const cmd =
+      'node bin/swagger-inline __tests__/__fixtures__/code/swagger-api.js --base __tests__/__fixtures__/project/swaggerBase.json';
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).toBe(0);
 
@@ -45,7 +47,8 @@ describe('CLI', () => {
 
   it("shouldn't throw errors on directories that have markdown", () => {
     const workDir = path.resolve(__dirname, '../');
-    const cmd = `node bin/swagger-inline __tests__/__fixtures__/project-openapi --base __tests__/__fixtures__/project-openapi/openapiBase.json`;
+    const cmd =
+      'node bin/swagger-inline __tests__/__fixtures__/project-openapi --base __tests__/__fixtures__/project-openapi/openapiBase.json';
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).toBe(0);
 
@@ -57,7 +60,8 @@ describe('CLI', () => {
 
   it('should update the title and version when specified via the CLI', () => {
     const workDir = path.resolve(__dirname, '../');
-    const cmd = `node bin/swagger-inline __tests__/__fixtures__/project-openapi --base __tests__/__fixtures__/project-openapi/openapiBase.json --title testTitle --apiVersion 2.0`;
+    const cmd =
+      'node bin/swagger-inline __tests__/__fixtures__/project-openapi --base __tests__/__fixtures__/project-openapi/openapiBase.json --title testTitle --apiVersion 2.0';
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).toBe(0);
 

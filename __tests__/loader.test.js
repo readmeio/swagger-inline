@@ -113,7 +113,7 @@ describe('Loader', () => {
 
     it('returns errors for non-existent files', () => {
       return expect(() => {
-        return Loader.loadFiles([`${__dirname}/../package.json`, `dne.js`]);
+        return Loader.loadFiles([`${__dirname}/../package.json`, 'dne.js']);
       }).rejects.toThrow(/no such file or directory/);
     });
   });

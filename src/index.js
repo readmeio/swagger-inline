@@ -97,7 +97,7 @@ function swaggerInline(globPatterns, providedOptions) {
       const specVersion = parseInt(baseObj.swagger || baseObj.openapi, 10);
 
       if (Object.keys(baseObj).length === 0) {
-        throw new Error(`The base specification either wasn't found, or it is not a Swagger or OpenAPI definition.`);
+        throw new Error("The base specification either wasn't found, or it is not a Swagger or OpenAPI definition.");
       }
 
       log(`${files.length} files matched...`);

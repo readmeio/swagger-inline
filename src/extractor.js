@@ -1,14 +1,6 @@
 const extractComments = require('multilang-extract-comments');
 const jsYaml = require('js-yaml');
 
-function pushLine(array, line) {
-  if (line.trim()) {
-    array.push(line);
-    return true;
-  }
-  return false;
-}
-
 function loadYamlWithPrettyErrors(prettyObject, yamlLines) {
   try {
     return jsYaml.load(yamlLines.join('\n').replace(/\t/g, ' '));
@@ -85,12 +77,12 @@ class Extractor {
     let route = null;
     let scopeMatched = false;
 
-    lines.some(line => {
+    lines.forEach(line => {
       if (route) {
         if (options && options.scope) {
           if (line.trim().indexOf('scope:') === 0 && line.indexOf(options.scope) >= 0) {
             scopeMatched = true;
-            return false;
+            return;
           }
         } else {
           scopeMatched = true;
@@ -100,16 +92,14 @@ class Extractor {
           // Only return false here if this line is an explicit `scope: {string}` property and not perhaps a `scope`
           // property within a request body, parameter, or response schema.
           if (line.trim().match(/scope: (.*)/)) {
-            return false;
+            return;
           }
         }
 
-        pushLine(yamlLines, line);
-        // eslint-disable-next-line consistent-return
+        yamlLines.push(line);
         return;
       }
       route = route || line.match(this.ROUTE_REGEX);
-      return false;
     });
 
     if (!scopeMatched) {
@@ -138,7 +128,7 @@ class Extractor {
         if (line.trim().indexOf('scope:') === 0) {
           return;
         }
-        pushLine(yamlLines, line);
+        yamlLines.push(line);
         return;
       }
       route = route || line.match(this.SCHEMA_REGEX);

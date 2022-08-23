@@ -75,6 +75,30 @@ describe('Extractor', () => {
       expect(typeof endpoint.responses['200']).toBe('object');
     });
 
+    it('extracts markdown tables from endpoint comment strings', () => {
+      const operation = [
+        ' @api [get] /pets',
+        ' summary: Get pets',
+        ' description: |',
+        '   Get pets',
+        '   ',
+        '   |a|b|',
+        '   |-|-|',
+        '   |1|2|',
+      ].join('\n');
+
+      const endpoint = Extractor.extractEndpoint(operation);
+
+      expect(endpoint.method).toBe('get');
+      expect(endpoint.route).toBe('/pets');
+      expect(endpoint.description).toContain(`Get pets
+
+|a|b|
+|-|-|
+|1|2|
+`);
+    });
+
     it('extracts endpoints from comment strings + summary', () => {
       const operationWithSummary = [
         '',

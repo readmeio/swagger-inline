@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 const jsYaml = require('js-yaml');
 
 const Loader = require('../src/loader');

@@ -2,8 +2,9 @@
 /* eslint-disable no-param-reassign */
 const fs = require('fs').promises;
 const path = require('path');
-const jsYaml = require('js-yaml');
+
 const globby = require('globby');
+const jsYaml = require('js-yaml');
 const any = require('promise.any');
 
 class Loader {

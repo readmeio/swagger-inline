@@ -1,5 +1,5 @@
-const extractComments = require('multilang-extract-comments');
 const jsYaml = require('js-yaml');
+const extractComments = require('multilang-extract-comments');
 
 function loadYamlWithPrettyErrors(prettyObject, yamlLines) {
   try {

@@ -1,6 +1,7 @@
-const cli = require('../src/cli');
-const path = require('path');
 const exec = require('child_process').exec;
+const path = require('path');
+
+const cli = require('../src/cli');
 
 function runCommand(cmd, cwd) {
   return new Promise(resolve => {

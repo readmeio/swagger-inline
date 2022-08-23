@@ -1,8 +1,9 @@
-const jsYaml = require('js-yaml');
 const path = require('path');
 
-const Loader = require('./loader');
+const jsYaml = require('js-yaml');
+
 const Extractor = require('./extractor');
+const Loader = require('./loader');
 const Options = require('./options');
 
 function outputResult(object, options) {

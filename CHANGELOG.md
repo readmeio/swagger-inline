@@ -1,3 +1,26 @@
+## 6.1.0 (2022-08-23)
+
+* chore(deps-dev): bump @readme/eslint-config from 8.7.2 to 8.7.3 (#262) ([6d3d7d6](https://github.com/readmeio/swagger-inline/commit/6d3d7d6)), closes [#262](https://github.com/readmeio/swagger-inline/issues/262)
+* chore(deps-dev): bump @readme/eslint-config from 8.7.3 to 8.7.5 (#265) ([9104d3d](https://github.com/readmeio/swagger-inline/commit/9104d3d)), closes [#265](https://github.com/readmeio/swagger-inline/issues/265)
+* chore(deps-dev): bump @readme/eslint-config from 8.7.5 to 8.8.0 (#271) ([f710a39](https://github.com/readmeio/swagger-inline/commit/f710a39)), closes [#271](https://github.com/readmeio/swagger-inline/issues/271)
+* chore(deps-dev): bump @readme/eslint-config from 8.8.0 to 9.0.0 (#273) ([d3cc395](https://github.com/readmeio/swagger-inline/commit/d3cc395)), closes [#273](https://github.com/readmeio/swagger-inline/issues/273)
+* chore(deps-dev): bump eslint from 8.14.0 to 8.16.0 (#267) ([f2c9261](https://github.com/readmeio/swagger-inline/commit/f2c9261)), closes [#267](https://github.com/readmeio/swagger-inline/issues/267)
+* chore(deps-dev): bump eslint from 8.16.0 to 8.18.0 (#269) ([85d779f](https://github.com/readmeio/swagger-inline/commit/85d779f)), closes [#269](https://github.com/readmeio/swagger-inline/issues/269)
+* chore(deps-dev): bump eslint from 8.18.0 to 8.21.0 (#274) ([f9eaea0](https://github.com/readmeio/swagger-inline/commit/f9eaea0)), closes [#274](https://github.com/readmeio/swagger-inline/issues/274)
+* chore(deps-dev): bump jest from 28.0.1 to 28.0.3 (#261) ([034a5f2](https://github.com/readmeio/swagger-inline/commit/034a5f2)), closes [#261](https://github.com/readmeio/swagger-inline/issues/261)
+* chore(deps-dev): bump jest from 28.0.3 to 28.1.0 (#266) ([1e0c85b](https://github.com/readmeio/swagger-inline/commit/1e0c85b)), closes [#266](https://github.com/readmeio/swagger-inline/issues/266)
+* chore(deps-dev): bump jest from 28.1.0 to 28.1.2 (#270) ([d3b5993](https://github.com/readmeio/swagger-inline/commit/d3b5993)), closes [#270](https://github.com/readmeio/swagger-inline/issues/270)
+* chore(deps-dev): bump jest from 28.1.2 to 28.1.3 (#272) ([b569eca](https://github.com/readmeio/swagger-inline/commit/b569eca)), closes [#272](https://github.com/readmeio/swagger-inline/issues/272)
+* chore(deps-dev): bump prettier from 2.6.2 to 2.7.1 (#268) ([72e0ab6](https://github.com/readmeio/swagger-inline/commit/72e0ab6)), closes [#268](https://github.com/readmeio/swagger-inline/issues/268)
+* chore(deps-dev): bumping dev deps ([4831595](https://github.com/readmeio/swagger-inline/commit/4831595))
+* chore(deps): bump github/codeql-action from 1 to 2 (#264) ([1103893](https://github.com/readmeio/swagger-inline/commit/1103893)), closes [#264](https://github.com/readmeio/swagger-inline/issues/264)
+* chore(deps): bump promise.any from 2.0.3 to 2.0.4 (#260) ([9f8932c](https://github.com/readmeio/swagger-inline/commit/9f8932c)), closes [#260](https://github.com/readmeio/swagger-inline/issues/260)
+* fix: filtering empty lines in docblocks preventing markdown tables from working (#275) ([3fbc42b](https://github.com/readmeio/swagger-inline/commit/3fbc42b)), closes [#275](https://github.com/readmeio/swagger-inline/issues/275)
+* ci: shouldn't need to run npm 7 in ci ([e7883c3](https://github.com/readmeio/swagger-inline/commit/e7883c3))
+* ci: stop trying to upgrade commander ([ac625be](https://github.com/readmeio/swagger-inline/commit/ac625be))
+
+
+
 ## 6.0.0 (2022-04-26)
 
 * chore(deps-dev): bumping out of date deps ([a6b85fd](https://github.com/readmeio/swagger-inline/commit/a6b85fd))

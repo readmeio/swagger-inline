@@ -1,3 +1,23 @@
+## <small>6.1.1 (2022-12-01)</small>
+
+* chore(deps-dev): bump @readme/eslint-config from 10.0.0 to 10.1.0 (#277) ([2e131f2](https://github.com/readmeio/swagger-inline/commit/2e131f2)), closes [#277](https://github.com/readmeio/swagger-inline/issues/277)
+* chore(deps-dev): bump @readme/eslint-config from 10.1.0 to 10.1.1 (#284) ([5c0c315](https://github.com/readmeio/swagger-inline/commit/5c0c315)), closes [#284](https://github.com/readmeio/swagger-inline/issues/284)
+* chore(deps-dev): bump @readme/eslint-config from 10.1.1 to 10.2.0 (#287) ([2598ea2](https://github.com/readmeio/swagger-inline/commit/2598ea2)), closes [#287](https://github.com/readmeio/swagger-inline/issues/287)
+* chore(deps-dev): bump eslint from 8.22.0 to 8.23.0 (#276) ([9c31fdb](https://github.com/readmeio/swagger-inline/commit/9c31fdb)), closes [#276](https://github.com/readmeio/swagger-inline/issues/276)
+* chore(deps-dev): bump eslint from 8.23.0 to 8.24.0 (#279) ([e9bfe80](https://github.com/readmeio/swagger-inline/commit/e9bfe80)), closes [#279](https://github.com/readmeio/swagger-inline/issues/279)
+* chore(deps-dev): bump eslint from 8.24.0 to 8.26.0 (#282) ([7ef5138](https://github.com/readmeio/swagger-inline/commit/7ef5138)), closes [#282](https://github.com/readmeio/swagger-inline/issues/282)
+* chore(deps-dev): bump eslint from 8.26.0 to 8.28.0 (#286) ([84bff2f](https://github.com/readmeio/swagger-inline/commit/84bff2f)), closes [#286](https://github.com/readmeio/swagger-inline/issues/286)
+* chore(deps-dev): bump jest from 28.1.3 to 29.0.1 (#278) ([049bb08](https://github.com/readmeio/swagger-inline/commit/049bb08)), closes [#278](https://github.com/readmeio/swagger-inline/issues/278)
+* chore(deps-dev): bump jest from 29.0.1 to 29.1.2 (#280) ([d5f5f66](https://github.com/readmeio/swagger-inline/commit/d5f5f66)), closes [#280](https://github.com/readmeio/swagger-inline/issues/280)
+* chore(deps-dev): bump jest from 29.1.2 to 29.2.2 (#283) ([31a375d](https://github.com/readmeio/swagger-inline/commit/31a375d)), closes [#283](https://github.com/readmeio/swagger-inline/issues/283)
+* chore(deps-dev): bump jest from 29.2.2 to 29.3.1 (#285) ([cd2943e](https://github.com/readmeio/swagger-inline/commit/cd2943e)), closes [#285](https://github.com/readmeio/swagger-inline/issues/285)
+* chore(deps-dev): bump prettier from 2.7.1 to 2.8.0 (#288) ([224d485](https://github.com/readmeio/swagger-inline/commit/224d485)), closes [#288](https://github.com/readmeio/swagger-inline/issues/288)
+* chore(deps): bump promise.any from 2.0.4 to 2.0.5 (#289) ([b47dfe4](https://github.com/readmeio/swagger-inline/commit/b47dfe4)), closes [#289](https://github.com/readmeio/swagger-inline/issues/289)
+* ci: making ci more friendly to contributors ([c0c575b](https://github.com/readmeio/swagger-inline/commit/c0c575b))
+* build: 6.1.0 release ([12f0ee3](https://github.com/readmeio/swagger-inline/commit/12f0ee3))
+
+
+
 ## 6.1.0 (2022-08-23)
 
 * chore(deps-dev): bump @readme/eslint-config from 8.7.2 to 8.7.3 (#262) ([6d3d7d6](https://github.com/readmeio/swagger-inline/commit/6d3d7d6)), closes [#262](https://github.com/readmeio/swagger-inline/issues/262)

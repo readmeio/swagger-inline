@@ -36,7 +36,7 @@ npx swagger-inline "./*.js" --base 'swaggerBase.json' > api.json
 
 The `inputGlobs` argument is a list of files, or globs, to search for Swagger/OAS comments.
 
-- `base`: Base API specification to extend. **\*Required**
+- `base`: Base API specification to extend. **Required**
 - `format`: Output filetype: `.json` or `.yaml` (default: `.json`)
 - `scope`: Matches the scope field defined in each API. For example, if `--scope public` is supplied, all operations will be generated, if `--scope private`, only those operations that have a `scope: private` declaration will be included.
 
@@ -60,7 +60,7 @@ swaggerInline(['src/**/*.js', 'test/**/*.js'], {
 
 #### Available options
 
-- `base`: Base specification to extend. **\*Required**
+- `base`: Base specification to extend. **Required**
 - `format`: Output filetype: `.json` or `.yaml` (default: `.json`)
 - `ignore`: An array of globs for files to ignore. (default: `['node_modules/**/*', 'bower_modules/**/*']`,
 - `logger`: Function called for logging. (default: empty closure)

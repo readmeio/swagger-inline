@@ -1,5 +1,5 @@
 > **Warning**
-> This library is no longer being actively maintained (except for critical security fixes) nor is it recommended. We recommend using JSON Schema-based, strongly-typed tools to generate your OpenAPI, such as [FastAPI](https://github.com/tiangolo/fastapi) and [`fastify-swagger`](https://github.com/fastify/fastify-swagger).
+> This library is no longer being actively maintained (except for critical security fixes) nor is it recommended. We recommend using JSON Schema-based, strongly-typed tools to generate your OpenAPI definition (e.g., [FastAPI](https://github.com/tiangolo/fastapi), [`fastify-swagger`](https://github.com/fastify/fastify-swagger)).
 
 # swagger-inline
 

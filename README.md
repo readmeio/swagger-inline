@@ -184,3 +184,29 @@ With the `--scope` parameter, you can compile your files based on a specific tar
 ```
 
 Now when you run `swagger-inline`, you can supply `--scope public` and only the `GET /pets` operation will be picked up. Omit `--scope public` and everything will be picked up.
+
+### Parameter shorthand declarations
+
+Defining a parameter in OpenAPI can be verbose, so you can define parameters via shorthands. If you require something more complex, you can use the [full OpenAPI parameter syntax](https://swagger.io/docs/specification/describing-parameters/).
+
+Here's a simple example:
+
+```
+(query) limit=5* {Integer:int32} Amount returned
+```
+
+It has a lot of info packed into a short space:
+
+- The parameter type: `query`
+- The name of the parameter: `limit`
+- The default value: 5
+- A flag to indicate that the parameter is required: `*`
+- The type: `Integer`
+- The format of the type: `int32`
+- The parameter description: `Amount returned`
+
+Almost all of these are optional — you can write something as concise as this:
+
+```
+(query) limit
+```

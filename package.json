@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "6.1.1",
+  "version": "7.0.0",
   "description": "Generate an OpenAPI/Swagger definition from inline comments.",
   "author": "Readme.io",
   "license": "ISC",
@@ -32,7 +32,6 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "prettier": "prettier --list-different --write \"./**/**.js\"",
-    "release": "npx conventional-changelog-cli -i CHANGELOG.md -s",
     "test": "jest --coverage"
   },
   "dependencies": {

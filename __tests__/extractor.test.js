@@ -47,7 +47,7 @@ describe('Extractor', () => {
 
   describe('Swagger/OpenAPI extraction', () => {
     it('shouldnt fail on a markdown file', () => {
-      const markdown = fs.readFileSync(path.join(__dirname, '../CHANGELOG.md'), 'utf8');
+      const markdown = fs.readFileSync(path.join(__dirname, '../LICENSE'), 'utf8');
       const endpoint = Extractor.extractEndpoint(markdown);
 
       expect(endpoint).toStrictEqual({});

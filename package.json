@@ -42,9 +42,9 @@
     "promise.any": "^2.0.2"
   },
   "devDependencies": {
-    "@readme/eslint-config": "^10.6.1",
-    "eslint": "^8.44.0",
-    "jest": "^29.4.1",
+    "@readme/eslint-config": "^10.6.2",
+    "eslint": "^8.46.0",
+    "jest": "^29.6.2",
     "prettier": "^2.8.3"
   },
   "prettier": "@readme/eslint-config/prettier",

@@ -1,4 +1,6 @@
-const swaggerInline = require('../src');
+import { describe, it, expect } from 'vitest';
+
+import swaggerInline from '../src';
 
 describe('Swagger Inline', () => {
   it('requires inputs', () => {
@@ -24,7 +26,7 @@ describe('Swagger Inline', () => {
     return swaggerInline(`${__dirname}/__fixtures__/project/*.js`, { base: `${__dirname}/__fixtures__/project` }).then(
       res => {
         expect(typeof res).toBe('string');
-      }
+      },
     );
   });
 

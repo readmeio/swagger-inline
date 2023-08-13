@@ -1,8 +1,9 @@
-const fs = require('fs');
+import fs from 'fs';
 
-const jsYaml = require('js-yaml');
+import jsYaml from 'js-yaml';
+import { describe, it, expect } from 'vitest';
 
-const Loader = require('../src/loader');
+import Loader from '../src/loader';
 
 describe('Loader', () => {
   describe('#resolvePaths', () => {

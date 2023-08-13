@@ -1,7 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const Extractor = require('../src/extractor');
+import { describe, it, expect } from 'vitest';
+
+import Extractor from '../src/extractor';
 
 describe('Extractor', () => {
   describe('comment extraction', () => {
@@ -10,37 +12,35 @@ describe('Extractor', () => {
       { type: 'singleline', content: 'inline' },
     ];
 
-    ['javascript.js', 'ruby.rb', 'python.py'].forEach(language => {
-      it(`can extract ${language} comments`, () => {
-        const code = fs.readFileSync(`${__dirname}/__fixtures__/code/${language}`, 'utf-8');
-        const comments = Extractor.extractComments(code, {
-          filename: language,
-        });
-
-        expect(Object.keys(comments)).toHaveLength(2);
-
-        Object.keys(comments).forEach((key, index) => {
-          const comment = comments[key];
-          expect(comment.info.type).toBe(expectations[index].type);
-          expect(comment.content).toContain(expectations[index].content);
-        });
+    it.each(['javascript.js', 'ruby.rb', 'python.py'])('can extract `%s` comments', language => {
+      const code = fs.readFileSync(`${__dirname}/__fixtures__/code/${language}`, 'utf-8');
+      const comments = Extractor.extractComments(code, {
+        filename: language,
       });
 
-      it('can extract comments from custom pattern and custom file', () => {
-        const code = fs.readFileSync(`${__dirname}/__fixtures__/code/apex.cls`, 'utf-8');
-        const customPattern = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures__/patterns/pattern-valid.json`));
-        const comments = Extractor.extractComments(code, {
-          filename: 'apex.cls',
-          pattern: customPattern,
-        });
+      expect(Object.keys(comments)).toHaveLength(2);
 
-        expect(Object.keys(comments)).toHaveLength(2);
+      Object.keys(comments).forEach((key, index) => {
+        const comment = comments[key];
+        expect(comment.info.type).toBe(expectations[index].type);
+        expect(comment.content).toContain(expectations[index].content);
+      });
+    });
 
-        Object.keys(comments).forEach((key, index) => {
-          const comment = comments[key];
-          expect(comment.info.type).toBe(expectations[index].type);
-          expect(comment.content).toContain(expectations[index].content);
-        });
+    it('can extract comments from custom pattern and custom file', () => {
+      const code = fs.readFileSync(`${__dirname}/__fixtures__/code/apex.cls`, 'utf-8');
+      const customPattern = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures__/patterns/pattern-valid.json`));
+      const comments = Extractor.extractComments(code, {
+        filename: 'apex.cls',
+        pattern: customPattern,
+      });
+
+      expect(Object.keys(comments)).toHaveLength(2);
+
+      Object.keys(comments).forEach((key, index) => {
+        const comment = comments[key];
+        expect(comment.info.type).toBe(expectations[index].type);
+        expect(comment.content).toContain(expectations[index].content);
       });
     });
   });

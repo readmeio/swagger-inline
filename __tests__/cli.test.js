@@ -1,7 +1,9 @@
-const exec = require('child_process').exec;
-const path = require('path');
+import { exec } from 'child_process';
+import path from 'path';
 
-const cli = require('../src/cli');
+import { describe, it, expect } from 'vitest';
+
+import cli from '../src/cli';
 
 function runCommand(cmd, cwd) {
   return new Promise(resolve => {
@@ -28,7 +30,7 @@ describe('CLI', () => {
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).not.toBe(0);
       expect(result.error.message).toMatch(
-        'Error: YAMLException: can not read an implicit mapping pair; a colon is missed (12:57)'
+        'Error: YAMLException: can not read an implicit mapping pair; a colon is missed (12:57)',
       );
     });
   });

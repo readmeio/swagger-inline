@@ -32,7 +32,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "prettier": "prettier --list-different --write \"./**/**.js\"",
-    "test": "jest --coverage"
+    "test": "vitest --coverage"
   },
   "dependencies": {
     "commander": "^6.0.0",
@@ -42,19 +42,11 @@
     "promise.any": "^2.0.2"
   },
   "devDependencies": {
-    "@readme/eslint-config": "^10.6.2",
+    "@readme/eslint-config": "^12.0.2",
+    "@vitest/coverage-v8": "^0.34.1",
     "eslint": "^8.46.0",
-    "jest": "^29.6.2",
-    "prettier": "^2.8.3"
+    "prettier": "^3.0.1",
+    "vitest": "^0.34.1"
   },
-  "prettier": "@readme/eslint-config/prettier",
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules",
-      "<rootDir>/__tests__/__fixtures__/"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/__fixtures__/"
-    ]
-  }
+  "prettier": "@readme/eslint-config/prettier"
 }

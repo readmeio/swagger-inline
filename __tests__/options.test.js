@@ -1,4 +1,6 @@
-const Options = require('../src/options');
+import { describe, it, expect } from 'vitest';
+
+import Options from '../src/options';
 
 describe('Options', () => {
   describe('constructor', () => {

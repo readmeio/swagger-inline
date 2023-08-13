@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Swagger Inline OpenAPI supports JSON 1`] = `
+exports[`Swagger Inline > OpenAPI > supports JSON 1`] = `
 {
   "components": {
     "schemas": {
@@ -219,7 +219,7 @@ exports[`Swagger Inline OpenAPI supports JSON 1`] = `
 }
 `;
 
-exports[`Swagger Inline OpenAPI supports YAML 1`] = `
+exports[`Swagger Inline > OpenAPI > supports YAML 1`] = `
 "openapi: 3.0.3
 info:
   title: Example OpenAPI base file for \`swagger-inline\`.
@@ -360,7 +360,7 @@ components:
 "
 `;
 
-exports[`Swagger Inline Swagger supports JSON 1`] = `
+exports[`Swagger Inline > Swagger > supports JSON 1`] = `
 {
   "basePath": "/api",
   "components": {
@@ -539,7 +539,7 @@ exports[`Swagger Inline Swagger supports JSON 1`] = `
 }
 `;
 
-exports[`Swagger Inline Swagger supports YAML 1`] = `
+exports[`Swagger Inline > Swagger > supports YAML 1`] = `
 "swagger: 2
 host: petstore.swagger.io
 basePath: /api

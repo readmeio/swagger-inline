@@ -142,7 +142,6 @@ class Extractor {
   }
 }
 
-// eslint-disable-next-line unicorn/no-unsafe-regex
 Extractor.ROUTE_REGEX = /@(?:oas|api)\s+\[(\w+)\]\s+(.*?)(?:\s+(.*))?$/m;
 Extractor.SCHEMA_REGEX = /@schema\s+(.*)$/m;
 

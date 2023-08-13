@@ -14,15 +14,15 @@ module.exports = function (args) {
     .option('-s, --scope [scope]', 'API scope to constrain against')
     .option(
       '-p, --pattern [pattern]',
-      'Custom comment pattern supported by the multilang-extract-comments library in the form of a JSON file'
+      'Custom comment pattern supported by the multilang-extract-comments library in the form of a JSON file',
     )
     .option(
       '-t, --title [title]',
-      'Value to update the `info.title` attribute with in the base OpenAPI or Swagger definition'
+      'Value to update the `info.title` attribute with in the base OpenAPI or Swagger definition',
     )
     .option(
       '-v, --apiVersion [version]',
-      'Value to update the `info.version` attribute with in the base OpenAPI or Swagger definition'
+      'Value to update the `info.version` attribute with in the base OpenAPI or Swagger definition',
     );
 
   program.on('--help', () => {

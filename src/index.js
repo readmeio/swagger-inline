@@ -161,7 +161,7 @@ function swaggerInline(globPatterns, providedOptions) {
                 } catch (err) {
                   return Promise.reject(new Error(`${err.toString()} \n at ${fileInfo.fileName}`));
                 }
-              })
+              }),
             )
               .then(() => {
                 log(`${endpoints.length} definitions found...`);

@@ -134,7 +134,7 @@ function swaggerInline(globPatterns, providedOptions) {
                   });
                 } catch (err) {
                   // If the file that we failed to parse is a text file, let's just ignore it.
-                  if (['.json', '.md', '.txt'].includes(path.extname(fileInfo.fileName))) {
+                  if (['.json', '.md', '.markdown', '.txt'].includes(path.extname(fileInfo.fileName))) {
                     return Promise.resolve();
                   } else if (/Cannot find language definition/.test(err.message)) {
                     return Promise.resolve();

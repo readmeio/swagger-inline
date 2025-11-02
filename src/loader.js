@@ -5,6 +5,7 @@ const path = require('path');
 
 const globby = require('globby');
 const jsYaml = require('js-yaml');
+// eslint-disable-next-line unicorn/no-unnecessary-polyfills
 const any = require('promise.any');
 
 class Loader {
@@ -52,6 +53,7 @@ class Loader {
   static loadPattern(filepath) {
     return Loader.loadFile(filepath)
       .then(pattern => {
+        // eslint-disable-next-line try-catch-failsafe/json-parse
         return JSON.parse(pattern);
       })
       .catch(() => {
@@ -83,6 +85,7 @@ class Loader {
   }
 
   static loadJSON(filepath, options) {
+    // eslint-disable-next-line try-catch-failsafe/json-parse
     return Loader.loadFile(filepath).then(data => Loader.addMetadata(JSON.parse(data), filepath, options));
   }
 

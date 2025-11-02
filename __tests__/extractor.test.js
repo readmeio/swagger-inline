@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, expectTypeOf } from 'vitest';
 
 import Extractor from '../src/extractor';
 
@@ -71,8 +71,8 @@ describe('Extractor', () => {
       expect(endpoint.method).toBe('get');
       expect(endpoint.route).toBe('/pets');
       expect(endpoint.description).toContain('Returns all');
-      expect(typeof endpoint.responses).toBe('object');
-      expect(typeof endpoint.responses['200']).toBe('object');
+      expectTypeOf(endpoint.responses).toBeObject();
+      expectTypeOf(endpoint.responses['200']).toBeObject();
     });
 
     it('extracts markdown tables from endpoint comment strings', () => {
@@ -118,8 +118,8 @@ describe('Extractor', () => {
       expect(endpoint.route).toBe('/pets');
       expect(endpoint.summary).toBe('Get pets');
       expect(endpoint.description).toContain('Returns all');
-      expect(typeof endpoint.responses).toBe('object');
-      expect(typeof endpoint.responses['200']).toBe('object');
+      expectTypeOf(endpoint.responses).toBeObject();
+      expectTypeOf(endpoint.responses['200']).toBeObject();
     });
 
     it('extracts endpoints from code strings', () => {
@@ -130,7 +130,7 @@ describe('Extractor', () => {
 
       endpoints.forEach(endpoint => {
         expect(endpoint.route).toContain('pet');
-        expect(typeof endpoint.method).toBe('string');
+        expectTypeOf(endpoint.method).toBeString();
         expect(Object.keys(endpoint.responses)).toHaveLength(2);
       });
     });
@@ -157,8 +157,8 @@ describe('Extractor', () => {
 
       expect(schema.name).toBe('Pet');
       expect(Array.isArray(schema.required)).toBe(true);
-      expect(typeof schema.properties).toBe('object');
-      expect(typeof schema.properties.id).toBe('object');
+      expectTypeOf(schema.properties).toBeObject();
+      expectTypeOf(schema.properties.id).toBeObject();
     });
 
     it('returns only endpoints', () => {

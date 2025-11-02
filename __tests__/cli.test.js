@@ -1,7 +1,7 @@
 import { exec } from 'child_process';
 import path from 'path';
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, expectTypeOf } from 'vitest';
 
 import cli from '../src/cli';
 
@@ -19,8 +19,9 @@ function runCommand(cmd, cwd) {
 }
 
 describe('CLI', () => {
+  // eslint-disable-next-line @vitest/expect-expect
   it('is a function', () => {
-    expect(typeof cli).toBe('function');
+    expectTypeOf(cli).toBeFunction();
   });
 
   it('should exit process with non-zero code on a failure', () => {

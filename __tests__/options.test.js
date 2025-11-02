@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, expectTypeOf } from 'vitest';
 
 import Options from '../src/options';
 
@@ -29,10 +29,11 @@ describe('Options', () => {
   });
 
   describe('#getLogger', () => {
+    // eslint-disable-next-line @vitest/expect-expect
     it('has a logger', () => {
       process.env.NODE_ENV = 'production';
       const options = new Options();
-      expect(typeof options.getLogger()).toBe('function');
+      expectTypeOf(options.getLogger()).toBeFunction();
       process.env.NODE_ENV = 'test';
     });
   });

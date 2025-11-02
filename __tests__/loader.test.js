@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import jsYaml from 'js-yaml';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, expectTypeOf } from 'vitest';
 
 import Loader from '../src/loader';
 
@@ -19,7 +19,7 @@ describe('Loader', () => {
       return Loader.resolvePaths(inputPaths).then(filepaths => {
         expect(filepaths.length).toBeGreaterThan(1);
         filepaths.forEach(filepath => {
-          expect(typeof filepath).toBe('string');
+          expectTypeOf(filepath).toBeString();
         });
       });
     });
@@ -28,7 +28,7 @@ describe('Loader', () => {
       return Loader.resolvePaths(`${__dirname}/*.js`).then(filepaths => {
         expect(filepaths.length).toBeGreaterThan(1);
         filepaths.forEach(filepath => {
-          expect(typeof filepath).toBe('string');
+          expectTypeOf(filepath).toBeString();
         });
       });
     });

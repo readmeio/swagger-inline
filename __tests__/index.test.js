@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, expectTypeOf } from 'vitest';
 
 import swaggerInline from '../src';
 
@@ -9,11 +9,12 @@ describe('Swagger Inline', () => {
     }).toThrow('No files specified.');
   });
 
+  // eslint-disable-next-line @vitest/expect-expect
   it('returns a promise', () => {
     const returned = swaggerInline('*.js', { base: `${__dirname}/__fixtures__/project` });
 
-    expect(typeof returned.then).toBe('function');
-    expect(typeof returned.catch).toBe('function');
+    expectTypeOf(returned.then).toBeFunction();
+    expectTypeOf(returned.catch).toBeFunction();
   });
 
   it('throws an error if no base was supplied', () => {
@@ -22,10 +23,11 @@ describe('Swagger Inline', () => {
     }).toThrow('No base specification provided!');
   });
 
+  // eslint-disable-next-line @vitest/expect-expect
   it('resolves to a string', () => {
     return swaggerInline(`${__dirname}/__fixtures__/project/*.js`, { base: `${__dirname}/__fixtures__/project` }).then(
       res => {
-        expect(typeof res).toBe('string');
+        expectTypeOf(res).toBeString();
       },
     );
   });

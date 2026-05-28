@@ -5,8 +5,6 @@ const path = require('path');
 
 const globby = require('globby');
 const jsYaml = require('js-yaml');
-// eslint-disable-next-line unicorn/no-unnecessary-polyfills
-const any = require('promise.any');
 
 class Loader {
   static resolvePaths(filepaths, options) {
@@ -26,7 +24,7 @@ class Loader {
           });
         });
 
-        return any(promises).catch(Promise.reject);
+        return Promise.any(promises).catch(Promise.reject);
       })
       .catch(Promise.reject);
   }

@@ -51,7 +51,7 @@ class Loader {
   static loadPattern(filepath) {
     return Loader.loadFile(filepath)
       .then(pattern => {
-        // eslint-disable-next-line try-catch-failsafe/json-parse
+        // oxlint-disable-next-line readme/json-parse-try-catch
         return JSON.parse(pattern);
       })
       .catch(() => {
@@ -83,7 +83,7 @@ class Loader {
   }
 
   static loadJSON(filepath, options) {
-    // eslint-disable-next-line try-catch-failsafe/json-parse
+    // oxlint-disable-next-line readme/json-parse-try-catch
     return Loader.loadFile(filepath).then(data => Loader.addMetadata(JSON.parse(data), filepath, options));
   }
 

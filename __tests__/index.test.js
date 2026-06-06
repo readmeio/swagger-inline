@@ -9,7 +9,6 @@ describe('Swagger Inline', () => {
     }).toThrow('No files specified.');
   });
 
-  // eslint-disable-next-line @vitest/expect-expect
   it('returns a promise', () => {
     const returned = swaggerInline('*.js', { base: `${__dirname}/__fixtures__/project` });
 
@@ -23,7 +22,6 @@ describe('Swagger Inline', () => {
     }).toThrow('No base specification provided!');
   });
 
-  // eslint-disable-next-line @vitest/expect-expect
   it('resolves to a string', () => {
     return swaggerInline(`${__dirname}/__fixtures__/project/*.js`, { base: `${__dirname}/__fixtures__/project` }).then(
       res => {

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const program = require('commander');
 
 const pkg = require('../package.json');

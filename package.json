@@ -2,36 +2,33 @@
   "name": "swagger-inline",
   "version": "7.0.1",
   "description": "Generate an OpenAPI/Swagger definition from inline comments.",
-  "author": "Readme.io",
-  "license": "ISC",
+  "keywords": [
+    "api",
+    "comments",
+    "docs",
+    "documentation",
+    "inline",
+    "readmeio",
+    "swagger"
+  ],
+  "homepage": "https://github.com/readmeio/swagger-inline#readme",
   "bugs": {
     "url": "https://github.com/readmeio/swagger-inline/issues"
   },
-  "homepage": "https://github.com/readmeio/swagger-inline#readme",
+  "license": "ISC",
+  "author": "Readme.io",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/readmeio/swagger-inline.git"
   },
-  "keywords": [
-    "swagger",
-    "docs",
-    "readmeio",
-    "documentation",
-    "api",
-    "inline",
-    "comments"
-  ],
-  "engines": {
-    "node": ">=16"
-  },
-  "main": "src/index.js",
   "bin": {
     "swagger-inline": "bin/swagger-inline"
   },
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint .",
+    "format": "npx oxlint --fix && npx oxfmt --write",
+    "lint": "npx oxlint && npx oxfmt --check",
     "pretest": "npm run lint",
-    "prettier": "prettier --list-different --write \"./**/**.js\"",
     "test": "vitest --coverage"
   },
   "dependencies": {
@@ -41,11 +38,14 @@
     "multilang-extract-comments": "^0.4.0"
   },
   "devDependencies": {
-    "@readme/eslint-config": "^14.8.1",
-    "@vitest/coverage-v8": "^4.0.6",
-    "eslint": "^8.46.0",
-    "prettier": "^3.0.1",
-    "vitest": "^4.0.6"
+    "@readme/oxlint-config": "^1.5.0",
+    "@vitest/coverage-v8": "^4.1.8",
+    "oxfmt": "^0.53.0",
+    "oxlint": "^1.68.0",
+    "vitest": "^4.1.8"
   },
-  "prettier": "@readme/eslint-config/prettier"
+  "prettier": "@readme/eslint-config/prettier",
+  "engines": {
+    "node": ">=22"
+  }
 }

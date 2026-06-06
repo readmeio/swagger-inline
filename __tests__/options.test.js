@@ -29,7 +29,6 @@ describe('Options', () => {
   });
 
   describe('#getLogger', () => {
-    // eslint-disable-next-line @vitest/expect-expect
     it('has a logger', () => {
       process.env.NODE_ENV = 'production';
       const options = new Options();

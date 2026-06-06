@@ -19,7 +19,6 @@ function runCommand(cmd, cwd) {
 }
 
 describe('CLI', () => {
-  // eslint-disable-next-line @vitest/expect-expect
   it('is a function', () => {
     expectTypeOf(cli).toBeFunction();
   });

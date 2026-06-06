@@ -1,7 +1,7 @@
-__tests__/
 .github/
 coverage/
 node_modules/
-.eslint*
+test/
+oxfmt.config.ts
+oxlint.config.ts
 .gitignore
-.prettier*

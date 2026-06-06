@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import jsYaml from 'js-yaml';
+import { load as loadYAML } from 'js-yaml';
 import { describe, it, expect, expectTypeOf } from 'vitest';
 
 import Loader from '../src/loader';
@@ -299,7 +299,7 @@ describe('Loader', () => {
   describe('#loadData', () => {
     it('loads YAML data', () => {
       const yamlPath = `${__dirname}/__fixtures__/project/swaggerBase.yaml`;
-      const yamlObject = jsYaml.load(fs.readFileSync(yamlPath, 'utf-8'));
+      const yamlObject = loadYAML(fs.readFileSync(yamlPath, 'utf-8'));
       return Loader.loadData(yamlPath).then(yaml => {
         Object.keys(yamlObject).forEach(key => {
           expect(yaml[key]).toBeDefined();

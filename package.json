@@ -1,6 +1,6 @@
 {
   "name": "swagger-inline",
-  "version": "7.0.1",
+  "version": "8.0.0",
   "description": "Generate an OpenAPI/Swagger definition from inline comments.",
   "keywords": [
     "api",

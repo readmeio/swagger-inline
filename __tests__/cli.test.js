@@ -29,9 +29,7 @@ describe('CLI', () => {
       'node bin/swagger-inline __tests__/__fixtures__/code/swagger-api-with-error.js --base __tests__/__fixtures__/project/swaggerBase.json';
     return runCommand(cmd, workDir).then(result => {
       expect(result.code).not.toBe(0);
-      expect(result.error.message).toMatch(
-        'Error: YAMLException: can not read an implicit mapping pair; a colon is missed (12:57)',
-      );
+      expect(result.error.message).toMatch("Error: YAMLException: expected ':' after a mapping key (12:57)");
     });
   });
 
